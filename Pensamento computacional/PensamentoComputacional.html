@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pensamento Computacional</title>
+    <link rel="stylesheet" href="PensamentoComputacional.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">Pensamento Computacional</a>
+            <ul class="nav-menu">
+                <li><a href="#pilares">Pilares</a></li>
+                <li><a href="#logica">Lógica</a></li>
+                <li><a href="#algoritmos">Algoritmos</a></li>
+                <li><a href="#linguagens">Linguagens</a></li>
+                <li><a href="#pratica">Prática</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#conclusao">Conclusão</a></li>
+            </ul>
+            <div id="score-container">
+                Pontuação: <span id="score-value">0</span>
+            </div>
+            <button id="theme-toggle-btn">🌙</button>
+            <button id="hamburger-menu-btn" aria-label="Abrir menu de navegação">☰</button>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home">
+            <header>
+                <h1>Pensamento Computacional</h1>
+            </header>
+            <h2>O que é Pensamento Computacional?</h2>
+            <p>O pensamento computacional é um processo de formulação e resolução de problemas que utiliza conceitos fundamentais da ciência da computação. Ele não se limita a programadores ou cientistas da computação; é uma habilidade universalmente aplicável que ajuda a entender e resolver problemas complexos em diversas áreas.</p>
+            <p>Ele é complementado por habilidades como <strong>raciocínio lógico</strong>, <strong>criatividade</strong> e <strong>resolução de problemas</strong>, tornando-se uma ferramenta poderosa para a inovação.</p>
+        </section>
+
+        <section id="pilares">
+            <h2>Os 4 Pilares do Pensamento Computacional</h2>
+            <div class="cards-container">
+                <div class="card" data-pillar="decomposicao">
+                    <div class="card-face card-front">
+                        <h3 class="tooltip-trigger" data-tooltip="Dividir um problema complexo em partes menores e mais gerenciáveis.">Decomposição</h3>
+                        <p>A habilidade de dividir problemas grandes e complexos em partes menores e mais gerenciáveis.</p>
+                        <div class="example">
+                            <strong>Exemplo Prático:</strong> Organizar uma festa. Você divide a tarefa em: lista de convidados, orçamento, local, etc.
+                        </div>
+                    </div>
+                    <div class="card-face card-back">
+                        <h3>Decomposição</h3>
+                        <p>Quebre o problema em partes menores. O quebra-cabeça fica mais fácil de montar.</p>
+                    </div>
+                </div>
+
+                <div class="card" data-pillar="padroes">
+                    <div class="card-face card-front">
+                        <h3 class="tooltip-trigger" data-tooltip="Identificar semelhanças, tendências ou repetições em problemas.">Reconhecimento de Padrões</h3>
+                        <p>A busca por semelhanças, tendências ou repetições dentro dos problemas ou entre eles.</p>
+                        <div class="example">
+                            <strong>Exemplo Prático:</strong> Vários cachorros latem. O padrão é que todos têm pelos, quatro patas e rabo.
+                        </div>
+                    </div>
+                    <div class="card-face card-back">
+                        <h3>Reconhecimento de Padrões</h3>
+                        <p>Encontre as repetições. A solução para um problema pode ser a chave para outro.</p>
+                    </div>
+                </div>
+
+                <div class="card" data-pillar="abstracao">
+                    <div class="card-face card-front">
+                        <h3 class="tooltip-trigger" data-tooltip="Focar nos detalhes importantes e essenciais, ignorando o irrelevante.">Abstração</h3>
+                        <p>Focar nos detalhes importantes e essenciais, ignorando informações irrelevantes para a solução.</p>
+                        <div class="example">
+                            <strong>Exemplo Prático:</strong> Um mapa de metrô. Ele mostra apenas as estações e as linhas, omitindo detalhes desnecessários.
+                        </div>
+                    </div>
+                    <div class="card-face card-back">
+                        <h3>Abstração</h3>
+                        <p>Foque no que realmente importa. Ignore o ruído e concentre-se na essência do problema.</p>
+                    </div>
+                </div>
+
+                <div class="card" data-pillar="algoritmos-pilar">
+                    <div class="card-face card-front">
+                        <h3 class="tooltip-trigger" data-tooltip="Desenvolver uma sequência passo a passo para resolver um problema.">Algoritmos</h3>
+                        <p>Desenvolver uma solução passo a passo para o problema, ou as regras a serem seguidas para resolvê-lo.</p>
+                        <div class="example">
+                            <strong>Exemplo Prático:</strong> Uma receita de bolo. Ela fornece uma sequência clara de passos para chegar ao resultado.
+                        </div>
+                    </div>
+                    <div class="card-face card-back">
+                        <h3>Algoritmos</h3>
+                        <p>Crie a receita. Um bom plano passo a passo garante que você chegue ao destino desejado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="logica">
+            <h2>Introdução à Lógica de Programação</h2>
+            <p>A <span class="tooltip-trigger" data-tooltip="Forma de pensar que permite resolver problemas de forma estruturada e sequencial">lógica de programação</span> é a base para construir qualquer software. É a maneira de organizar um conjunto de instruções de forma coerente para que o computador possa executar uma tarefa. Aplicar a lógica é "pensar como um computador" para criar sequências de passos sem ambiguidade.</p>
+            
+            <h3>Técnicas de Raciocínio Lógico</h3>
+            <ul>
+                <li><strong class="tooltip-trigger" data-tooltip="Partir do geral para o específico. Ex: Todos os mamíferos têm coração. Cachorro é mamífero, logo tem coração.">Dedução:</strong> Partir de premissas gerais para chegar a uma conclusão específica.</li>
+                <li><strong class="tooltip-trigger" data-tooltip="Partir do específico para o geral. Ex: Vi 10 cisnes brancos, logo todos os cisnes são brancos.">Indução:</strong> Observar casos específicos para formular uma regra geral.</li>
+                <li><strong class="tooltip-trigger" data-tooltip="Encontrar a melhor explicação possível. Ex: A grama está molhada, provavelmente choveu.">Abdução:</strong> Encontrar a explicação mais provável para um conjunto de observações.</li>
+            </ul>
+
+            <h3>Variáveis e Constantes</h3>
+            <div class="vars-consts-container">
+                <div class="var-box">
+                    <h4 class="tooltip-trigger" data-tooltip="Espaço na memória que armazena valores que podem mudar durante a execução">Variáveis</h4>
+                    <p>São espaços na memória cujo valor pode mudar durante a execução do programa. Ex: <code class="tooltip-trigger" data-tooltip="Armazena a idade de uma pessoa (pode mudar a cada ano)">idade</code>, <code class="tooltip-trigger" data-tooltip="Armazena o nome do usuário (pode ser alterado)">nome_usuario</code>.</p>
+                </div>
+                <div class="const-box">
+                    <h4 class="tooltip-trigger" data-tooltip="Valor fixo que nunca muda durante a execução do programa">Constantes</h4>
+                    <p>São espaços na memória cujo valor é definido uma vez e não pode ser alterado. Ex: <code class="tooltip-trigger" data-tooltip="Valor de PI nunca muda: 3.14159...">PI = 3.14159</code>, <code class="tooltip-trigger" data-tooltip="Velocidade da luz no vácuo: 299.792.458 m/s - valor universal">VELOCIDADE_DA_LUZ</code>.</p>
+                </div>
+            </div>
+
+            <h3>Estruturas Básicas (Simuladores)</h3>
+
+            <div class="simulator">
+                <h4>Simulador de Decisão (<span class="tooltip-trigger" data-tooltip="Estrutura condicional: SE condição ENTÃO faça isso SENÃO faça aquilo">if/else</span>)</h4>
+                <p>Digite uma nota (0 a 10) e veja se o aluno foi aprovado (nota >= 7).</p>
+                <div class="sim-controls">
+                    <label for="notaInput" class="tooltip-trigger" data-tooltip="Digite um número entre 0 e 10">Nota:</label>
+                    <input type="number" id="notaInput" placeholder="Ex: 8" min="0" max="10">
+                    <button id="verificarNotaBtn">Verificar</button>
+                </div>
+                <p id="resultadoNota" class="sim-resultado"></p>
+            </div>
+
+            <div class="simulator">
+                <h4>Simulador de Repetição (<span class="tooltip-trigger" data-tooltip="Estrutura de loop que repete um código várias vezes">for</span>)</h4>
+                <p>Digite um número para gerar sua tabuada de 1 a 10.</p>
+                <div class="sim-controls">
+                    <label for="tabuadaInput" class="tooltip-trigger" data-tooltip="Digite qualquer número inteiro para ver sua tabuada">Número:</label>
+                    <input type="number" id="tabuadaInput" placeholder="Ex: 5">
+                    <button id="gerarTabuadaBtn">Gerar Tabuada</button>
+                </div>
+                <div id="resultadoTabuada" class="sim-resultado"></div>
+            </div>
+        </section>
+        
+        <section id="algoritmos">
+            <h2>Fundamentos de Algoritmos</h2>
+            <p>Aqui exploramos os blocos de construção essenciais para criar algoritmos eficazes e eficientes.</p>
+            <ul>
+                <li><strong>Tipos de Dados e Variáveis:</strong> Como os dados são armazenados e manipulados.</li>
+                <li><strong>Instruções Primitivas:</strong> Comandos básicos como atribuição, leitura e escrita.</li>
+                <li><strong>Estruturas Condicionais e de Repetição:</strong> Como controlar o fluxo de um algoritmo.</li>
+                <li><strong>Vetores e Matrizes:</strong> Como trabalhar com conjuntos de dados.</li>
+                <li><strong>Funções:</strong> Como modularizar e reutilizar código.</li>
+            </ul>
+
+            <div id="playground">
+                <h3><span class="icon">🎮</span> Playground de Algoritmos (JavaScript)</h3>
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="variaveis" onclick="showTab('variaveis')">Variáveis</button>
+                    <button class="tab-button" data-tab="condicionais" onclick="showTab('condicionais')">Condicionais</button>
+                    <button class="tab-button" data-tab="repeticao" onclick="showTab('repeticao')">Repetição</button>
+                    <button class="tab-button" data-tab="funcoes" onclick="showTab('funcoes')">Funções</button>
+                    <button class="tab-button" data-tab="vetores" onclick="showTab('vetores')">Vetores</button>
+                </div>
+
+                <div id="variaveis" class="tab-content active">
+                    <h4>Tipos de Dados e Variáveis</h4>
+                    <pre><code class="language-js">
+// Declaração de variáveis e constantes
+let nomeUsuario = "Maria"; // <span class="tooltip-trigger" data-tooltip="Tipo de dado que armazena texto (sequência de caracteres)">String</span>: texto
+let idade = 30; // <span class="tooltip-trigger" data-tooltip="Tipo de dado que armazena números inteiros ou decimais">Number</span>: número
+let temAssinatura = true; // <span class="tooltip-trigger" data-tooltip="Tipo de dado que armazena apenas verdadeiro (true) ou falso (false)">Boolean</span>: verdadeiro/falso
+const PAIS_ORIGEM = "Brasil"; // <span class="tooltip-trigger" data-tooltip="Valor que não pode ser alterado após definido">Constante</span>
+
+// Exibindo os valores
+console.log("Usuário:", nomeUsuario);
+console.log("Idade:", idade);
+console.log("É assinante?", temAssinatura);
+console.log("País:", PAIS_ORIGEM);
+
+// A variável 'let' pode ser atualizada
+idade = 31;
+console.log("Nova idade:", idade);
+                    </code></pre>
+                </div>
+
+                <div id="condicionais" class="tab-content">
+                    <h4>Estrutura Condicional (<span class="tooltip-trigger" data-tooltip="SE condição for verdadeira ENTÃO execute este código">if/else</span>)</h4>
+                    <pre><code class="language-js">
+let hora = 14;
+
+if (hora < 12) {
+  console.log("Bom dia!");
+} else if (hora < 18) {
+  console.log("Boa tarde!");
+} else {
+  console.log("Boa noite!");
+}
+                    </code></pre>
+                </div>
+
+                <div id="repeticao" class="tab-content">
+                    <h4>Estrutura de Repetição (<span class="tooltip-trigger" data-tooltip="Laços que executam código repetidamente">for / while</span>)</h4>
+                    <pre><code class="language-js">
+// Usando '<span class="tooltip-trigger" data-tooltip="Loop com contador: repete um número definido de vezes">for</span>' para contar de 1 a 5
+console.log("Contagem com FOR:");
+for (let i = 1; i <= 5; i++) {
+  console.log(i);
+}
+
+// Usando '<span class="tooltip-trigger" data-tooltip="Loop condicional: repete enquanto a condição for verdadeira">while</span>' para o mesmo resultado
+console.log("Contagem com WHILE:");
+let j = 1;
+while (j <= 5) {
+  console.log(j);
+  j++;
+}
+                    </code></pre>
+                </div>
+
+                <div id="funcoes" class="tab-content">
+                    <h4>Modularização com <span class="tooltip-trigger" data-tooltip="Bloco de código reutilizável que executa uma tarefa específica">Funções</span></h4>
+                    <pre><code class="language-js">
+// <span class="tooltip-trigger" data-tooltip="Palavra-chave que define um bloco de código reutilizável">Função</span> para calcular a área de um retângulo
+function calcularArea(<span class="tooltip-trigger" data-tooltip="Valores de entrada que a função recebe para processar">largura, altura</span>) {
+  <span class="tooltip-trigger" data-tooltip="Devolve um valor como resultado da função">return</span> largura * altura;
+}
+
+// Usando a função
+let areaCalculada = calcularArea(10, 5);
+console.log("A área é:", areaCalculada); // Saída: A área é: 50
+
+// Função que não retorna valor (procedimento)
+function saudar(nome) {
+    console.log("Olá, " + nome + "!");
+}
+
+saudar("Johnnie"); // Saída: Olá, Johnnie!
+                    </code></pre>
+                </div>
+
+                <div id="vetores" class="tab-content">
+                    <h4>Trabalhando com <span class="tooltip-trigger" data-tooltip="Estrutura de dados que armazena múltiplos valores em uma lista ordenada">Vetores (Arrays)</span></h4>
+                    <pre><code class="language-js">
+// Criando um vetor de frutas
+let frutas = ["Maçã", "Banana", "Laranja"];
+
+// Acessando um item (<span class="tooltip-trigger" data-tooltip="Posição de um elemento no array, começando em 0 para o primeiro">índices</span> começam em 0)
+console.log("A segunda fruta é:", frutas[1]); // Saída: Banana
+
+// Adicionando um item ao final
+frutas.<span class="tooltip-trigger" data-tooltip="Método que adiciona elemento no final do array">push</span>("Uva");
+console.log(frutas); // Saída: ["Maçã", "Banana", "Laranja", "Uva"]
+
+// Iterando sobre o vetor com '<span class="tooltip-trigger" data-tooltip="Loop que percorre cada elemento de um array automaticamente">for...of</span>'
+for (let fruta of frutas) {
+  console.log("Fruta da vez:", fruta);
+}
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+        
+        <section id="linguagens">
+            <h2>Linguagens de Programação</h2>
+            <p>As <span class="tooltip-trigger" data-tooltip="Ferramentas formais para escrever instruções que o computador pode executar">linguagens de programação</span> são as ferramentas que usamos para nos comunicarmos com os computadores, permitindo-nos criar desde sites simples até sistemas de inteligência artificial complexos.</p>
+
+            <h3>O que é uma Linguagem de Programação?</h3>
+            <p>É um sistema de escrita formal, um conjunto de regras <span class="tooltip-trigger" data-tooltip="Sintaxe: estrutura gramatical do código. Semântica: significado das instruções">sintáticas e semânticas</span> usadas para instruir um computador a realizar tarefas específicas. Elas servem como uma ponte entre o pensamento humano e as operações binárias que um processador executa.</p>
+
+            <h3>Como o Computador Entende?</h3>
+            <p>O <span class="tooltip-trigger" data-tooltip="Código escrito pelo programador em linguagem legível">código-fonte</span> que escrevemos precisa ser traduzido para a <span class="tooltip-trigger" data-tooltip="Instruções em binário (0s e 1s) que o processador executa diretamente">linguagem de máquina</span> (binário). Isso acontece principalmente de duas formas:</p>
+            <ul>
+                <li><strong><span class="tooltip-trigger" data-tooltip="Traduz todo o código de uma vez gerando arquivo executável. Ex: C++, Java">Compilação</span>:</strong> Um programa chamado compilador traduz todo o código-fonte de uma vez, gerando um arquivo executável. Ex: C++, Java.</li>
+                <li><strong><span class="tooltip-trigger" data-tooltip="Executa o código linha por linha sem gerar executável. Ex: Python, JavaScript">Interpretação</span>:</strong> Um programa chamado interpretador lê e executa o código-fonte linha por linha, sem gerar um executável separado. Ex: Python, JavaScript.</li>
+            </ul>
+
+            <h3><span class="tooltip-trigger" data-tooltip="Estilos fundamentais de programação que definem como estruturar código">Paradigmas de Programação</span></h3>
+            <p>Paradigmas são estilos ou "maneiras" de programar, que definem como o código é estruturado e executado.</p>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-face card-front">
+                        <h4><span class="tooltip-trigger" data-tooltip="Foco no 'como fazer': instruções passo a passo. Ex: C, Pascal">Imperativo</span></h4>
+                        <p>Descreve passo a passo como o programa deve executar uma tarefa. O foco está no "como fazer".</p>
+                    </div>
+                    <div class="card-face card-back">
+                        <h4>Imperativo</h4>
+                        <p><strong>Características:</strong></p>
+                        <ul>
+                            <li>Instruções sequenciais</li>
+                            <li>Modificação de estado</li>
+                            <li>Controle explícito de fluxo</li>
+                        </ul>
+                        <p><strong>Exemplos:</strong> C, Pascal, Fortran</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-face card-front">
+                        <h4><span class="tooltip-trigger" data-tooltip="Código organizado em objetos com dados e comportamentos. Ex: Java, C++">Orientado a Objetos</span></h4>
+                        <p>Organiza o código em "objetos" que contêm dados e comportamentos, promovendo a reutilização e a organização.</p>
+                    </div>
+                    <div class="card-face card-back">
+                        <h4>Orientado a Objetos</h4>
+                        <p><strong>Características:</strong></p>
+                        <ul>
+                            <li>Encapsulamento</li>
+                            <li>Herança</li>
+                            <li>Polimorfismo</li>
+                        </ul>
+                        <p><strong>Exemplos:</strong> Java, C++, Python</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-face card-front">
+                        <h4><span class="tooltip-trigger" data-tooltip="Baseado em funções matemáticas puras, evita estado mutável. Ex: Haskell, Lisp">Funcional</span></h4>
+                        <p>Trata a computação como a avaliação de funções matemáticas, evitando estados e dados mutáveis.</p>
+                    </div>
+                    <div class="card-face card-back">
+                        <h4>Funcional</h4>
+                        <p><strong>Características:</strong></p>
+                        <ul>
+                            <li>Funções puras</li>
+                            <li>Imutabilidade</li>
+                            <li>Recursão</li>
+                        </ul>
+                        <p><strong>Exemplos:</strong> Haskell, Lisp, Erlang</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Linha do Tempo e Evolução</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>1957 - Fortran</h4>
+                        <p>Uma das primeiras linguagens de alto nível, focada em computação numérica e científica.</p>
+                        <pre><code>
+PROGRAM HelloWorld
+  PRINT *, 'Hello, World!'
+END PROGRAM HelloWorld
+                        </code></pre>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>1972 - C</h4>
+                        <p>Extremamente influente, usada para desenvolver sistemas operacionais (como o Unix) e softwares de sistema. Conhecida por seu desempenho.</p>
+                        <pre><code>
+#include <stdio.h>
+
+int main() {
+    printf("Hello, World!");
+    return 0;
+}
+                        </code></pre>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>1991 - Python</h4>
+                        <p>Focada em simplicidade e legibilidade do código. Amplamente usada em desenvolvimento web, ciência de dados e automação.</p>
+                        <pre><code>
+print("Hello, World!")
+                        </code></pre>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>1995 - Java</h4>
+                        <p>Criada com o lema "escreva uma vez, rode em qualquer lugar" (WORA). Dominante em aplicações empresariais e no desenvolvimento Android.</p>
+                        <pre><code>
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="pratica">
+            <h2>Primeiro Contato com a Programação</h2>
+            <p>Com os fundamentos em mãos, é hora de dar os primeiros passos práticos na escrita de <span class="tooltip-trigger" data-tooltip="Sequência finita de instruções para resolver um problema">algoritmos</span> e entender como o pensamento computacional se aplica no dia a dia da programação.</p>
+
+            <div id="desafios">
+                <h3><span class="icon">🏆</span> Desafios Práticos (<span class="tooltip-trigger" data-tooltip="Pseudocódigo em português usado para aprender lógica antes de linguagens reais">Portugol</span>)</h3>
+                
+                <div class="desafio">
+                    <h4>Desafio 1: Soma de Dois Números</h4>
+                    <p><strong>Problema:</strong> Crie um algoritmo que leia dois números e exiba a soma deles.</p>
+                    
+                    <div class="desafio-cols">
+                        <div class="col-solucao">
+                            <h5>Solução em Portugol</h5>
+                            <pre><code>
+algoritmo "SomaDoisNumeros"
+<span class="tooltip-trigger" data-tooltip="Declara as variáveis que serão usadas no programa">var</span>
+   n1, n2, soma: <span class="tooltip-trigger" data-tooltip="Tipo de dado para números inteiros (sem decimais)">inteiro</span>
+<span class="tooltip-trigger" data-tooltip="Marca o início do código executável do algoritmo">inicio</span>
+   escreva("Digite o primeiro número: ")
+   <span class="tooltip-trigger" data-tooltip="Lê um valor digitado pelo usuário e armazena na variável">leia</span>(n1)
+   escreva("Digite o segundo número: ")
+   leia(n2)
+   
+   soma <span class="tooltip-trigger" data-tooltip="Operador de atribuição: armazena o valor à direita na variável à esquerda"><-</span> n1 + n2
+   
+   escreva("A soma é: ", soma)
+<span class="tooltip-trigger" data-tooltip="Marca o fim do algoritmo">fimalgoritmo</span>
+                            </code></pre>
+                        </div>
+                        <div class="col-pratica">
+                            <h5>Tente Você Mesmo</h5>
+                            <textarea placeholder="Escreva seu código aqui..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="desafio">
+                    <h4>Desafio 2: Adivinhe o Número</h4>
+                    <p><strong>Problema:</strong> Crie um jogo onde o computador "pensa" em um número (ex: 7) e o usuário tenta adivinhar, recebendo dicas de "maior" ou "menor" até acertar.</p>
+                    <div class="desafio-cols">
+                        <div class="col-solucao">
+                            <h5>Solução em Portugol</h5>
+                            <pre><code>
+algoritmo "AdivinheONumero"
+var
+   numero_secreto, palpite: inteiro
+inicio
+   numero_secreto <- 7
+   
+   repita
+      escreva("Qual o seu palpite? ")
+      leia(palpite)
+      
+      se palpite > numero_secreto entao
+         escreva("Muito alto! Tente um número menor.")
+      senao
+         se palpite < numero_secreto entao
+            escreva("Muito baixo! Tente um número maior.")
+         fimse
+      fimse
+   ate palpite = numero_secreto
+   
+   escreva("Parabéns! Você acertou!")
+fimalgoritmo
+                            </code></pre>
+                        </div>
+                        <div class="col-pratica">
+                            <h5>Tente Você Mesmo</h5>
+                            <textarea placeholder="Escreva seu código aqui..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz">
+            <h2>Quiz Interativo</h2>
+            <p>Teste seus conhecimentos sobre Pensamento Computacional!</p>
+            <form id="quiz-form">
+                <div class="quiz-question">
+                    <p>1. Quais são os quatro <span class="tooltip-trigger" data-tooltip="Fundamentos essenciais do Pensamento Computacional">pilares</span> do pensamento computacional?</p>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q1" value="a"> <span class="tooltip-trigger" data-tooltip="São elementos de programação, não pilares do pensamento computacional">Funções, Variáveis, Loops e Condicionais</span></label>
+                        <label><input type="radio" name="q1" value="b"> Decomposição, Reconhecimento de Padrões, Abstração e Algoritmos</label>
+                        <label><input type="radio" name="q1" value="c"> <span class="tooltip-trigger" data-tooltip="São processos técnicos de execução de código, não pilares">Compilação, Interpretação, Depuração e Execução</span></label>
+                    </div>
+                </div>
+                <div class="quiz-question">
+                    <p>2. O ato de focar nos detalhes essenciais, ignorando informações irrelevantes, é conhecido como:</p>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q2" value="a"> <span class="tooltip-trigger" data-tooltip="Decomposição é dividir problemas em partes menores">Decomposição</span></label>
+                        <label><input type="radio" name="q2" value="b"> <span class="tooltip-trigger" data-tooltip="Algoritmo é uma sequência de passos para resolver problemas">Algoritmo</span></label>
+                        <label><input type="radio" name="q2" value="c"> Abstração</label>
+                    </div>
+                </div>
+                <div class="quiz-question">
+                    <p>3. Um procedimento passo a passo para resolver um problema ou realizar uma tarefa é chamado de:</p>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q3" value="a"> Um Algoritmo</label>
+                        <label><input type="radio" name="q3" value="b"> <span class="tooltip-trigger" data-tooltip="Variável armazena dados, não define procedimentos">Uma Variável</span></label>
+                        <label><input type="radio" name="q3" value="c"> Um Paradigma</label>
+                    </div>
+                </div>
+                <button type="submit" class="quiz-submit-btn">Verificar Pontuação</button>
+            </form>
+            <div id="quiz-resultado"></div>
+            <button id="resetar-pontuacao-btn" class="resetar-btn">🔄 Resetar Pontuação do Quiz</button>
+        </section>
+
+        <section id="conclusao">
+            <h2>Conclusão e Próximos Passos</h2>
+            <p>O pensamento computacional é uma jornada de aprimoramento contínuo. Ao dominar seus pilares, você não apenas se torna um programador melhor, mas também um solucionador de problemas mais eficaz em qualquer área da sua vida.</p>
+            <p><strong>Próximos passos sugeridos:</strong></p>
+            <ul>
+                <li>Escolha uma linguagem de programação (como Python ou JavaScript) e aprofunde seus conhecimentos.</li>
+                <li>Participe de projetos de código aberto para ganhar experiência prática.</li>
+                <li>Continue praticando com desafios de lógica em plataformas online.</li>
+                <li>Nunca pare de aprender!</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Modal Structure -->
+    <div id="pillar-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h3 id="modal-title"></h3>
+            <p id="modal-text"></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Projeto desenvolvido com base nos estudos da plataforma DIO.</p>
+    </footer>
+    
+    <script src="PensamentoComputacional.js" defer></script>
+</body>
+</html>
