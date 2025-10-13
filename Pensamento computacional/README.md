@@ -34,7 +34,56 @@ Este é um site educacional completo que ensina os fundamentos do **Pensamento C
 
 ## ⚡ Funcionalidades
 
-### 🎴 Cards Interativos com Flip
+### 🎥 Vídeo Explicativo no YouTube
+- Player do YouTube integrado na página inicial
+- Design responsivo com aspect ratio 16:9
+- Destaque visual com gradiente animado
+- Compatível com modo claro e escuro
+- Call-to-action para engajamento
+
+### 🗺️ Mapa Mental Interativo Profissional
+- **Visualização inicial com zoom 1.2x** (próximo)
+- **Sistema Pan & Zoom completo**:
+  - 🖱️ **Arrastar com mouse** (botão esquerdo) para navegar
+  - 🔍 **Zoom com scroll do mouse** (roda)
+  - ➕➖ **Botões de controle** no canto esquerdo:
+    - Reset (volta ao padrão 1.2x)
+    - Zoom In (+) até 5x
+    - Zoom Out (-) até 0.3x para overview completo
+  - ⌨️ **Atalhos de teclado**:
+    - `+` ou `=` → Zoom In
+    - `-` → Zoom Out para visão panorâmica
+    - `0` → Reset
+    - `F` → Toggle Fullscreen
+    - `ESC` → Sair do fullscreen
+  - 📱 **Touch gestures** para mobile (arrastar)
+- **🖼️ Modo Tela Cheia**:
+  - Botão no canto superior direito
+  - ❌ **Botão X vermelho** para sair (visível apenas em fullscreen)
+  - Fullscreen nativo do navegador
+  - Escala automática para 1.5x
+  - Três formas de sair:
+    - Clicar no botão X vermelho
+    - Pressionar ESC
+    - Clicar novamente no botão fullscreen
+- **💾 Download da imagem** (PNG)
+- Design escuro profissional (estilo visualizador de mapas)
+- **Range de zoom: 0.3x a 5x**
+  - Zoom inicial: 1.2x (miniatura, próximo)
+  - Zoom mínimo: 0.3x (overview completo do mapa)
+  - Zoom máximo: 5x (detalhes ampliados)
+- Cursor interativo (grab/grabbing)
+- Cabeçalho com título e fonte ("Based on 1 source")
+
+### 📻 Podcast Educacional
+- Player de áudio integrado na seção Conclusão
+- **Debate: "Do Código de Turing à BNCC"**
+- Duração: 15:56 minutos
+- Formato M4A com controles nativos
+- Design com gradiente roxo destacado
+- Informações de duração e formato exibidas
+
+### �🎴 Cards Interativos com Flip
 - **4 Pilares**: Decomposição, Padrões, Abstração, Algoritmos
 - **3 Paradigmas**: Imperativo, Orientado a Objetos, Funcional
 - Animação 3D ao passar o mouse
@@ -276,6 +325,11 @@ nav, .nav-menu, .hamburger { /* Menu e responsividade */ }
 
 ### 1️⃣ Home
 - Hero section com título e descrição
+- **🎥 Vídeo do YouTube integrado**
+  - Player responsivo (16:9)
+  - Link direto: [Pensamento Computacional - YouTube](https://youtu.be/qN5Ee_p7NZc)
+  - Design com gradiente destacado
+  - Call-to-action para like e inscrição
 - Call-to-action para explorar
 - Design atrativo com gradiente
 
@@ -284,6 +338,12 @@ nav, .nav-menu, .hamburger { /* Menu e responsividade */ }
 - **Reconhecimento de Padrões**: Identificar similaridades
 - **Abstração**: Focar no essencial
 - **Algoritmos**: Criar soluções passo a passo
+
+### 2.5️⃣ Mapa Mental - Visão Geral
+- 🗺️ Visualização completa em PNG
+- Sistema de zoom interativo (modal)
+- Controles por mouse, teclado e botões
+- Explora todas as ramificações do conceito
 
 ### 3️⃣ Lógica de Programação
 - Tipos de raciocínio (Dedução, Indução, Abdução)
@@ -319,6 +379,11 @@ nav, .nav-menu, .hamburger { /* Menu e responsividade */ }
 - Resumo dos aprendizados
 - Incentivo à prática
 - Recursos adicionais
+- 📻 **Podcast de Aprofundamento**
+  - Debate: "Do Código de Turing à BNCC"
+  - Player de áudio nativo (M4A)
+  - Duração: 15:56
+  - Conteúdo educacional avançado
 
 ## 🎨 Recursos Interativos
 
@@ -459,19 +524,25 @@ Este projeto é livre para uso educacional. Sinta-se à vontade para usar, modif
 
 ## 📊 Estatísticas do Projeto
 
-- **Total de Linhas de Código**: ~1.750+
-  - HTML: 527 linhas
-  - CSS: 1.022 linhas
-  - JavaScript: 366 linhas
+- **Total de Linhas de Código**: ~2.200+
+  - HTML: 580 linhas
+  - CSS: 1.350 linhas
+  - JavaScript: 530 linhas
+  
+- **Recursos Multimídia**: 
+  - 🎥 1 vídeo do YouTube
+  - 🗺️ 1 mapa mental interativo (PNG)
+  - 📻 1 podcast/debate em áudio (M4A, 15:56)
   
 - **Tooltips Educacionais**: 56+
-- **Seções Interativas**: 8
+- **Seções Interativas**: 9 (incluindo Mind Map)
 - **Cards com Flip**: 7
 - **Simuladores Educacionais**: 2 (sem pontuação)
 - **Sistema de Quiz**: 1 (com pontuação e reset)
 - **Abas de Código**: 5
 - **Perguntas no Quiz**: 3
 - **Pontos Possíveis no Quiz**: 30 (10 por acerto)
+- **Controles de Zoom**: 3 métodos (botões, teclado, scroll)
 
 ---
 
@@ -492,6 +563,91 @@ Este projeto demonstra conhecimento em:
 ---
 
 ## 📝 Changelog (Últimas Atualizações)
+
+### Versão 3.2 - 13/10/2025 🎯
+- 🔍 **Otimização do Sistema de Zoom do Mind Map**
+  - **Zoom inicial aumentado**: 1.2x (antes 0.8x) para visualização mais próxima e detalhada
+  - **Zoom fullscreen**: 1.5x (antes 1x) para melhor aproveitamento do espaço em tela cheia
+  - **Overview completo**: Botão (-) e scroll do mouse permitem zoom out até 0.3x para visão panorâmica
+  - **Experiência aprimorada**: Inicia com zoom próximo e permite afastar para ver o mapa inteiro
+  - **Range mantido**: 0.3x (visão geral) até 5x (detalhes máximos)
+  
+- ❌ **Botão X para Sair do Fullscreen**
+  - Adicionado botão **X vermelho** no canto superior direito
+  - **Visível apenas em modo fullscreen** (display: none por padrão)
+  - **Três formas de sair do fullscreen**:
+    - Clicar no botão X vermelho destacado
+    - Pressionar tecla ESC
+    - Clicar novamente no ícone de fullscreen
+  - **Estilização diferenciada**:
+    - Cor vermelha (#e74c3c) para destaque visual
+    - Hover com vermelho mais escuro (#c0392b)
+    - Ícone SVG com X (linha cruzada)
+  - **Implementação técnica**:
+    - Função `exitFullscreen()` centralizada
+    - Controle de visibilidade via JavaScript
+    - Uso de `cssText` com `!important` para garantir exibição
+    - Listeners para fullscreenchange nativo
+
+- 🔧 **Melhorias Técnicas**
+  - Removido uso excessivo de `!important` no CSS
+  - Implementado `cssText` para controle inline dinâmico
+  - Correção de conflitos de especificidade CSS
+  - Código mais limpo e manutenível
+  - Range de zoom claramente documentado
+
+### Versão 3.1 - 13/10/2025 🎉
+- 🗺️ **Mapa Mental Profissional Reimplementado**
+  - Visualização em **miniatura (80%)** por padrão
+  - **Pan (Arrastar)** com mouse e touch
+    - Botão esquerdo do mouse para desktop
+    - Touch gestures para mobile
+    - Cursor grab/grabbing interativo
+  - **Sistema de Zoom Avançado**:
+    - Scroll do mouse (0.3x a 5x)
+    - Botões laterais (+, -, Reset)
+    - Atalhos: `+`, `-`, `0`, `F`
+  - **Modo Tela Cheia**:
+    - Botão com ícone SVG (expandir/recolher)
+    - Fullscreen nativo do navegador
+    - Escala 1:1 em fullscreen
+    - Sair com ESC ou botão
+  - **Download de imagem PNG**
+  - Design escuro estilo visualizador profissional
+  - Header com título e "Based on 1 source"
+  - Controles flutuantes nos cantos
+  - Posicionado após os 4 pilares
+  
+- 📻 **Podcast Integrado**
+  - Player de áudio HTML5 nativo
+  - Arquivo: "Do Código de Turing à BNCC"
+  - Formato M4A, duração 15:56
+  - Design com gradiente roxo destacado
+  - Controles nativos (play, pause, volume, progresso)
+  - Informações visuais (duração, formato)
+  - Posicionado na seção Conclusão
+
+- 🎨 **Design e UX**
+  - Novos gradientes temáticos (roxo para podcast)
+  - Responsividade total em todos os dispositivos
+  - Animações suaves em todos os elementos
+  - Suporte completo para dark mode
+  - Acessibilidade com ARIA labels
+
+### Versão 2.1 - 13/10/2025
+- 🎥 **Vídeo do YouTube Integrado**
+  - Adicionado player do YouTube na seção home
+  - Design responsivo com aspect ratio 16:9
+  - Container com gradiente destacado
+  - Suporte completo para dark mode
+  - Call-to-action para engajamento
+  - Link: [https://youtu.be/qN5Ee_p7NZc](https://youtu.be/qN5Ee_p7NZc)
+
+- ✅ **Correção de Visibilidade no Quiz**
+  - Mensagem de resultado agora visível no dark mode
+  - Cores de texto definidas inline para ambos os temas
+  - Verde escuro (#155724) para sucesso total
+  - Vermelho escuro (#721c24) para respostas parciais
 
 ### Versão 2.0 - 13/10/2025
 - ✅ **Sistema de Pontuação Reformulado**

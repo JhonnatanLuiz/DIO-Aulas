@@ -173,6 +173,284 @@ section#home header h1 {
     font-size: 2.5rem;
 }
 
+/* Video Container Styles */
+.video-container {
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #2980b9 100%);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.video-container h3 {
+    color: white;
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.video-description {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.video-cta {
+    color: white;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+body.dark-mode .video-container {
+    background: linear-gradient(135deg, #1e5a8e 0%, #1a4d7a 100%);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Mind Map Styles - Professional Viewer */
+.mindmap-container {
+    position: relative;
+    margin: 2rem 0;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.mindmap-header {
+    background-color: #2d2d2d;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.mindmap-header h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin: 0 0 0.3rem 0;
+    font-weight: 600;
+}
+
+.mindmap-source {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.mindmap-controls-left {
+    position: absolute;
+    left: 15px;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+}
+
+.mindmap-controls-right {
+    position: absolute;
+    right: 15px;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+}
+
+.control-btn, #download-btn {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(45, 45, 45, 0.95);
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.control-btn:hover, #download-btn:hover {
+    background-color: rgba(52, 152, 219, 0.95);
+    border-color: #3498db;
+    transform: scale(1.05);
+}
+
+.control-btn svg, #download-btn svg {
+    pointer-events: none;
+}
+
+.fullscreen-exit {
+    display: none;
+}
+
+.close-fullscreen-btn {
+    display: none;
+    background-color: rgba(231, 76, 60, 0.95);
+    border-color: #e74c3c;
+}
+
+.close-fullscreen-btn:hover {
+    background-color: rgba(192, 57, 43, 0.95);
+    border-color: #c0392b;
+}
+
+.mindmap-viewer {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background-color: #1a1a1a;
+    overflow: hidden;
+    cursor: grab;
+}
+
+.mindmap-viewer:active {
+    cursor: grabbing;
+}
+
+.mindmap-viewer.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    border-radius: 0;
+}
+
+.mindmap-scene {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mindmap-image {
+    max-width: none;
+    height: auto;
+    width: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+}
+
+.mindmap-hint {
+    text-align: center;
+    color: var(--text-color);
+    font-style: italic;
+    margin: 1.5rem 0 0;
+    padding: 1rem;
+    opacity: 0.8;
+}
+
+body.dark-mode .mindmap-container {
+    background-color: #1a1a1a;
+}
+
+body.dark-mode .mindmap-header {
+    background-color: #2d2d2d;
+}
+
+body.dark-mode .mindmap-viewer {
+    background-color: #1a1a1a;
+}
+
+/* Podcast Styles */
+.podcast-container {
+    margin: 3rem 0 2rem;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.podcast-container h3 {
+    color: white;
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.podcast-description {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.audio-player-wrapper {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+#podcast-player {
+    width: 100%;
+    max-width: 600px;
+    outline: none;
+}
+
+.podcast-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.podcast-info span {
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.podcast-cta {
+    color: white;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+body.dark-mode .podcast-container {
+    background: linear-gradient(135deg, #6c3483 0%, #7d3c98 100%);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .mindmap-container {
+    background-color: var(--card-background);
+}
+
 h2 {
     color: var(--secondary-color);
     border-bottom: 2px solid var(--secondary-color);
@@ -703,6 +981,19 @@ body.dark-mode .col-pratica textarea {
         font-size: 1.8rem;
     }
 
+    .video-container {
+        padding: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .video-container h3 {
+        font-size: 1.4rem;
+    }
+
+    .video-description {
+        font-size: 1rem;
+    }
+
     .cards-container {
         grid-template-columns: 1fr;
     }
@@ -758,6 +1049,64 @@ body.dark-mode .col-pratica textarea {
 
     section#home header h1 {
         font-size: 1.5rem;
+    }
+
+    .video-container {
+        padding: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .video-container h3 {
+        font-size: 1.2rem;
+    }
+
+    .video-description {
+        font-size: 0.9rem;
+    }
+
+    .video-cta {
+        font-size: 0.85rem;
+    }
+
+    .mindmap-container {
+        padding: 0;
+        margin: 1.5rem 0;
+    }
+
+    .mindmap-viewer {
+        height: 350px;
+    }
+
+    .mindmap-controls-left,
+    .mindmap-controls-right {
+        top: 65px;
+    }
+
+    .control-btn, #download-btn {
+        width: 35px;
+        height: 35px;
+    }
+
+    .control-btn svg, #download-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .podcast-container {
+        padding: 1.5rem;
+    }
+
+    .podcast-container h3 {
+        font-size: 1.3rem;
+    }
+
+    .podcast-description {
+        font-size: 0.95rem;
+    }
+
+    .podcast-info {
+        flex-direction: column;
+        gap: 0.5rem;
     }
 
     h2 {

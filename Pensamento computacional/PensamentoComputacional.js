@@ -370,3 +370,239 @@ function showTab(tabId) {
         }
     });
 }
+
+// --- Mind Map Pan & Zoom Functionality ---
+document.addEventListener('DOMContentLoaded', () => {
+    const viewer = document.getElementById('mindmap-viewer');
+    const scene = document.getElementById('mindmap-scene');
+    const image = document.getElementById('mindmap-image');
+    const zoomInBtn = document.getElementById('zoom-in-mini-btn');
+    const zoomOutBtn = document.getElementById('zoom-out-mini-btn');
+    const resetBtn = document.getElementById('reset-view-btn');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+    if (!viewer || !scene || !image) return;
+
+    let scale = 1.2; // Começa com zoom próximo
+    let translateX = 0;
+    let translateY = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    let isFullscreen = false;
+
+    const MIN_SCALE = 0.3;
+    const MAX_SCALE = 5;
+    const ZOOM_STEP = 0.2;
+
+    // Aplicar transformação
+    function applyTransform() {
+        image.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    }
+
+    // Resetar visualização
+    function resetView() {
+        scale = isFullscreen ? 1.5 : 1.2;
+        translateX = 0;
+        translateY = 0;
+        applyTransform();
+    }
+
+    // Zoom
+    function zoom(delta) {
+        const newScale = scale + delta;
+        if (newScale >= MIN_SCALE && newScale <= MAX_SCALE) {
+            scale = newScale;
+            applyTransform();
+        }
+    }
+
+    // Mouse down - iniciar arraste
+    viewer.addEventListener('mousedown', (e) => {
+        if (e.button === 0) { // Botão esquerdo
+            isDragging = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            viewer.style.cursor = 'grabbing';
+        }
+    });
+
+    // Mouse move - arrastar
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            applyTransform();
+        }
+    });
+
+    // Mouse up - parar arraste
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            viewer.style.cursor = 'grab';
+        }
+    });
+
+    // Touch events para mobile
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    viewer.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+            isDragging = true;
+            touchStartX = e.touches[0].clientX - translateX;
+            touchStartY = e.touches[0].clientY - translateY;
+        }
+    });
+
+    viewer.addEventListener('touchmove', (e) => {
+        if (isDragging && e.touches.length === 1) {
+            e.preventDefault();
+            translateX = e.touches[0].clientX - touchStartX;
+            translateY = e.touches[0].clientY - touchStartY;
+            applyTransform();
+        }
+    });
+
+    viewer.addEventListener('touchend', () => {
+        isDragging = false;
+    });
+
+    // Scroll do mouse para zoom
+    viewer.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -ZOOM_STEP : ZOOM_STEP;
+        zoom(delta);
+    });
+
+    // Botões de controle
+    if (zoomInBtn) {
+        zoomInBtn.addEventListener('click', () => zoom(ZOOM_STEP));
+    }
+
+    if (zoomOutBtn) {
+        zoomOutBtn.addEventListener('click', () => zoom(-ZOOM_STEP));
+    }
+
+    if (resetBtn) {
+        resetBtn.addEventListener('click', resetView);
+    }
+
+    // Fullscreen
+    const closeFullscreenBtn = document.getElementById('close-fullscreen-btn');
+    
+    function exitFullscreen() {
+        viewer.classList.remove('fullscreen');
+        const enterIcon = fullscreenBtn.querySelector('.fullscreen-enter');
+        const exitIcon = fullscreenBtn.querySelector('.fullscreen-exit');
+        enterIcon.style.display = 'block';
+        exitIcon.style.display = 'none';
+        isFullscreen = false;
+        
+        // Esconder botão fechar
+        if (closeFullscreenBtn) closeFullscreenBtn.style.display = 'none';
+        
+        // Restaurar posição dos controles
+        const controlsLeft = document.querySelector('.mindmap-controls-left');
+        const controlsRight = document.querySelector('.mindmap-controls-right');
+        if (controlsLeft) controlsLeft.style.top = '80px';
+        if (controlsRight) controlsRight.style.top = '80px';
+        
+        // Resetar view para zoom inicial
+        resetView();
+        
+        // Sair do fullscreen nativo
+        if (document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
+    
+    if (fullscreenBtn) {
+        fullscreenBtn.addEventListener('click', () => {
+            const enterIcon = fullscreenBtn.querySelector('.fullscreen-enter');
+            const exitIcon = fullscreenBtn.querySelector('.fullscreen-exit');
+            
+            if (!isFullscreen) {
+                // Entrar em fullscreen
+                viewer.classList.add('fullscreen');
+                enterIcon.style.display = 'none';
+                exitIcon.style.display = 'block';
+                isFullscreen = true;
+                
+                // Mostrar botão fechar
+                if (closeFullscreenBtn) {
+                    closeFullscreenBtn.style.cssText = 'display: flex !important;';
+                }
+                
+                // Ajustar controles para fullscreen
+                const controlsLeft = document.querySelector('.mindmap-controls-left');
+                const controlsRight = document.querySelector('.mindmap-controls-right');
+                if (controlsLeft) controlsLeft.style.top = '20px';
+                if (controlsRight) controlsRight.style.top = '20px';
+                
+                // Resetar view com zoom próximo
+                scale = 1.5;
+                translateX = 0;
+                translateY = 0;
+                applyTransform();
+                
+                // Tentar fullscreen nativo (opcional)
+                if (viewer.requestFullscreen) {
+                    viewer.requestFullscreen().catch(() => {});
+                } else if (viewer.webkitRequestFullscreen) {
+                    viewer.webkitRequestFullscreen();
+                } else if (viewer.msRequestFullscreen) {
+                    viewer.msRequestFullscreen();
+                }
+            } else {
+                exitFullscreen();
+            }
+        });
+    }
+    
+    // Botão fechar fullscreen
+    if (closeFullscreenBtn) {
+        closeFullscreenBtn.addEventListener('click', exitFullscreen);
+    }
+
+    // Detectar saída de fullscreen nativo (ESC)
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement && isFullscreen) {
+            exitFullscreen();
+        }
+    });
+
+    document.addEventListener('webkitfullscreenchange', () => {
+        if (!document.webkitFullscreenElement && isFullscreen) {
+            exitFullscreen();
+        }
+    });
+
+    // Atalhos de teclado
+    document.addEventListener('keydown', (e) => {
+        if (viewer.matches(':hover') || isFullscreen) {
+            if (e.key === '+' || e.key === '=') {
+                e.preventDefault();
+                zoom(ZOOM_STEP);
+            } else if (e.key === '-') {
+                e.preventDefault();
+                zoom(-ZOOM_STEP);
+            } else if (e.key === '0') {
+                e.preventDefault();
+                resetView();
+            } else if (e.key === 'f' || e.key === 'F') {
+                e.preventDefault();
+                fullscreenBtn.click();
+            }
+        }
+    });
+
+    // Inicializar em miniatura
+    resetView();
+});
+

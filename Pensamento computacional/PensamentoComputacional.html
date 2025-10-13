@@ -35,6 +35,21 @@
             <h2>O que é Pensamento Computacional?</h2>
             <p>O pensamento computacional é um processo de formulação e resolução de problemas que utiliza conceitos fundamentais da ciência da computação. Ele não se limita a programadores ou cientistas da computação; é uma habilidade universalmente aplicável que ajuda a entender e resolver problemas complexos em diversas áreas.</p>
             <p>Ele é complementado por habilidades como <strong>raciocínio lógico</strong>, <strong>criatividade</strong> e <strong>resolução de problemas</strong>, tornando-se uma ferramenta poderosa para a inovação.</p>
+            
+            <div class="video-container">
+                <h3>🎥 Assista ao Vídeo Explicativo</h3>
+                <p class="video-description">Confira minha explicação completa sobre Pensamento Computacional no YouTube!</p>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/qN5Ee_p7NZc" 
+                        title="Pensamento Computacional - Vídeo Explicativo" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="video-cta">👍 Se gostou, não esqueça de deixar seu like e se inscrever no canal!</p>
+            </div>
         </section>
 
         <section id="pilares">
@@ -95,6 +110,78 @@
                         <p>Crie a receita. Um bom plano passo a passo garante que você chegue ao destino desejado.</p>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="mindmap">
+            <h2>🗺️ Mapa Mental - Visão Geral</h2>
+            <p>Explore o mapa mental completo sobre Pensamento Computacional. Use os controles para navegar!</p>
+            
+            <div class="mindmap-container">
+                <div class="mindmap-header">
+                    <h3>Pensamento Computacional: Conceito, Pilares e BNCC</h3>
+                    <span class="mindmap-source">Based on 1 source</span>
+                </div>
+                
+                <div class="mindmap-controls-left">
+                    <button id="reset-view-btn" class="control-btn" aria-label="Resetar visualização" title="Resetar visualização">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                            <path d="M21 3v5h-5"/>
+                            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                            <path d="M3 21v-5h5"/>
+                        </svg>
+                    </button>
+                    <button id="zoom-in-mini-btn" class="control-btn" aria-label="Aumentar zoom" title="Aumentar zoom">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </button>
+                    <button id="zoom-out-mini-btn" class="control-btn" aria-label="Diminuir zoom" title="Diminuir zoom">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mindmap-controls-right">
+                    <button id="close-fullscreen-btn" class="control-btn close-fullscreen-btn" aria-label="Sair da tela cheia" title="Sair da tela cheia (ESC)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                    <button id="fullscreen-btn" class="control-btn" aria-label="Tela cheia" title="Tela cheia">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="fullscreen-enter">
+                            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="fullscreen-exit">
+                            <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+                        </svg>
+                    </button>
+                    <a id="download-btn" class="control-btn" href="Multimidias/Mind Map.png" download="Pensamento_Computacional_MindMap.png" aria-label="Baixar imagem" title="Baixar imagem">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="mindmap-viewer" id="mindmap-viewer">
+                    <div class="mindmap-scene" id="mindmap-scene">
+                        <img 
+                            src="Multimidias/Mind Map.png" 
+                            alt="Mapa Mental - Pensamento Computacional" 
+                            id="mindmap-image"
+                            class="mindmap-image"
+                            draggable="false"
+                        >
+                    </div>
+                </div>
+                
+                <p class="mindmap-hint">💡 Dica: Arraste para mover, use + e - para zoom, ou clique em tela cheia para explorar!</p>
             </div>
         </section>
         
@@ -508,6 +595,25 @@ fimalgoritmo
                 <li>Continue praticando com desafios de lógica em plataformas online.</li>
                 <li>Nunca pare de aprender!</li>
             </ul>
+
+            <div class="podcast-container">
+                <h3>📻 Aprofundamento: Podcast sobre Pensamento Computacional</h3>
+                <p class="podcast-description">
+                    Ouça nosso debate em formato podcast: <strong>"Do Código de Turing à BNCC"</strong>
+                    <br>Exploramos a evolução do pensamento computacional e sua importância na educação atual.
+                </p>
+                <div class="audio-player-wrapper">
+                    <audio id="podcast-player" controls preload="metadata">
+                        <source src="Multimidias/Pensamento_Computacional__Do_Código_de_Turing_à_BNCC.m4a" type="audio/mp4">
+                        Seu navegador não suporta o elemento de áudio.
+                    </audio>
+                    <div class="podcast-info">
+                        <span class="podcast-duration">⏱️ Duração: 15:56</span>
+                        <span class="podcast-format">🎧 Formato: Debate/Podcast</span>
+                    </div>
+                </div>
+                <p class="podcast-cta">🎙️ Ouça, reflita e compartilhe suas opiniões sobre o tema!</p>
+            </div>
         </section>
     </main>
 
