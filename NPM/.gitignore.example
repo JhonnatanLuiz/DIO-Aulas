@@ -1,0 +1,165 @@
+# ===================================
+# .gitignore - Exemplo para Projetos Node.js
+# ===================================
+# Este arquivo mostra o que NÃO deve ser versionado no Git
+
+# ===================================
+# VARIÁVEIS DE AMBIENTE (IMPORTANTE!)
+# ===================================
+# NUNCA faça commit desses arquivos!
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# ===================================
+# DEPENDÊNCIAS
+# ===================================
+# Diretório node_modules/ (muito grande)
+node_modules/
+
+# Arquivos de lock (opcional, dependendo da equipe)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# ===================================
+# LOGS
+# ===================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ===================================
+# ARQUIVOS DO SISTEMA OPERACIONAL
+# ===================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+Desktop.ini
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ===================================
+# EDITORES E IDEs
+# ===================================
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains (WebStorm, IntelliJ, etc)
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# ===================================
+# BUILD E DISTRIBUIÇÃO
+# ===================================
+dist/
+build/
+out/
+*.tgz
+*.zip
+*.tar.gz
+
+# ===================================
+# CACHE
+# ===================================
+.cache/
+.temp/
+.tmp/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist/
+
+# ===================================
+# TESTES E COBERTURA
+# ===================================
+coverage/
+*.lcov
+.nyc_output/
+.jest/
+
+# ===================================
+# CERTIFICADOS E CHAVES
+# ===================================
+# NUNCA versione chaves privadas!
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+
+# ===================================
+# BANCO DE DADOS LOCAL
+# ===================================
+*.sqlite
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
+
+# ===================================
+# UPLOADS E ARQUIVOS DE USUÁRIO
+# ===================================
+uploads/
+user-data/
+storage/
+
+# ===================================
+# DOCUMENTAÇÃO GERADA
+# ===================================
+docs/_build/
+site/
+
+# ===================================
+# OPCIONAL: Arquivos grandes
+# ===================================
+# *.mp4
+# *.mov
+# *.avi
+# *.pdf
+# *.psd
+
+# ===================================
+# EXCEÇÕES (arquivos que DEVEM ser versionados)
+# ===================================
+# Descomente se necessário:
+# !.env.example
+# !README.md
+# !.gitkeep

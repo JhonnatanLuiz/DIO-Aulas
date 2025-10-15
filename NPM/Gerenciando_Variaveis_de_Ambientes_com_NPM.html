@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciando Variáveis de Ambiente com NPM - DIO</title>
+    <link rel="stylesheet" href="Gerenciando_Variaveis_de_Ambientes_com_NPM.css">
+    <!-- Highlight.js para syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <h1>🔐 Gerenciando Variáveis de Ambiente com NPM</h1>
+                <p class="subtitle">Trilha de Aprendizado - Digital Innovation One (DIO)</p>
+            </div>
+            <div class="header-actions">
+                <div class="search-container">
+                    <input 
+                        type="search" 
+                        id="searchInput" 
+                        placeholder="🔍 Pesquisar no site..." 
+                        aria-label="Pesquisar no conteúdo"
+                    >
+                    <div id="searchResults" class="search-results hidden"></div>
+                </div>
+                <button id="toggleTheme" class="btn-theme" aria-label="Alternar tema">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <a href="#materials" class="btn-primary">📚 Materiais</a>
+            </div>
+        </div>
+        <div class="progress-bar" id="progressBar"></div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="toc" id="toc">
+        <div class="container">
+            <h2>📑 Índice</h2>
+            <ol>
+                <li><a href="#prerequisites">0. Pré-Requisitos</a></li>
+                <li><a href="#intro">1. Fundamentos</a></li>
+                <li><a href="#theory">2. Teoria</a></li>
+                <li><a href="#case-study">3. Caso Prático (Situation)</a></li>
+                <li><a href="#practice">4. Prática</a></li>
+                <li><a href="#conclusion">5. Conclusão</a></li>
+                <li><a href="#materials">6. Materiais de Apoio</a></li>
+                <li><a href="#quiz">7. Questionário</a></li>
+                <li><a href="#playground">8. Playground Interativo</a></li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container" id="content">
+        
+        <!-- Section 0: Pré-Requisitos -->
+        <section id="prerequisites" class="content-section">
+            <div class="section-header">
+                <span class="section-number">0</span>
+                <h2>Pré-Requisitos</h2>
+            </div>
+
+            <div class="card">
+                <h3>📚 O que você precisa saber antes de começar</h3>
+                
+                <div class="prerequisites-grid">
+                    <div class="prerequisite-card">
+                        <div class="prerequisite-icon">🟢</div>
+                        <h4>Node.js Básico</h4>
+                        <div class="prerequisite-level">
+                            <span class="level-badge required">Obrigatório</span>
+                        </div>
+                        <ul>
+                            <li>Instalar Node.js e NPM</li>
+                            <li>Executar comandos básicos no terminal</li>
+                            <li>Criar arquivos <code>package.json</code></li>
+                            <li>Instalar pacotes com <code>npm install</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="prerequisite-card">
+                        <div class="prerequisite-icon">📝</div>
+                        <h4>JavaScript</h4>
+                        <div class="prerequisite-level">
+                            <span class="level-badge required">Obrigatório</span>
+                        </div>
+                        <ul>
+                            <li>Sintaxe básica do JavaScript</li>
+                            <li>Variáveis (const, let, var)</li>
+                            <li>Módulos (require/import)</li>
+                            <li>Objetos e propriedades</li>
+                        </ul>
+                    </div>
+
+                    <div class="prerequisite-card">
+                        <div class="prerequisite-icon">💻</div>
+                        <h4>Terminal/CMD</h4>
+                        <div class="prerequisite-level">
+                            <span class="level-badge required">Obrigatório</span>
+                        </div>
+                        <ul>
+                            <li>Navegar entre pastas (<code>cd</code>)</li>
+                            <li>Criar arquivos e pastas</li>
+                            <li>Executar comandos npm</li>
+                            <li>Conceito de variáveis de ambiente do SO</li>
+                        </ul>
+                    </div>
+
+                    <div class="prerequisite-card">
+                        <div class="prerequisite-icon">🔀</div>
+                        <h4>Git/GitHub</h4>
+                        <div class="prerequisite-level">
+                            <span class="level-badge recommended">Recomendado</span>
+                        </div>
+                        <ul>
+                            <li>Comandos básicos do Git</li>
+                            <li>Uso de <code>.gitignore</code></li>
+                            <li>Commits e versionamento</li>
+                            <li>Conceito de repositório</li>
+                        </ul>
+                    </div>
+
+                    <div class="prerequisite-card">
+                        <div class="prerequisite-icon">🌐</div>
+                        <h4>APIs e Servidores</h4>
+                        <div class="prerequisite-level">
+                            <span class="level-badge optional">Opcional</span>
+                        </div>
+                        <ul>
+                            <li>Conceito de API REST</li>
+                            <li>HTTP requests básicos</li>
+                            <li>Express.js (básico)</li>
+                            <li>Banco de dados (conceito)</li>
+                        </ul>
+                    </div>
+
+                    <div class="prerequisite-card">
+                        <div class="prerequisite-icon">🔐</div>
+                        <h4>Segurança Básica</h4>
+                        <div class="prerequisite-level">
+                            <span class="level-badge optional">Opcional</span>
+                        </div>
+                        <ul>
+                            <li>Conceito de credenciais</li>
+                            <li>Chaves de API</li>
+                            <li>Tokens de autenticação</li>
+                            <li>Boas práticas de segurança</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🛠️ Ferramentas Necessárias</h3>
+                
+                <div class="tools-checklist">
+                    <label class="tool-item">
+                        <input type="checkbox">
+                        <div class="tool-info">
+                            <h4>Node.js (versão 14 ou superior)</h4>
+                            <p>Runtime JavaScript necessário para executar aplicações Node.js</p>
+                            <a href="https://nodejs.org/" target="_blank" rel="noopener">⬇️ Download</a>
+                        </div>
+                    </label>
+
+                    <label class="tool-item">
+                        <input type="checkbox">
+                        <div class="tool-info">
+                            <h4>NPM (vem com Node.js)</h4>
+                            <p>Gerenciador de pacotes do Node.js para instalar dependências</p>
+                            <code>npm --version</code>
+                        </div>
+                    </label>
+
+                    <label class="tool-item">
+                        <input type="checkbox">
+                        <div class="tool-info">
+                            <h4>Editor de Código (VS Code, Sublime, etc.)</h4>
+                            <p>Ambiente para escrever e editar código JavaScript</p>
+                            <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">⬇️ VS Code</a>
+                        </div>
+                    </label>
+
+                    <label class="tool-item">
+                        <input type="checkbox">
+                        <div class="tool-info">
+                            <h4>Terminal/PowerShell/CMD</h4>
+                            <p>Interface de linha de comando para executar comandos npm</p>
+                            <code>Já vem com o sistema operacional</code>
+                        </div>
+                    </label>
+
+                    <label class="tool-item">
+                        <input type="checkbox">
+                        <div class="tool-info">
+                            <h4>Git (opcional mas recomendado)</h4>
+                            <p>Sistema de controle de versão para gerenciar código</p>
+                            <a href="https://git-scm.com/" target="_blank" rel="noopener">⬇️ Download</a>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>✅ Teste seus Conhecimentos</h3>
+                <p>Antes de começar, verifique se você sabe responder:</p>
+                
+                <div class="quick-quiz">
+                    <div class="quiz-question">
+                        <p><strong>1.</strong> Como você instala um pacote npm em um projeto?</p>
+                        <details>
+                            <summary>Ver resposta</summary>
+                            <p>✅ <code>npm install nome-do-pacote</code></p>
+                        </details>
+                    </div>
+
+                    <div class="quiz-question">
+                        <p><strong>2.</strong> Qual comando cria um arquivo package.json?</p>
+                        <details>
+                            <summary>Ver resposta</summary>
+                            <p>✅ <code>npm init</code> ou <code>npm init -y</code></p>
+                        </details>
+                    </div>
+
+                    <div class="quiz-question">
+                        <p><strong>3.</strong> Como você acessa variáveis de ambiente no Node.js?</p>
+                        <details>
+                            <summary>Ver resposta</summary>
+                            <p>✅ Usando <code>process.env.NOME_DA_VARIAVEL</code></p>
+                        </details>
+                    </div>
+
+                    <div class="quiz-question">
+                        <p><strong>4.</strong> O que é o arquivo .gitignore?</p>
+                        <details>
+                            <summary>Ver resposta</summary>
+                            <p>✅ Arquivo que especifica quais arquivos/pastas o Git deve ignorar (não versionar)</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box info">
+                <strong>💡 Dica:</strong> Se você não tem certeza sobre algum pré-requisito, recomendamos estudar os fundamentos de Node.js e JavaScript antes de continuar. Isso tornará seu aprendizado muito mais eficiente!
+            </div>
+        </section>
+        
+        <!-- Section 1: Fundamentos -->
+        <section id="intro" class="content-section">
+            <div class="section-header">
+                <span class="section-number">1</span>
+                <h2>Fundamentos</h2>
+            </div>
+
+            <div class="card">
+                <h3>🤔 O que são Variáveis de Ambiente?</h3>
+                <p>
+                    Variáveis de ambiente são <strong>valores externos ao código</strong> que configuram o comportamento da aplicação. 
+                    Elas armazenam informações sensíveis ou específicas do ambiente de execução.
+                </p>
+                
+                <div class="highlight-box info">
+                    <strong>💡 Exemplos comuns:</strong>
+                    <ul>
+                        <li>🔑 Credenciais de banco de dados (usuário, senha)</li>
+                        <li>🌐 Portas de servidor (PORT=3000)</li>
+                        <li>🔐 Chaves de API (API_KEY, SECRET_KEY)</li>
+                        <li>🌍 URLs de serviços externos</li>
+                        <li>⚙️ Configurações de ambiente (NODE_ENV=production)</li>
+                    </ul>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Exemplo Visual</span>
+                        <button class="copy-btn" data-code="example1">Copiar</button>
+                    </div>
+                    <pre><code class="language-javascript" id="example1">// ❌ SEM variáveis de ambiente (RUIM)
+const config = {
+  dbUser: 'admin',           // Exposto no código!
+  dbPassword: 'senha123',    // Risco de segurança!
+  apiKey: 'abc123xyz'        // Não deve estar aqui!
+};
+
+// ✅ COM variáveis de ambiente (BOM)
+const config = {
+  dbUser: process.env.DB_USER,
+  dbPassword: process.env.DB_PASS,
+  apiKey: process.env.API_KEY
+};</code></pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🎯 Por que usar Variáveis de Ambiente?</h3>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🔒</div>
+                        <h4>Segurança</h4>
+                        <p>Não expor dados sensíveis diretamente no código-fonte.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🔄</div>
+                        <h4>Flexibilidade</h4>
+                        <p>Mesmo código roda em diferentes ambientes (dev, teste, produção).</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📦</div>
+                        <h4>Organização</h4>
+                        <p>Separar configuração de lógica de negócio.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">👥</div>
+                        <h4>Colaboração</h4>
+                        <p>Cada desenvolvedor usa suas próprias configurações locais.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Teoria -->
+        <section id="theory" class="content-section">
+            <div class="section-header">
+                <span class="section-number">2</span>
+                <h2>Teoria</h2>
+            </div>
+
+            <div class="card">
+                <h3>❌ O Problema: Hardcode de Informações Sensíveis</h3>
+                
+                <div class="highlight-box warning">
+                    <strong>⚠️ Problemas do hardcode:</strong>
+                    <ul>
+                        <li>🔓 Senhas e chaves de API expostas no repositório</li>
+                        <li>📝 Histórico do Git guarda dados sensíveis PARA SEMPRE</li>
+                        <li>🌍 Impossível usar o mesmo código em ambientes diferentes</li>
+                        <li>👀 Qualquer pessoa com acesso ao código vê credenciais</li>
+                        <li>🚨 Violação de boas práticas de segurança</li>
+                    </ul>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">❌ Exemplo de código INSEGURO</span>
+                        <button class="copy-btn" data-code="problem1">Copiar</button>
+                    </div>
+                    <pre><code class="language-javascript" id="problem1">// arquivo: server.js (NÃO FAÇA ISSO!)
+
+const express = require('express');
+const mysql = require('mysql');
+
+const app = express();
+
+// ❌ PERIGO: Credenciais expostas no código!
+const db = mysql.createConnection({
+  host: 'meuservidor.com',
+  user: 'admin',              // Qualquer um pode ver
+  password: 'senha@super123', // RISCO DE SEGURANÇA!
+  database: 'producao_db'
+});
+
+app.listen(3000, () => {
+  console.log('Servidor rodando');
+});</code></pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>✅ A Solução: Externalizar em Arquivos `.env`</h3>
+                
+                <p>A solução é mover todas as configurações sensíveis para um arquivo separado (<code>.env</code>) e acessá-las através de <code>process.env</code>.</p>
+
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>📄 Arquivo .env</h4>
+                        <div class="code-example">
+                            <pre><code class="language-bash"># .env (não versionado)
+DB_HOST=meuservidor.com
+DB_USER=admin
+DB_PASS=senha@super123
+DB_NAME=producao_db
+PORT=3000</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="comparison-item">
+                        <h4>📝 Código JavaScript</h4>
+                        <div class="code-example">
+                            <pre><code class="language-javascript">// server.js (seguro!)
+import 'dotenv/config';
+
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME
+});
+
+app.listen(process.env.PORT);</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box success">
+                    <strong>✅ Vantagens dessa abordagem:</strong>
+                    <ul>
+                        <li>🔐 Dados sensíveis ficam fora do código versionado</li>
+                        <li>📁 Arquivo <code>.env</code> é adicionado ao <code>.gitignore</code></li>
+                        <li>🔄 Fácil trocar entre ambientes (dev, teste, prod)</li>
+                        <li>👨‍💻 Cada desenvolvedor usa suas próprias credenciais</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Caso Prático (Situation) -->
+        <section id="case-study" class="content-section">
+            <div class="section-header">
+                <span class="section-number">3</span>
+                <h2>Caso Prático (Situation)</h2>
+            </div>
+
+            <div class="card">
+                <h3>🎯 Cenário Real: E-commerce com Múltiplos Ambientes</h3>
+                
+                <div class="scenario-intro">
+                    <p>
+                        Você foi contratado para desenvolver uma <strong>API de e-commerce</strong> que precisa se conectar a 
+                        um banco de dados, processar pagamentos e enviar emails de confirmação. A aplicação terá 3 ambientes:
+                    </p>
+                    <ul>
+                        <li>🔧 <strong>Desenvolvimento</strong> (sua máquina local)</li>
+                        <li>🧪 <strong>Teste</strong> (servidor de testes da equipe)</li>
+                        <li>🚀 <strong>Produção</strong> (servidor público acessível aos clientes)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>❌ Situação Problemática (SEM variáveis de ambiente)</h3>
+                
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">❌ server.js - Código Problemático</span>
+                        <button class="copy-btn" data-code="case-bad">Copiar</button>
+                    </div>
+                    <pre><code class="language-javascript" id="case-bad">// ❌ PROBLEMA: Tudo hardcoded!
+const express = require('express');
+const mysql = require('mysql');
+const stripe = require('stripe');
+
+const app = express();
+
+// ❌ Credenciais do banco expostas
+const db = mysql.createConnection({
+  host: 'prod-db.exemplo.com',        // Sempre aponta pra produção!
+  user: 'admin',
+  password: 'SenhaSecreta@2024',      // Exposta no código!
+  database: 'ecommerce_producao'
+});
+
+// ❌ Chave da Stripe exposta
+const stripeClient = stripe('sk_live_ABC123XYZ789');  // Chave real no código!
+
+// ❌ Porta fixa
+app.listen(3000, () => {
+  console.log('Servidor na porta 3000');
+});
+
+// ❌ PROBLEMAS GERADOS:
+// 1. Se commitar no Git, a senha fica exposta PARA SEMPRE
+// 2. Impossível testar localmente (sempre usa banco de produção)
+// 3. Se vazar a chave da Stripe, prejuízo financeiro!
+// 4. Outros devs não podem usar suas próprias configurações</code></pre>
+                </div>
+
+                <div class="highlight-box danger">
+                    <strong>🚨 Consequências Reais:</strong>
+                    <ul>
+                        <li>💰 <strong>Prejuízo financeiro:</strong> Chave da Stripe vazada = cobranças indevidas</li>
+                        <li>🔓 <strong>Banco invadido:</strong> Credenciais expostas no GitHub público</li>
+                        <li>⚠️ <strong>Testes quebram produção:</strong> Desenvolvedores testam direto no banco real</li>
+                        <li>👥 <strong>Conflitos na equipe:</strong> Cada dev precisa editar o código com suas configs</li>
+                        <li>📝 <strong>Histórico comprometido:</strong> Mesmo deletando, fica no Git forever</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>✅ Solução com Variáveis de Ambiente</h3>
+                
+                <p>Agora vamos resolver o problema usando <code>.env</code> e múltiplos ambientes:</p>
+
+                <div class="solution-grid">
+                    <div class="solution-step">
+                        <h4>📁 .env.development (local)</h4>
+                        <div class="code-example">
+                            <pre><code class="language-bash"># Ambiente LOCAL (sua máquina)
+PORT=3000
+NODE_ENV=development
+
+# Banco de dados LOCAL
+DB_HOST=localhost
+DB_USER=seu_usuario_local
+DB_PASS=senha_local_123
+DB_NAME=ecommerce_dev
+
+# Stripe TEST (não cobra de verdade)
+STRIPE_KEY=sk_test_FAKE_KEY_PARA_TESTES
+
+# Email de teste
+EMAIL_HOST=smtp.mailtrap.io
+EMAIL_USER=test@test.com</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="solution-step">
+                        <h4>📁 .env.test (servidor de testes)</h4>
+                        <div class="code-example">
+                            <pre><code class="language-bash"># Ambiente de TESTES
+PORT=4000
+NODE_ENV=test
+
+# Banco de testes (compartilhado)
+DB_HOST=test-server.exemplo.com
+DB_USER=test_user
+DB_PASS=test_password
+DB_NAME=ecommerce_test
+
+# Stripe TEST
+STRIPE_KEY=sk_test_TESTING_123
+
+# Email de teste
+EMAIL_HOST=smtp.mailtrap.io</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="solution-step">
+                        <h4>📁 .env.production (produção)</h4>
+                        <div class="code-example">
+                            <pre><code class="language-bash"># Ambiente de PRODUÇÃO
+PORT=8080
+NODE_ENV=production
+
+# Banco REAL
+DB_HOST=prod-db.exemplo.com
+DB_USER=prod_admin
+DB_PASS=SenhaSecreta@2024
+DB_NAME=ecommerce_producao
+
+# Stripe REAL (cobra clientes!)
+STRIPE_KEY=sk_live_ABC123XYZ789
+
+# Email REAL
+EMAIL_HOST=smtp.gmail.com
+EMAIL_USER=contato@loja.com</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">✅ server.js - Código CORRETO</span>
+                        <button class="copy-btn" data-code="case-good">Copiar</button>
+                    </div>
+                    <pre><code class="language-javascript" id="case-good">// ✅ SOLUÇÃO: Variáveis de ambiente!
+require('dotenv').config();
+const express = require('express');
+const mysql = require('mysql');
+const stripe = require('stripe');
+
+const app = express();
+
+// ✅ Credenciais vêm do .env (não expostas no código)
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME
+});
+
+// ✅ Chave vem do .env (segura!)
+const stripeClient = stripe(process.env.STRIPE_KEY);
+
+// ✅ Porta flexível
+const PORT = process.env.PORT || 3000;
+
+app.post('/checkout', async (req, res) => {
+  // Em dev: usa chave de teste (não cobra)
+  // Em prod: usa chave real (cobra cliente)
+  const charge = await stripeClient.charges.create({
+    amount: 5000,
+    currency: 'brl',
+    source: req.body.token
+  });
+  
+  res.json({ success: true });
+});
+
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor em ${process.env.NODE_ENV} na porta ${PORT}`);
+});
+
+// ✅ BENEFÍCIOS:
+// 1. Nenhuma credencial no código
+// 2. Cada ambiente usa suas próprias configs
+// 3. Desenvolvedores testam localmente sem risco
+// 4. .env vai pro .gitignore (nunca vaza)</code></pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🔄 Como o Time Trabalha com Isso</h3>
+                
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="workflow-number">1</div>
+                        <div class="workflow-content">
+                            <h4>Desenvolvedor A (Local)</h4>
+                            <p>Cria <code>.env</code> com suas credenciais locais:</p>
+                            <code>DB_HOST=localhost</code><br>
+                            <code>STRIPE_KEY=sk_test_...</code>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="workflow-number">2</div>
+                        <div class="workflow-content">
+                            <h4>Git Ignore</h4>
+                            <p>O <code>.env</code> está no <code>.gitignore</code>, então NÃO é commitado</p>
+                            <code># .gitignore<br>.env</code>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="workflow-number">3</div>
+                        <div class="workflow-content">
+                            <h4>.env.example Commitado</h4>
+                            <p>Apenas um template SEM valores reais vai pro Git:</p>
+                            <code>DB_HOST=seu_host_aqui<br>STRIPE_KEY=sua_chave_aqui</code>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="workflow-number">4</div>
+                        <div class="workflow-content">
+                            <h4>Desenvolvedor B Clona</h4>
+                            <p>Copia <code>.env.example</code> para <code>.env</code> e preenche com SUAS credenciais</p>
+                        </div>
+                    </div>
+
+                    <div class="workflow-step">
+                        <div class="workflow-number">5</div>
+                        <div class="workflow-content">
+                            <h4>Deploy em Produção</h4>
+                            <p>Servidor configura <code>.env.production</code> com credenciais reais (via painel ou CI/CD)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📊 Comparação: Antes vs Depois</h3>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Aspecto</th>
+                            <th>❌ SEM .env</th>
+                            <th>✅ COM .env</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Segurança</strong></td>
+                            <td>Credenciais expostas no código</td>
+                            <td>Credenciais fora do versionamento</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flexibilidade</strong></td>
+                            <td>Código diferente por ambiente</td>
+                            <td>Mesmo código, configs diferentes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Colaboração</strong></td>
+                            <td>Conflitos constantes</td>
+                            <td>Cada dev usa suas configs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Testes</strong></td>
+                            <td>Risco de quebrar produção</td>
+                            <td>Ambiente isolado e seguro</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Deploy</strong></td>
+                            <td>Editar código manualmente</td>
+                            <td>Apenas trocar arquivo .env</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="highlight-box success">
+                <strong>✅ Resultado Final:</strong><br>
+                O mesmo código (<code>server.js</code>) roda em desenvolvimento, teste e produção, 
+                cada um com suas próprias configurações seguras e isoladas!
+            </div>
+        </section>
+
+        <!-- Section 4: Prática -->
+        <section id="practice" class="content-section">
+            <div class="section-header">
+                <span class="section-number">4</span>
+                <h2>Prática</h2>
+            </div>
+
+            <!-- Step 1: Setup -->
+            <div class="card">
+                <h3>📦 Passo 1: Setup Inicial do Projeto</h3>
+                
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Criar pasta do projeto</h4>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-label">Terminal</span>
+                                    <button class="copy-btn" data-code="step1">Copiar</button>
+                                </div>
+                                <pre><code class="language-bash" id="step1">mkdir meu-projeto-env
+cd meu-projeto-env</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Inicializar projeto Node.js</h4>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-label">Terminal</span>
+                                    <button class="copy-btn" data-code="step2">Copiar</button>
+                                </div>
+                                <pre><code class="language-bash" id="step2">npm init -y</code></pre>
+                            </div>
+                            <p class="step-note">📝 Isso cria o arquivo <code>package.json</code></p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Instalar dependências</h4>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-label">Terminal</span>
+                                    <button class="copy-btn" data-code="step3">Copiar</button>
+                                </div>
+                                <pre><code class="language-bash" id="step3">npm install dotenv</code></pre>
+                            </div>
+                            <p class="step-note">📦 O pacote <code>dotenv</code> carrega variáveis do arquivo <code>.env</code></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Arquivo .env -->
+            <div class="card">
+                <h3>📄 Passo 2: Criar Arquivo `.env`</h3>
+                
+                <div class="highlight-box info">
+                    <strong>💡 Estrutura do arquivo .env:</strong>
+                    <ul>
+                        <li>Nome em <strong>MAIÚSCULAS</strong> por convenção</li>
+                        <li>Formato: <code>NOME_VARIAVEL=valor</code></li>
+                        <li>Sem espaços ao redor do <code>=</code></li>
+                        <li>Comentários começam com <code>#</code></li>
+                        <li>Não usar aspas (a menos que faça parte do valor)</li>
+                    </ul>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">.env</span>
+                        <button class="copy-btn" data-code="envfile">Copiar</button>
+                    </div>
+                    <pre><code class="language-bash" id="envfile"># Configurações do Servidor
+PORT=3000
+NODE_ENV=development
+
+# Banco de Dados
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=admin
+DB_PASS=12345
+DB_NAME=minha_aplicacao
+
+# APIs Externas
+API_KEY=abc123xyz456
+JWT_SECRET=meu_segredo_super_secreto
+
+# URLs
+BASE_URL=http://localhost:3000
+FRONTEND_URL=http://localhost:5173</code></pre>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ IMPORTANTE: Adicione .env ao .gitignore</strong>
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-label">.gitignore</span>
+                            <button class="copy-btn" data-code="gitignore">Copiar</button>
+                        </div>
+                        <pre><code class="language-bash" id="gitignore"># Dependências
+node_modules/
+
+# Variáveis de ambiente
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: process.env -->
+            <div class="card">
+                <h3>💻 Passo 3: Usando `process.env` no Código</h3>
+                
+                <p>O Node.js disponibiliza o objeto global <code>process.env</code> que contém todas as variáveis de ambiente.</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Sem dotenv (variáveis do sistema)</span>
+                        <button class="copy-btn" data-code="processenv1">Copiar</button>
+                    </div>
+                    <pre><code class="language-javascript" id="processenv1">// Acessar variáveis de ambiente do sistema operacional
+console.log(process.env.PATH);      // Variável PATH do Windows/Linux
+console.log(process.env.USERNAME);  // Usuário do sistema
+console.log(process.env.HOME);      // Diretório home</code></pre>
+                </div>
+
+                <div class="highlight-box info">
+                    <strong>⚠️ Problema:</strong> O Node.js NÃO lê arquivos <code>.env</code> automaticamente. 
+                    Para isso, precisamos do pacote <code>dotenv</code>!
+                </div>
+            </div>
+
+            <!-- Step 4: dotenv -->
+            <div class="card">
+                <h3>🔌 Passo 4: Configurando o Pacote `dotenv`</h3>
+                
+                <div class="tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="commonjs">CommonJS (require)</button>
+                        <button class="tab-btn" data-tab="esmodules">ES Modules (import)</button>
+                    </div>
+
+                    <div class="tab-content active" id="commonjs">
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-label">app.js (CommonJS)</span>
+                                <button class="copy-btn" data-code="dotenv-cjs">Copiar</button>
+                            </div>
+                            <pre><code class="language-javascript" id="dotenv-cjs">// 1. Importar e configurar dotenv no INÍCIO do arquivo
+require('dotenv').config();
+
+// 2. Agora pode usar as variáveis do .env
+console.log('Porta do servidor:', process.env.PORT);
+console.log('Usuário do DB:', process.env.DB_USER);
+console.log('Ambiente:', process.env.NODE_ENV);
+
+// 3. Usar em configurações
+const express = require('express');
+const app = express();
+
+const PORT = process.env.PORT || 3000; // Fallback para 3000
+
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor rodando na porta ${PORT}`);
+});</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="esmodules">
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span class="code-label">app.js (ES Modules)</span>
+                                <button class="copy-btn" data-code="dotenv-esm">Copiar</button>
+                            </div>
+                            <pre><code class="language-javascript" id="dotenv-esm">// 1. Importar dotenv (sintaxe ES6)
+import 'dotenv/config';
+
+// OU (forma alternativa)
+import dotenv from 'dotenv';
+dotenv.config();
+
+// 2. Usar as variáveis
+console.log('Porta:', process.env.PORT);
+console.log('API Key:', process.env.API_KEY);
+
+// 3. Exemplo com Express
+import express from 'express';
+const app = express();
+
+app.listen(process.env.PORT, () => {
+  console.log(`Servidor online em ${process.env.BASE_URL}`);
+});</code></pre>
+                            </div>
+                            <div class="highlight-box info">
+                                <strong>📝 Para usar ES Modules:</strong> Adicione <code>"type": "module"</code> no <code>package.json</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Múltiplos ambientes -->
+            <div class="card">
+                <h3>🌍 Passo 5: Múltiplos Arquivos `.env` (Dev, Teste, Produção)</h3>
+                
+                <p>É comum ter diferentes configurações para cada ambiente:</p>
+
+                <div class="env-files-grid">
+                    <div class="env-file-card">
+                        <h4>📁 .env.development</h4>
+                        <div class="code-example">
+                            <pre><code class="language-bash">NODE_ENV=development
+PORT=3000
+DB_HOST=localhost
+DB_NAME=app_dev
+DEBUG=true</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="env-file-card">
+                        <h4>📁 .env.test</h4>
+                        <div class="code-example">
+                            <pre><code class="language-bash">NODE_ENV=test
+PORT=3001
+DB_HOST=localhost
+DB_NAME=app_test
+DEBUG=false</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="env-file-card">
+                        <h4>📁 .env.production</h4>
+                        <div class="code-example">
+                            <pre><code class="language-bash">NODE_ENV=production
+PORT=8080
+DB_HOST=prod-server.com
+DB_NAME=app_prod
+DEBUG=false</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>🔧 Carregar arquivo específico:</h4>
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">config.js</span>
+                        <button class="copy-btn" data-code="multienv">Copiar</button>
+                    </div>
+                    <pre><code class="language-javascript" id="multienv">import dotenv from 'dotenv';
+import path from 'path';
+
+// Detectar ambiente
+const environment = process.env.NODE_ENV || 'development';
+
+// Carregar arquivo .env correto
+const envFile = `.env.${environment}`;
+dotenv.config({ path: path.resolve(process.cwd(), envFile) });
+
+console.log(`📍 Ambiente: ${environment}`);
+console.log(`📄 Arquivo carregado: ${envFile}`);</code></pre>
+                </div>
+
+                <h4>📦 Usando scripts npm:</h4>
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">package.json</span>
+                        <button class="copy-btn" data-code="npmscripts">Copiar</button>
+                    </div>
+                    <pre><code class="language-json" id="npmscripts">{
+  "scripts": {
+    "dev": "NODE_ENV=development node app.js",
+    "test": "NODE_ENV=test node app.js",
+    "start": "NODE_ENV=production node app.js"
+  }
+}</code></pre>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Windows:</strong> Use o pacote <code>cross-env</code> para compatibilidade:
+                    <div class="code-example">
+                        <pre><code class="language-bash">npm install cross-env --save-dev</code></pre>
+                        <pre><code class="language-json">"scripts": {
+  "dev": "cross-env NODE_ENV=development node app.js"
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo Completo -->
+            <div class="card">
+                <h3>🎯 Exemplo Completo de Aplicação</h3>
+                
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">server.js - Aplicação Express Completa</span>
+                        <button class="copy-btn" data-code="fullexample">Copiar</button>
+                    </div>
+                    <pre><code class="language-javascript" id="fullexample">// 1. Configurar dotenv PRIMEIRO
+import 'dotenv/config';
+import express from 'express';
+import mysql from 'mysql2';
+
+// 2. Validar variáveis obrigatórias
+const requiredEnvVars = ['DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME', 'PORT'];
+const missing = requiredEnvVars.filter(key => !process.env[key]);
+
+if (missing.length > 0) {
+  console.error(`❌ Variáveis faltando: ${missing.join(', ')}`);
+  process.exit(1);
+}
+
+// 3. Criar configuração do banco
+const dbConfig = {
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT || 3306
+};
+
+// 4. Conectar ao banco
+const db = mysql.createConnection(dbConfig);
+
+db.connect((err) => {
+  if (err) {
+    console.error('❌ Erro ao conectar ao banco:', err.message);
+    process.exit(1);
+  }
+  console.log('✅ Conectado ao banco de dados!');
+});
+
+// 5. Configurar Express
+const app = express();
+app.use(express.json());
+
+// 6. Rotas
+app.get('/', (req, res) => {
+  res.json({
+    message: 'API funcionando!',
+    environment: process.env.NODE_ENV,
+    version: '1.0.0'
+  });
+});
+
+app.get('/health', (req, res) => {
+  db.ping((err) => {
+    if (err) {
+      return res.status(500).json({ status: 'erro', message: err.message });
+    }
+    res.json({ status: 'ok', database: 'conectado' });
+  });
+});
+
+// 7. Iniciar servidor
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor rodando em ${process.env.BASE_URL || `http://localhost:${PORT}`}`);
+  console.log(`📍 Ambiente: ${process.env.NODE_ENV || 'development'}`);
+});</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Conclusão -->
+        <section id="conclusion" class="content-section">
+            <div class="section-header">
+                <span class="section-number">5</span>
+                <h2>Conclusão</h2>
+            </div>
+
+            <div class="card">
+                <h3>🎓 Principais Aprendizados</h3>
+                
+                <div class="key-takeaways">
+                    <div class="takeaway">
+                        <span class="takeaway-icon">🔐</span>
+                        <div>
+                            <h4>Segurança</h4>
+                            <p>Variáveis de ambiente são <strong>essenciais para segurança</strong>, impedindo exposição de credenciais no código.</p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway">
+                        <span class="takeaway-icon">📦</span>
+                        <div>
+                            <h4>Pacote dotenv</h4>
+                            <p>O <code>dotenv</code> <strong>simplifica a gestão</strong> de variáveis, carregando automaticamente arquivos <code>.env</code>.</p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway">
+                        <span class="takeaway-icon">🌍</span>
+                        <div>
+                            <h4>Múltiplos Ambientes</h4>
+                            <p>Separar ambientes (dev, teste, produção) é uma <strong>boa prática fundamental</strong>.</p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway">
+                        <span class="takeaway-icon">📈</span>
+                        <div>
+                            <h4>Escalabilidade</h4>
+                            <p>Código flexível que se adapta a diferentes ambientes sem modificações.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>✅ Checklist de Boas Práticas</h3>
+                
+                <div class="checklist">
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Nunca fazer commit de arquivos <code>.env</code></span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Sempre adicionar <code>.env*</code> ao <code>.gitignore</code></span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Criar arquivo <code>.env.example</code> com variáveis de exemplo (sem valores reais)</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Validar variáveis obrigatórias no início da aplicação</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Usar nomes descritivos em MAIÚSCULAS (DB_HOST, API_KEY)</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Documentar todas as variáveis necessárias no README</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Usar valores padrão (fallback) quando apropriado</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Separar configurações por ambiente (.env.development, .env.production)</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Materiais de Apoio -->
+        <section id="materials" class="content-section">
+            <div class="section-header">
+                <span class="section-number">6</span>
+                <h2>Materiais de Apoio</h2>
+            </div>
+
+            <div class="card">
+                <h3>📚 Documentação Oficial</h3>
+                <div class="resources-grid">
+                    <a href="https://www.npmjs.com/package/dotenv" target="_blank" rel="noopener" class="resource-card">
+                        <div class="resource-icon">📦</div>
+                        <h4>dotenv</h4>
+                        <p>Documentação completa do pacote dotenv no NPM</p>
+                    </a>
+
+                    <a href="https://nodejs.org/api/process.html#process_process_env" target="_blank" rel="noopener" class="resource-card">
+                        <div class="resource-icon">🟢</div>
+                        <h4>process.env</h4>
+                        <p>Documentação oficial do Node.js sobre variáveis de ambiente</p>
+                    </a>
+
+                    <a href="https://12factor.net/config" target="_blank" rel="noopener" class="resource-card">
+                        <div class="resource-icon">📖</div>
+                        <h4>12 Factor App</h4>
+                        <p>Melhores práticas para configuração de aplicações</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🛠️ Ferramentas Complementares</h3>
+                
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <h4>🔀 cross-env</h4>
+                        <p>Define variáveis de ambiente em scripts npm de forma cross-platform (Windows, Linux, Mac).</p>
+                        <div class="code-example">
+                            <pre><code class="language-bash">npm install cross-env --save-dev</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tool-item">
+                        <h4>🔍 dotenv-expand</h4>
+                        <p>Permite usar variáveis dentro de outras variáveis no .env.</p>
+                        <div class="code-example">
+                            <pre><code class="language-bash"># .env
+BASE_URL=https://api.example.com
+API_USERS=$BASE_URL/users  # Expande para https://api.example.com/users</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tool-item">
+                        <h4>✅ envalid</h4>
+                        <p>Validação e sanitização de variáveis de ambiente com TypeScript.</p>
+                        <div class="code-example">
+                            <pre><code class="language-javascript">import { cleanEnv, str, port } from 'envalid';
+
+const env = cleanEnv(process.env, {
+  PORT: port({ default: 3000 }),
+  DB_HOST: str(),
+  API_KEY: str()
+});</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tool-item">
+                        <h4>🔐 dotenv-vault</h4>
+                        <p>Sincroniza variáveis de ambiente de forma segura entre equipes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>⚠️ Segurança: O que NUNCA fazer</h3>
+                
+                <div class="security-warnings">
+                    <div class="warning-item">
+                        <span class="warning-icon">❌</span>
+                        <p>Fazer commit de arquivos <code>.env</code> no Git</p>
+                    </div>
+                    <div class="warning-item">
+                        <span class="warning-icon">❌</span>
+                        <p>Compartilhar credenciais em canais inseguros (email, Slack, WhatsApp)</p>
+                    </div>
+                    <div class="warning-item">
+                        <span class="warning-icon">❌</span>
+                        <p>Hardcode de senhas ou API keys no código</p>
+                    </div>
+                    <div class="warning-item">
+                        <span class="warning-icon">❌</span>
+                        <p>Usar a mesma senha em desenvolvimento e produção</p>
+                    </div>
+                    <div class="warning-item">
+                        <span class="warning-icon">❌</span>
+                        <p>Logar valores de variáveis sensíveis no console</p>
+                    </div>
+                    <div class="warning-item">
+                        <span class="warning-icon">❌</span>
+                        <p>Expor variáveis de ambiente em APIs públicas</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📝 Arquivo .env.example</h3>
+                <p>Sempre crie um arquivo de exemplo para documentar quais variáveis são necessárias:</p>
+                
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">.env.example</span>
+                        <button class="copy-btn" data-code="envexample">Copiar</button>
+                    </div>
+                    <pre><code class="language-bash" id="envexample"># Configurações do Servidor
+PORT=3000
+NODE_ENV=development
+
+# Banco de Dados
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=seu_usuario_aqui
+DB_PASS=sua_senha_aqui
+DB_NAME=nome_do_banco
+
+# APIs Externas
+API_KEY=sua_api_key_aqui
+JWT_SECRET=seu_segredo_jwt_aqui
+
+# URLs
+BASE_URL=http://localhost:3000
+FRONTEND_URL=http://localhost:5173</code></pre>
+                </div>
+
+                <div class="highlight-box info">
+                    <strong>💡 Instruções para novos desenvolvedores:</strong>
+                    <ol>
+                        <li>Copie <code>.env.example</code> para <code>.env</code></li>
+                        <li>Preencha os valores com suas credenciais locais</li>
+                        <li>Nunca faça commit do arquivo <code>.env</code></li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Questionário -->
+        <section id="quiz" class="content-section">
+            <div class="section-header">
+                <span class="section-number">7</span>
+                <h2>Questionário - Gerenciando Variáveis de Ambiente com NPM</h2>
+            </div>
+
+            <div class="card">
+                <h3>📝 Teste Seus Conhecimentos</h3>
+                <p>Responda às perguntas abaixo para verificar seu entendimento sobre variáveis de ambiente:</p>
+            </div>
+
+            <div class="quiz-container">
+                <!-- Questão 1 -->
+                <div class="quiz-card" data-question="q1">
+                    <div class="question-header">
+                        <span class="question-number">Questão 1</span>
+                        <span class="question-score">⭐ 1 ponto</span>
+                    </div>
+                    <h4>O que são variáveis de ambiente?</h4>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="a">
+                            <span>a) Variáveis que armazenam configurações do ambiente de execução</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="b">
+                            <span>b) Variáveis declaradas com const ou let</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="c">
+                            <span>c) Valores externos ao código que configuram o comportamento da aplicação</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="d">
+                            <span>d) Variáveis que armazenam dados do usuário</span>
+                        </label>
+                    </div>
+                    <div class="quiz-feedback hidden"></div>
+                </div>
+
+                <!-- Questão 2 -->
+                <div class="quiz-card" data-question="q2">
+                    <div class="question-header">
+                        <span class="question-number">Questão 2</span>
+                        <span class="question-score">⭐ 1 ponto</span>
+                    </div>
+                    <h4>Qual é o principal problema de fazer hardcode de credenciais no código?</h4>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="a">
+                            <span>a) O código fica mais lento</span>
+                        </label>
+                        <label class="quiz-option correct-answer">
+                            <input type="radio" name="q2" value="b">
+                            <span>b) Dados sensíveis ficam expostos no repositório Git e histórico de versões</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="c">
+                            <span>c) O Node.js não aceita senhas em texto puro</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="d">
+                            <span>d) É impossível executar o código</span>
+                        </label>
+                    </div>
+                    <div class="quiz-feedback hidden"></div>
+                </div>
+
+                <!-- Questão 3 -->
+                <div class="quiz-card" data-question="q3">
+                    <div class="question-header">
+                        <span class="question-number">Questão 3</span>
+                        <span class="question-score">⭐ 1 ponto</span>
+                    </div>
+                    <h4>Qual pacote npm é usado para carregar variáveis de um arquivo .env?</h4>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="a">
+                            <span>a) env-loader</span>
+                        </label>
+                        <label class="quiz-option correct-answer">
+                            <input type="radio" name="q3" value="b">
+                            <span>b) dotenv</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="c">
+                            <span>c) node-env</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="d">
+                            <span>d) environment</span>
+                        </label>
+                    </div>
+                    <div class="quiz-feedback hidden"></div>
+                </div>
+
+                <!-- Questão 4 -->
+                <div class="quiz-card" data-question="q4">
+                    <div class="question-header">
+                        <span class="question-number">Questão 4</span>
+                        <span class="question-score">⭐ 1 ponto</span>
+                    </div>
+                    <h4>Como você acessa uma variável de ambiente no Node.js?</h4>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="a">
+                            <span>a) env.get('NOME_VARIAVEL')</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="b">
+                            <span>b) dotenv.NOME_VARIAVEL</span>
+                        </label>
+                        <label class="quiz-option correct-answer">
+                            <input type="radio" name="q4" value="c">
+                            <span>c) process.env.NOME_VARIAVEL</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="d">
+                            <span>d) require('NOME_VARIAVEL')</span>
+                        </label>
+                    </div>
+                    <div class="quiz-feedback hidden"></div>
+                </div>
+
+                <!-- Questão 5 -->
+                <div class="quiz-card" data-question="q5">
+                    <div class="question-header">
+                        <span class="question-number">Questão 5</span>
+                        <span class="question-score">⭐ 1 ponto</span>
+                    </div>
+                    <h4>Qual arquivo deve ser adicionado ao .gitignore para evitar vazar credenciais?</h4>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="a">
+                            <span>a) package.json</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="b">
+                            <span>b) .env.example</span>
+                        </label>
+                        <label class="quiz-option correct-answer">
+                            <input type="radio" name="q5" value="c">
+                            <span>c) .env</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="d">
+                            <span>d) server.js</span>
+                        </label>
+                    </div>
+                    <div class="quiz-feedback hidden"></div>
+                </div>
+
+                <!-- Questão 6 -->
+                <div class="quiz-card" data-question="q6">
+                    <div class="question-header">
+                        <span class="question-number">Questão 6</span>
+                        <span class="question-score">⭐ 1 ponto</span>
+                    </div>
+                    <h4>Qual é a vantagem de usar múltiplos arquivos .env (ex: .env.development, .env.production)?</h4>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q6" value="a">
+                            <span>a) Fazer backup das configurações</span>
+                        </label>
+                        <label class="quiz-option correct-answer">
+                            <input type="radio" name="q6" value="b">
+                            <span>b) Usar configurações diferentes para cada ambiente sem modificar o código</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q6" value="c">
+                            <span>c) Aumentar a velocidade da aplicação</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q6" value="d">
+                            <span>d) Não há vantagem, é apenas uma convenção</span>
+                        </label>
+                    </div>
+                    <div class="quiz-feedback hidden"></div>
+                </div>
+
+                <!-- Questão 7 -->
+                <div class="quiz-card" data-question="q7">
+                    <div class="question-header">
+                        <span class="question-number">Questão 7</span>
+                        <span class="question-score">⭐ 1 ponto</span>
+                    </div>
+                    <h4>O que é o arquivo .env.example?</h4>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q7" value="a">
+                            <span>a) Um backup do arquivo .env</span>
+                        </label>
+                        <label class="quiz-option correct-answer">
+                            <input type="radio" name="q7" value="b">
+                            <span>b) Um template com nomes de variáveis mas sem valores reais, seguro para versionar</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q7" value="c">
+                            <span>c) Um arquivo de testes</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q7" value="d">
+                            <span>d) Um arquivo de configuração do dotenv</span>
+                        </label>
+                    </div>
+                    <div class="quiz-feedback hidden"></div>
+                </div>
+
+                <!-- Questão 8 -->
+                <div class="quiz-card" data-question="q8">
+                    <div class="question-header">
+                        <span class="question-number">Questão 8</span>
+                        <span class="question-score">⭐ 2 pontos</span>
+                    </div>
+                    <h4>Qual ferramenta você usaria para definir variáveis de ambiente em scripts npm de forma cross-platform?</h4>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q8" value="a">
+                            <span>a) dotenv</span>
+                        </label>
+                        <label class="quiz-option correct-answer">
+                            <input type="radio" name="q8" value="b">
+                            <span>b) cross-env</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q8" value="c">
+                            <span>c) env-cmd</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q8" value="d">
+                            <span>d) node-env</span>
+                        </label>
+                    </div>
+                    <div class="quiz-feedback hidden"></div>
+                </div>
+
+                <!-- Questão 9 -->
+                <div class="quiz-card" data-question="q9">
+                    <div class="question-header">
+                        <span class="question-number">Questão 9</span>
+                        <span class="question-score">⭐ 2 pontos</span>
+                    </div>
+                    <h4>Em qual momento você deve carregar o dotenv no seu código?</h4>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q9" value="a">
+                            <span>a) Ao final do arquivo, depois de todas as importações</span>
+                        </label>
+                        <label class="quiz-option correct-answer">
+                            <input type="radio" name="q9" value="b">
+                            <span>b) No início do arquivo, antes de usar process.env</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q9" value="c">
+                            <span>c) Antes de iniciar o servidor</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q9" value="d">
+                            <span>d) Não importa o momento</span>
+                        </label>
+                    </div>
+                    <div class="quiz-feedback hidden"></div>
+                </div>
+
+                <!-- Questão 10 -->
+                <div class="quiz-card" data-question="q10">
+                    <div class="question-header">
+                        <span class="question-number">Questão 10</span>
+                        <span class="question-score">⭐ 2 pontos</span>
+                    </div>
+                    <h4>O que acontece se você commitar o arquivo .env no Git?</h4>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q10" value="a">
+                            <span>a) O Git automaticamente remove os dados sensíveis</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q10" value="b">
+                            <span>b) Nada acontece, é uma prática comum</span>
+                        </label>
+                        <label class="quiz-option correct-answer">
+                            <input type="radio" name="q10" value="c">
+                            <span>c) Credenciais ficam expostas no histórico do Git permanentemente, criando risco de segurança</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q10" value="d">
+                            <span>d) O arquivo é criptografado automaticamente</span>
+                        </label>
+                    </div>
+                    <div class="quiz-feedback hidden"></div>
+                </div>
+            </div>
+
+            <div class="quiz-actions">
+                <button id="checkAnswers" class="btn-primary btn-large">✅ Verificar Respostas</button>
+                <button id="resetQuiz" class="btn-secondary btn-large">🔄 Reiniciar Quiz</button>
+            </div>
+
+            <div id="quizResults" class="quiz-results hidden">
+                <h3>📊 Resultado</h3>
+                <div class="result-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="correctCount">0</span>
+                        <span class="stat-label">Corretas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="incorrectCount">0</span>
+                        <span class="stat-label">Erradas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="scorePercentage">0%</span>
+                        <span class="stat-label">Aproveitamento</span>
+                    </div>
+                </div>
+                <div id="resultMessage" class="result-message"></div>
+            </div>
+        </section>
+
+        <!-- Section 8: Playground -->
+        <section id="playground" class="content-section">
+            <div class="section-header">
+                <span class="section-number">8</span>
+                <h2>Playground Interativo</h2>
+            </div>
+
+            <div class="card">
+                <h3>🎮 Teste seus Conhecimentos</h3>
+                <p>Simule o comportamento de variáveis de ambiente diretamente no navegador:</p>
+
+                <div class="playground">
+                    <div class="playground-inputs">
+                        <h4>📄 Arquivo .env (simulado)</h4>
+                        <textarea id="envInput" rows="10" placeholder="Digite suas variáveis aqui:
+PORT=3000
+DB_HOST=localhost
+API_KEY=abc123"></textarea>
+                        <button id="loadEnv" class="btn-primary">🔄 Carregar Variáveis</button>
+                    </div>
+
+                    <div class="playground-code">
+                        <h4>💻 Código JavaScript</h4>
+                        <textarea id="codeInput" rows="10" placeholder="Digite seu código aqui:
+console.log('Porta:', process.env.PORT);
+console.log('Host:', process.env.DB_HOST);"></textarea>
+                        <button id="runCode" class="btn-success">▶️ Executar</button>
+                    </div>
+
+                    <div class="playground-output">
+                        <h4>📤 Saída do Console</h4>
+                        <pre id="output"><code>// Clique em "Executar" para ver o resultado...</code></pre>
+                        <button id="clearOutput" class="btn-secondary">🗑️ Limpar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🔗 Playgrounds Online</h3>
+                <div class="resources-grid">
+                    <a href="https://codesandbox.io/s/dotenv-example-nodejs" target="_blank" rel="noopener" class="resource-card">
+                        <div class="resource-icon">📦</div>
+                        <h4>CodeSandbox</h4>
+                        <p>Ambiente Node.js completo no navegador</p>
+                    </a>
+
+                    <a href="https://stackblitz.com/fork/node" target="_blank" rel="noopener" class="resource-card">
+                        <div class="resource-icon">⚡</div>
+                        <h4>StackBlitz</h4>
+                        <p>IDE online com suporte a dotenv</p>
+                    </a>
+
+                    <a href="https://replit.com/" target="_blank" rel="noopener" class="resource-card">
+                        <div class="resource-icon">🔄</div>
+                        <h4>Replit</h4>
+                        <p>Ambiente colaborativo com secrets manager</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre</h3>
+                    <p>Site de aprendizado criado para o curso da Digital Innovation One (DIO) sobre Gerenciamento de Variáveis de Ambiente com NPM.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links Úteis</h3>
+                    <ul>
+                        <li><a href="https://www.dio.me/" target="_blank" rel="noopener">🎓 DIO</a></li>
+                        <li><a href="https://www.npmjs.com/package/dotenv" target="_blank" rel="noopener">📦 dotenv</a></li>
+                        <li><a href="https://nodejs.org/" target="_blank" rel="noopener">🟢 Node.js</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-links">
+                        <a href="#" title="GitHub">🐙</a>
+                        <a href="#" title="LinkedIn">💼</a>
+                        <a href="#" title="Twitter">🐦</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 - Trilha DIO | Desenvolvido com ❤️ para aprendizado</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="Gerenciando_Variaveis_de_Ambientes_com_NPM.js"></script>
+</body>
+</html>
