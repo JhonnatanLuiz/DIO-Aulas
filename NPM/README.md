@@ -417,6 +417,6 @@ Sim! O checklist de ferramentas e o resultado do quiz são salvos no LocalStorag
 
 **📚 Happy Coding!** 🔐
 
-**Versão 2.0.0** | Atualizado em 2024
+**Versão 2.0.0** | Atualizado em 2025
 
 </div>
