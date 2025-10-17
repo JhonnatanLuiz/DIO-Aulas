@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailwind CSS - Guia Interativo Completo</title>
+    <link rel="stylesheet" href="tailwind.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>🎨 Tailwind CSS - Guia Interativo</h1>
+            <p class="subtitle">Aprenda o framework CSS utility-first mais popular do momento</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="nav-header">
+            <h3>📚 Conteúdo</h3>
+            <button class="toggle-sidebar" id="toggleSidebar">☰</button>
+        </div>
+        <ul class="nav-list" id="navList">
+            <li><a href="#introducao" data-section="introducao">1. Introdução</a></li>
+            <li><a href="#fundamentos" data-section="fundamentos">2. Fundamentos</a></li>
+            <li><a href="#layout" data-section="layout">3. Layout</a></li>
+            <li><a href="#backgrounds" data-section="backgrounds">4. Backgrounds</a></li>
+            <li><a href="#espacamentos" data-section="espacamentos">5. Espaçamentos e Tamanhos</a></li>
+            <li><a href="#tipografia" data-section="tipografia">6. Tipografia</a></li>
+            <li><a href="#projeto" data-section="projeto">7. Projeto Final</a></li>
+            <li><a href="#encerramento" data-section="encerramento">8. Encerramento</a></li>
+        </ul>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p class="progress-text" id="progressText">0% Completo</p>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Section 1: Introdução -->
+        <section id="introducao" class="content-section">
+            <h2 class="section-title">🌟 1. Introdução</h2>
+
+            <!-- 1.1 Apresentação -->
+            <article class="subsection">
+                <h3 class="subsection-title">📖 Apresentação do Curso</h3>
+                <div class="text-content">
+                    <p>Bem-vindo ao <strong>Guia Interativo de Tailwind CSS</strong>! Este curso foi desenvolvido para ensinar do zero como usar o Tailwind CSS de forma prática e eficiente.</p>
+                    <p>Ao final deste curso, você será capaz de:</p>
+                    <ul class="feature-list">
+                        <li>✅ Entender a filosofia utility-first do Tailwind</li>
+                        <li>✅ Criar layouts responsivos com mobile-first</li>
+                        <li>✅ Dominar as principais classes de estilização</li>
+                        <li>✅ Construir componentes reutilizáveis</li>
+                        <li>✅ Desenvolver um projeto completo do zero</li>
+                    </ul>
+                </div>
+                <button class="mark-complete" data-topic="apresentacao">
+                    <span class="btn-icon">✓</span> Marcar como Concluído
+                </button>
+            </article>
+
+            <!-- 1.2 O que é Tailwind -->
+            <article class="subsection">
+                <h3 class="subsection-title">🎯 O que é o Tailwind CSS e por que utilizar</h3>
+                <div class="text-content">
+                    <div class="concept-box">
+                        <h4>💡 O que é?</h4>
+                        <p><strong>Tailwind CSS</strong> é um framework CSS <em>utility-first</em> que fornece classes pré-definidas para construir designs diretamente no HTML, sem escrever CSS customizado.</p>
+                    </div>
+
+                    <div class="comparison-grid">
+                        <div class="comparison-card css-traditional">
+                            <h4>CSS Tradicional</h4>
+                            <pre><code>/* style.css */
+.card {
+  padding: 1rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+&lt;!-- HTML --&gt;
+&lt;div class="card"&gt;Conteúdo&lt;/div&gt;</code></pre>
+                        </div>
+                        <div class="comparison-card tailwind-way">
+                            <h4>Tailwind CSS</h4>
+                            <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="p-4 bg-white rounded-lg shadow-md"&gt;
+  Conteúdo
+&lt;/div&gt;
+
+&lt;!-- Sem CSS adicional! --&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <span class="benefit-icon">⚡</span>
+                            <h4>Desenvolvimento Rápido</h4>
+                            <p>Estilize sem sair do HTML</p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">🎨</span>
+                            <h4>Design Consistente</h4>
+                            <p>Sistema de design integrado</p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">📦</span>
+                            <h4>Arquivos Menores</h4>
+                            <p>PurgeCSS remove CSS não utilizado</p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">🔧</span>
+                            <h4>Customizável</h4>
+                            <p>Configure tudo via tailwind.config.js</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="oque-e-tailwind">
+                    <span class="btn-icon">✓</span> Marcar como Concluído
+                </button>
+            </article>
+
+            <!-- 1.3 Configurando Setup -->
+            <article class="subsection">
+                <h3 class="subsection-title">⚙️ Configurando a Setup</h3>
+                <div class="text-content">
+                    <p>Existem várias formas de começar a usar Tailwind CSS. Vamos ver as principais:</p>
+                    
+                    <div class="setup-methods">
+                        <!-- CDN -->
+                        <div class="method-card">
+                            <h4>🌐 Método 1: CDN (Play CDN)</h4>
+                            <div class="important">
+                                <strong>⚠️ Apenas para prototipação!</strong> Não use em produção.
+                            </div>
+                            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1 class="text-3xl font-bold underline"&gt;
+    Hello Tailwind!
+  &lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+
+                        <!-- CLI -->
+                        <div class="method-card recommended">
+                            <span class="badge">Recomendado</span>
+                            <h4>💻 Método 2: Tailwind CLI</h4>
+                            <pre><code># 1. Instale o Tailwind
+npm install -D tailwindcss
+
+# 2. Inicialize a configuração
+npx tailwindcss init
+
+# 3. Configure o tailwind.config.js
+module.exports = {
+  content: ["./src/**/*.{html,js}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+# 4. Adicione as diretivas no CSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+# 5. Execute o build
+npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch</code></pre>
+                        </div>
+
+                        <!-- PostCSS -->
+                        <div class="method-card">
+                            <h4>🔨 Método 3: PostCSS</h4>
+                            <pre><code># Instale as dependências
+npm install -D tailwindcss postcss autoprefixer
+
+# Inicialize
+npx tailwindcss init -p
+
+# Isso cria:
+# - tailwind.config.js
+# - postcss.config.js</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        <strong>💡 Dica:</strong> Para aprendizado, comece com o <strong>Play CDN</strong>. Para projetos reais, use <strong>Tailwind CLI</strong> ou integre com frameworks (Next.js, Vite, etc).
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="configurando-setup">
+                    <span class="btn-icon">✓</span> Marcar como Concluído
+                </button>
+            </article>
+
+            <!-- 1.4 Instalando -->
+            <article class="subsection">
+                <h3 class="subsection-title">📦 Instalando e Utilizando o Tailwind</h3>
+                <div class="text-content">
+                    <p>Vamos criar um projeto do zero passo a passo:</p>
+
+                    <div class="steps-container">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Crie a estrutura do projeto</h4>
+                                <pre><code>mkdir meu-projeto-tailwind
+cd meu-projeto-tailwind
+npm init -y</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Instale o Tailwind CSS</h4>
+                                <pre><code>npm install -D tailwindcss
+npx tailwindcss init</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Configure o arquivo tailwind.config.js</h4>
+                                <pre><code>/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{html,js}",
+    "./*.html"
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Crie o arquivo CSS de entrada (src/input.css)</h4>
+                                <pre><code>@tailwind base;
+@tailwind components;
+@tailwind utilities;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h4>Adicione o script no package.json</h4>
+                                <pre><code>"scripts": {
+  "build": "tailwindcss -i ./src/input.css -o ./dist/output.css",
+  "watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <div class="step-content">
+                                <h4>Execute o comando de watch</h4>
+                                <pre><code>npm run watch</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">7</div>
+                            <div class="step-content">
+                                <h4>Use no HTML</h4>
+                                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;link href="./dist/output.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1 class="text-3xl font-bold text-blue-600"&gt;
+    Tailwind está funcionando! 🎉
+  &lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example interactive-demo" id="demo-install">
+                        <h4>🎮 Demonstração Interativa</h4>
+                        <p>Experimente as classes Tailwind ao vivo:</p>
+                        <div class="demo-container">
+                            <input type="text" id="demoInput" class="demo-input" placeholder="Digite classes Tailwind (ex: text-blue-500 font-bold p-4)">
+                            <div id="demoOutput" class="demo-output">
+                                Olá! Aplique classes Tailwind em mim!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="instalando-utilizando">
+                    <span class="btn-icon">✓</span> Marcar como Concluído
+                </button>
+            </article>
+
+            <div class="section-navigation">
+                <button class="nav-btn next-section" data-next="fundamentos">
+                    Próxima Seção: Fundamentos →
+                </button>
+            </div>
+        </section>
+
+        <!-- Placeholder para as demais seções -->
+        <section id="fundamentos" class="content-section">
+            <h2 class="section-title">⚡ 2. Fundamentos</h2>
+
+            <!-- 2.1 Utility First -->
+            <article class="subsection">
+                <h3 class="subsection-title">🎯 Tailwind Utility First</h3>
+                <div class="text-content">
+                    <div class="concept-box">
+                        <h4>💡 O que é Utility-First?</h4>
+                        <p>Utility-first é uma abordagem de CSS onde você usa <strong>classes de utilidade pequenas e de propósito único</strong> para construir designs complexos diretamente no HTML.</p>
+                    </div>
+
+                    <p>Em vez de criar classes semânticas customizadas, você combina múltiplas classes de utilidade:</p>
+
+                    <div class="comparison-grid">
+                        <div class="comparison-card css-traditional">
+                            <h4>Abordagem Tradicional (Semântica)</h4>
+                            <pre><code><!-- CSS -->
+.btn-primary {
+  background-color: blue;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+<!-- HTML -->
+&lt;button class="btn-primary"&gt;Clique&lt;/button&gt;</code></pre>
+                        </div>
+                        <div class="comparison-card tailwind-way">
+                            <h4>Utility-First (Tailwind)</h4>
+                            <pre><code><!-- Sem CSS customizado! -->
+&lt;button class="bg-blue-500 text-white px-6 py-3 rounded-md font-bold"&gt;
+  Clique
+&lt;/button&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">✅ Vantagens do Utility-First:</h4>
+                    <ul class="feature-list">
+                        <li>✅ <strong>Velocidade:</strong> Não precisa alternar entre HTML e CSS</li>
+                        <li>✅ <strong>Consistência:</strong> Sistema de design integrado</li>
+                        <li>✅ <strong>Manutenibilidade:</strong> Sem CSS órfão ou não utilizado</li>
+                        <li>✅ <strong>Responsividade:</strong> Breakpoints direto nas classes</li>
+                        <li>✅ <strong>Menos decisões:</strong> Paleta predefinida de cores, tamanhos, etc</li>
+                    </ul>
+
+                    <div class="example interactive-demo">
+                        <h4>🎮 Experimente: Construa um Card</h4>
+                        <p>Veja como combinar utilities cria componentes complexos:</p>
+                        <div style="background: white; padding: 1.5rem; border-radius: 12px; margin-top: 1rem;">
+                            <div style="max-width: 400px; background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden; border: 2px solid #e2e8f0;">
+                                <div style="height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                                <div style="padding: 1.5rem;">
+                                    <h3 style="font-size: 1.5rem; font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">Card com Tailwind</h3>
+                                    <p style="color: #64748b; margin-bottom: 1rem;">Criado apenas com utility classes!</p>
+                                    <button style="background: #06b6d4; color: white; padding: 0.5rem 1.5rem; border-radius: 6px; font-weight: 600; border: none; cursor: pointer;">Saiba Mais</button>
+                                </div>
+                            </div>
+                        </div>
+                        <pre style="margin-top: 1rem;"><code>&lt;div class="max-w-sm bg-white rounded-xl shadow-md overflow-hidden"&gt;
+  &lt;div class="h-48 bg-gradient-to-r from-purple-500 to-pink-500"&gt;&lt;/div&gt;
+  &lt;div class="p-6"&gt;
+    &lt;h3 class="text-2xl font-bold text-gray-900 mb-2"&gt;Card com Tailwind&lt;/h3&gt;
+    &lt;p class="text-gray-600 mb-4"&gt;Criado apenas com utility classes!&lt;/p&gt;
+    &lt;button class="bg-cyan-500 text-white px-6 py-2 rounded-md font-semibold"&gt;
+      Saiba Mais
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="utility-first">
+                    <span class="btn-icon">✓</span> Marcar como Concluído
+                </button>
+            </article>
+
+            <!-- 2.2 Mobile First -->
+            <article class="subsection">
+                <h3 class="subsection-title">📱 Mobile First</h3>
+                <div class="text-content">
+                    <div class="concept-box">
+                        <h4>💡 O que é Mobile First?</h4>
+                        <p>Mobile First significa que <strong>os estilos padrão são para mobile</strong>, e você adiciona modificadores para telas maiores usando breakpoints responsivos.</p>
+                    </div>
+
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">📐 Breakpoints do Tailwind:</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                        <thead>
+                            <tr style="background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%); color: white;">
+                                <th style="padding: 1rem; text-align: left;">Prefixo</th>
+                                <th style="padding: 1rem; text-align: left;">Tamanho Mínimo</th>
+                                <th style="padding: 1rem; text-align: left;">Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.8rem; font-family: monospace; font-weight: 600;">sm:</td>
+                                <td style="padding: 0.8rem;">640px</td>
+                                <td style="padding: 0.8rem;">Smartphones landscape</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem; font-family: monospace; font-weight: 600;">md:</td>
+                                <td style="padding: 0.8rem;">768px</td>
+                                <td style="padding: 0.8rem;">Tablets</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.8rem; font-family: monospace; font-weight: 600;">lg:</td>
+                                <td style="padding: 0.8rem;">1024px</td>
+                                <td style="padding: 0.8rem;">Laptops</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem; font-family: monospace; font-weight: 600;">xl:</td>
+                                <td style="padding: 0.8rem;">1280px</td>
+                                <td style="padding: 0.8rem;">Desktops</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.8rem; font-family: monospace; font-weight: 600;">2xl:</td>
+                                <td style="padding: 0.8rem;">1536px</td>
+                                <td style="padding: 0.8rem;">Telas grandes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">🎯 Como Usar:</h4>
+                    <pre><code>&lt;!-- Padrão (mobile): texto pequeno e centralizado --&gt;
+&lt;!-- md: (tablets+): texto médio --&gt;
+&lt;!-- lg: (laptops+): texto grande e alinhado à esquerda --&gt;
+&lt;div class="text-sm text-center md:text-base lg:text-lg lg:text-left"&gt;
+  Texto Responsivo
+&lt;/div&gt;
+
+&lt;!-- Padrão: coluna única --&gt;
+&lt;!-- md: 2 colunas --&gt;
+&lt;!-- lg: 3 colunas --&gt;
+&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"&gt;
+  &lt;!-- Cards aqui --&gt;
+&lt;/div&gt;</code></pre>
+
+                    <div class="example">
+                        <h4>📊 Exemplo Prático: Layout Responsivo</h4>
+                        <div style="background: white; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;">
+                                <div style="background: #dbeafe; padding: 1.5rem; border-radius: 8px; text-align: center; font-weight: 600;">Item 1</div>
+                                <div style="background: #dbeafe; padding: 1.5rem; border-radius: 8px; text-align: center; font-weight: 600;">Item 2</div>
+                                <div style="background: #dbeafe; padding: 1.5rem; border-radius: 8px; text-align: center; font-weight: 600;">Item 3</div>
+                            </div>
+                            <p style="text-align: center; margin-top: 1rem; color: #64748b; font-size: 0.9rem;">No mobile: 1 coluna | Tablets: 2 colunas | Desktop: 3 colunas</p>
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        <strong>💡 Dica:</strong> Sempre comece pensando no mobile primeiro! Adicione os prefixos <code>md:</code>, <code>lg:</code>, etc conforme a tela aumenta.
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="mobile-first">
+                    <span class="btn-icon">✓</span> Marcar como Concluído
+                </button>
+            </article>
+
+            <!-- 2.3 Componentização -->
+            <article class="subsection">
+                <h3 class="subsection-title">🧩 Componentização</h3>
+                <div class="text-content">
+                    <p>Mesmo sendo utility-first, o Tailwind permite criar componentes reutilizáveis de várias formas:</p>
+
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">Método 1: @apply (CSS)</h4>
+                    <pre><code>/* styles.css */
+@layer components {
+  .btn-primary {
+    @apply bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-md p-6;
+  }
+}
+
+/* HTML */
+&lt;button class="btn-primary"&gt;Clique&lt;/button&gt;
+&lt;div class="card"&gt;Conteúdo&lt;/div&gt;</code></pre>
+
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">Método 2: Componentes de Framework (React, Vue)</h4>
+                    <pre><code>// Button.jsx (React)
+export function Button({ children, variant = 'primary' }) {
+  const baseClasses = 'font-bold py-2 px-4 rounded';
+  const variantClasses = {
+    primary: 'bg-blue-500 text-white hover:bg-blue-700',
+    secondary: 'bg-gray-500 text-white hover:bg-gray-700',
+    danger: 'bg-red-500 text-white hover:bg-red-700',
+  };
+  
+  return (
+    &lt;button className={`${baseClasses} ${variantClasses[variant]}`}&gt;
+      {children}
+    &lt;/button&gt;
+  );
+}
+
+// Uso:
+&lt;Button variant="primary"&gt;Salvar&lt;/Button&gt;
+&lt;Button variant="danger"&gt;Excluir&lt;/Button&gt;</code></pre>
+
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">Método 3: Template Partials (HTML)</h4>
+                    <pre><code>&lt;!-- card.html --&gt;
+&lt;div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition"&gt;
+  &lt;h3 class="text-xl font-bold mb-2"&gt;{{title}}&lt;/h3&gt;
+  &lt;p class="text-gray-600"&gt;{{content}}&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <span class="benefit-icon">🎨</span>
+                            <h4>Consistência Visual</h4>
+                            <p>Componentes garantem design uniforme</p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">♻️</span>
+                            <h4>Reutilização</h4>
+                            <p>Escreva uma vez, use em todo lugar</p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">⚡</span>
+                            <h4>Manutenção</h4>
+                            <p>Atualize em um só lugar</p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">🔧</span>
+                            <h4>Flexibilidade</h4>
+                            <p>Combine com utilities para customizar</p>
+                        </div>
+                    </div>
+
+                    <div class="important">
+                        <strong>⚠️ Importante:</strong> Não abuse do <code>@apply</code>! Use-o apenas para componentes muito repetidos. Na maioria dos casos, utilities direto no HTML são mais eficientes.
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="componentizacao">
+                    <span class="btn-icon">✓</span> Marcar como Concluído
+                </button>
+            </article>
+
+            <div class="section-navigation">
+                <button class="nav-btn" data-prev="introducao">
+                    ← Anterior: Introdução
+                </button>
+                <button class="nav-btn next-section" data-next="layout">
+                    Próxima Seção: Layout →
+                </button>
+            </div>
+        </section>
+
+        <section id="layout" class="content-section">
+            <h2 class="section-title">📐 3. Layout</h2>
+
+            <!-- 3.1 Container -->
+            <article class="subsection">
+                <h3 class="subsection-title">📦 Container</h3>
+                <div class="text-content">
+                    <div class="concept-box">
+                        <h4>💡 O que é o Container?</h4>
+                        <p>A classe <code>container</code> centraliza o conteúdo e define uma largura máxima responsiva baseada no breakpoint atual.</p>
+                    </div>
+
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">📏 Larguras por Breakpoint:</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                        <thead>
+                            <tr style="background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%); color: white;">
+                                <th style="padding: 1rem; text-align: left;">Breakpoint</th>
+                                <th style="padding: 1rem; text-align: left;">Largura do Container</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.8rem;">Nenhum</td>
+                                <td style="padding: 0.8rem; font-family: monospace;">100%</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem;">sm (640px)</td>
+                                <td style="padding: 0.8rem; font-family: monospace;">640px</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.8rem;">md (768px)</td>
+                                <td style="padding: 0.8rem; font-family: monospace;">768px</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem;">lg (1024px)</td>
+                                <td style="padding: 0.8rem; font-family: monospace;">1024px</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.8rem;">xl (1280px)</td>
+                                <td style="padding: 0.8rem; font-family: monospace;">1280px</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem;">2xl (1536px)</td>
+                                <td style="padding: 0.8rem; font-family: monospace;">1536px</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <pre><code>&lt;!-- Container básico --&gt;
+&lt;div class="container"&gt;
+  &lt;!-- Conteúdo centralizado --&gt;
+&lt;/div&gt;
+
+&lt;!-- Container com padding horizontal --&gt;
+&lt;div class="container mx-auto px-4"&gt;
+  &lt;!-- mx-auto: centraliza horizontalmente --&gt;
+  &lt;!-- px-4: padding horizontal de 1rem --&gt;
+&lt;/div&gt;</code></pre>
+
+                    <div class="example">
+                        <h4>👁️ Visualização:</h4>
+                        <div style="background: #e0f2fe; padding: 2rem; border-radius: 8px; margin-top: 1rem;">
+                            <div style="max-width: 1024px; margin: 0 auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 2px dashed #06b6d4;">
+                                <p style="text-align: center; font-weight: 600; color: #06b6d4;">Este conteúdo está dentro de um container</p>
+                                <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 0.5rem;">Largura máxima: 1024px | Centralizado</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="container">
+                    <span class="btn-icon">✓</span> Marcar como Concluído
+                </button>
+            </article>
+
+            <!-- 3.2 Columns -->
+            <article class="subsection">
+                <h3 class="subsection-title">📊 Columns (Grid & Flexbox)</h3>
+                <div class="text-content">
+                    <p>O Tailwind oferece dois sistemas principais de layout: <strong>Grid</strong> e <strong>Flexbox</strong>.</p>
+
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">🎛️ CSS Grid:</h4>
+                    <pre><code>&lt;!-- Grid de 3 colunas --&gt;
+&lt;div class="grid grid-cols-3 gap-4"&gt;
+  &lt;div&gt;Coluna 1&lt;/div&gt;
+  &lt;div&gt;Coluna 2&lt;/div&gt;
+  &lt;div&gt;Coluna 3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Grid responsivo --&gt;
+&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"&gt;
+  &lt;!-- 1 coluna no mobile, 2 no tablet, 4 no desktop --&gt;
+&lt;/div&gt;</code></pre>
+
+                    <div class="example">
+                        <h4>👁️ Grid Responsivo:</h4>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem;">
+                            <div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 8px; text-align: center; font-weight: 600;">1</div>
+                            <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 8px; text-align: center; font-weight: 600;">2</div>
+                            <div style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); color: white; padding: 2rem; border-radius: 8px; text-align: center; font-weight: 600;">3</div>
+                        </div>
+                    </div>
+
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">🔀 Flexbox:</h4>
+                    <pre><code>&lt;!-- Flexbox horizontal --&gt;
+&lt;div class="flex gap-4"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Flexbox com alinhamento --&gt;
+&lt;div class="flex justify-between items-center"&gt;
+  &lt;div&gt;Esquerda&lt;/div&gt;
+  &lt;div&gt;Centro&lt;/div&gt;
+  &lt;div&gt;Direita&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Flexbox vertical --&gt;
+&lt;div class="flex flex-col space-y-4"&gt;
+  &lt;div&gt;Linha 1&lt;/div&gt;
+  &lt;div&gt;Linha 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+                    <div class="comparison-grid">
+                        <div class="comparison-card tailwind-way">
+                            <h4>justify-* (Horizontal)</h4>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="padding: 0.5rem; margin: 0.5rem 0; background: #f8fafc; border-radius: 4px;"><code>justify-start</code> - Início</li>
+                                <li style="padding: 0.5rem; margin: 0.5rem 0; background: #f8fafc; border-radius: 4px;"><code>justify-center</code> - Centro</li>
+                                <li style="padding: 0.5rem; margin: 0.5rem 0; background: #f8fafc; border-radius: 4px;"><code>justify-end</code> - Fim</li>
+                                <li style="padding: 0.5rem; margin: 0.5rem 0; background: #f8fafc; border-radius: 4px;"><code>justify-between</code> - Espaçado</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-card css-traditional">
+                            <h4>items-* (Vertical)</h4>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="padding: 0.5rem; margin: 0.5rem 0; background: #f8fafc; border-radius: 4px;"><code>items-start</code> - Topo</li>
+                                <li style="padding: 0.5rem; margin: 0.5rem 0; background: #f8fafc; border-radius: 4px;"><code>items-center</code> - Centro</li>
+                                <li style="padding: 0.5rem; margin: 0.5rem 0; background: #f8fafc; border-radius: 4px;"><code>items-end</code> - Base</li>
+                                <li style="padding: 0.5rem; margin: 0.5rem 0; background: #f8fafc; border-radius: 4px;"><code>items-stretch</code> - Esticar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="columns">
+                    <span class="btn-icon">✓</span> Marcar como Concluído
+                </button>
+            </article>
+
+            <!-- 3.3 Box Model -->
+            <article class="subsection">
+                <h3 class="subsection-title">📦 Box Model (Display, Overflow, Z-Index)</h3>
+                <div class="text-content">
+                    <h4 style="color: var(--primary); margin-top: 1rem; margin-bottom: 1rem;">🔲 Display:</h4>
+                    <pre><code>&lt;!-- Display types --&gt;
+&lt;div class="block"&gt;Block element&lt;/div&gt;
+&lt;div class="inline-block"&gt;Inline-block&lt;/div&gt;
+&lt;div class="inline"&gt;Inline&lt;/div&gt;
+&lt;div class="flex"&gt;Flex container&lt;/div&gt;
+&lt;div class="grid"&gt;Grid container&lt;/div&gt;
+&lt;div class="hidden"&gt;Escondido&lt;/div&gt;</code></pre>
+
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">📜 Overflow:</h4>
+                    <pre><code>&lt;!-- Overflow control --&gt;
+&lt;div class="overflow-auto"&gt;Scroll automático&lt;/div&gt;
+&lt;div class="overflow-hidden"&gt;Conteúdo oculto&lt;/div&gt;
+&lt;div class="overflow-scroll"&gt;Sempre com scroll&lt;/div&gt;
+&lt;div class="overflow-x-auto"&gt;Scroll horizontal apenas&lt;/div&gt;
+&lt;div class="overflow-y-auto"&gt;Scroll vertical apenas&lt;/div&gt;</code></pre>
+
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">🎚️ Z-Index (Camadas):</h4>
+                    <pre><code>&lt;!-- Z-index values --&gt;
+&lt;div class="z-0"&gt;Camada 0 (base)&lt;/div&gt;
+&lt;div class="z-10"&gt;Camada 10&lt;/div&gt;
+&lt;div class="z-20"&gt;Camada 20&lt;/div&gt;
+&lt;div class="z-30"&gt;Camada 30&lt;/div&gt;
+&lt;div class="z-50"&gt;Camada 50 (modals)&lt;/div&gt;</code></pre>
+
+                    <div class="example">
+                        <h4>👁️ Demonstração Z-Index:</h4>
+                        <div style="position: relative; height: 200px; background: #f8fafc; border-radius: 8px; padding: 1rem;">
+                            <div style="position: absolute; top: 20px; left: 20px; width: 120px; height: 120px; background: #06b6d4; border-radius: 8px; z-index: 1; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">z-10</div>
+                            <div style="position: absolute; top: 40px; left: 60px; width: 120px; height: 120px; background: #8b5cf6; border-radius: 8px; z-index: 2; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">z-20</div>
+                            <div style="position: absolute; top: 60px; left: 100px; width: 120px; height: 120px; background: #ec4899; border-radius: 8px; z-index: 3; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">z-30</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="box-model">
+                    <span class="btn-icon">✓</span> Marcar como Concluído
+                </button>
+            </article>
+
+            <!-- 3.4 Object Fit/Position -->
+            <article class="subsection">
+                <h3 class="subsection-title">🖼️ Object Fit & Position</h3>
+                <div class="text-content">
+                    <p>Controla como imagens e vídeos se comportam dentro de seus containers.</p>
+
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">📐 Object Fit:</h4>
+                    <pre><code>&lt;!-- Object fit options --&gt;
+&lt;img src="..." class="object-contain"&gt;  &lt;!-- Cabe todo dentro --&gt;
+&lt;img src="..." class="object-cover"&gt;    &lt;!-- Cobre todo espaço --&gt;
+&lt;img src="..." class="object-fill"&gt;     &lt;!-- Estica para preencher --&gt;
+&lt;img src="..." class="object-none"&gt;     &lt;!-- Tamanho original --&gt;
+&lt;img src="..." class="object-scale-down"&gt; &lt;!-- Menor entre none e contain --&gt;</code></pre>
+
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">📍 Object Position:</h4>
+                    <pre><code>&lt;!-- Posicionamento da imagem --&gt;
+&lt;img class="object-cover object-center"&gt;
+&lt;img class="object-cover object-top"&gt;
+&lt;img class="object-cover object-bottom"&gt;
+&lt;img class="object-cover object-left"&gt;
+&lt;img class="object-cover object-right"&gt;</code></pre>
+
+                    <div class="comparison-grid">
+                        <div style="text-align: center;">
+                            <h4>object-contain</h4>
+                            <div style="width: 100%; height: 150px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                                <div style="width: 80%; height: 80%; background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%); border-radius: 4px;"></div>
+                            </div>
+                            <p style="color: #64748b; font-size: 0.9rem; margin-top: 0.5rem;">Mantém proporção</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <h4>object-cover</h4>
+                            <div style="width: 100%; height: 150px; background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%); border: 2px solid #e2e8f0; border-radius: 8px; overflow: hidden;"></div>
+                            <p style="color: #64748b; font-size: 0.9rem; margin-top: 0.5rem;">Preenche espaço</p>
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        <strong>💡 Dica:</strong> Use <code>object-cover</code> para imagens de perfil e cards. Use <code>object-contain</code> para logos e ícones.
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="object-fit">
+                    <span class="btn-icon">✓</span> Marcar como Concluído
+                </button>
+            </article>
+
+            <!-- 3.5 Position -->
+            <article class="subsection">
+                <h3 class="subsection-title">📌 Top - Right - Bottom - Left (Positioning)</h3>
+                <div class="text-content">
+                    <h4 style="color: var(--primary); margin-top: 1rem; margin-bottom: 1rem;">📍 Position Types:</h4>
+                    <pre><code>&lt;!-- Position values --&gt;
+&lt;div class="static"&gt;Padrão (não posiciona)&lt;/div&gt;
+&lt;div class="relative"&gt;Relativo à posição original&lt;/div&gt;
+&lt;div class="absolute"&gt;Absoluto ao container pai&lt;/div&gt;
+&lt;div class="fixed"&gt;Fixo na tela&lt;/div&gt;
+&lt;div class="sticky"&gt;Sticky (gruda ao scroll)&lt;/div&gt;</code></pre>
+
+                    <h4 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">🎯 Inset (Top/Right/Bottom/Left):</h4>
+                    <pre><code>&lt;!-- Posicionamento com valores --&gt;
+&lt;div class="absolute top-0 left-0"&gt;Canto superior esquerdo&lt;/div&gt;
+&lt;div class="absolute top-0 right-0"&gt;Canto superior direito&lt;/div&gt;
+&lt;div class="absolute bottom-0 left-0"&gt;Canto inferior esquerdo&lt;/div&gt;
+&lt;div class="absolute bottom-0 right-0"&gt;Canto inferior direito&lt;/div&gt;
+
+&lt;!-- Centralização absoluta --&gt;
+&lt;div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"&gt;
+  Centro perfeito
+&lt;/div&gt;
+
+&lt;!-- Inset em todos os lados --&gt;
+&lt;div class="absolute inset-0"&gt;Preenche todo container pai&lt;/div&gt;
+&lt;div class="absolute inset-x-0"&gt;Preenche horizontal&lt;/div&gt;
+&lt;div class="absolute inset-y-0"&gt;Preenche vertical&lt;/div&gt;</code></pre>
+
+                    <div class="example">
+                        <h4>👁️ Demonstração de Posicionamento:</h4>
+                        <div style="position: relative; height: 250px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; margin-top: 1rem;">
+                            <div style="position: absolute; top: 10px; left: 10px; background: #06b6d4; color: white; padding: 0.5rem 1rem; border-radius: 4px; font-weight: 600; font-size: 0.9rem;">top-0 left-0</div>
+                            <div style="position: absolute; top: 10px; right: 10px; background: #8b5cf6; color: white; padding: 0.5rem 1rem; border-radius: 4px; font-weight: 600; font-size: 0.9rem;">top-0 right-0</div>
+                            <div style="position: absolute; bottom: 10px; left: 10px; background: #ec4899; color: white; padding: 0.5rem 1rem; border-radius: 4px; font-weight: 600; font-size: 0.9rem;">bottom-0 left-0</div>
+                            <div style="position: absolute; bottom: 10px; right: 10px; background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 4px; font-weight: 600; font-size: 0.9rem;">bottom-0 right-0</div>
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #f59e0b; color: white; padding: 0.5rem 1rem; border-radius: 4px; font-weight: 600;">Centro</div>
+                        </div>
+                    </div>
+
+                    <div class="tip">
+                        <strong>💡 Casos de Uso:</strong>
+                        <ul style="margin-top: 0.5rem;">
+                            <li><code>relative</code> - Container pai para elementos absolute</li>
+                            <li><code>absolute</code> - Badges, ícones de fechar, overlays</li>
+                            <li><code>fixed</code> - Headers fixos, botões flutuantes</li>
+                            <li><code>sticky</code> - Navegação que gruda ao scroll</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="positioning">
+                    <span class="btn-icon">✓</span> Marcar como Concluído
+                </button>
+            </article>
+
+            <div class="section-navigation">
+                <button class="nav-btn" data-prev="fundamentos">
+                    ← Anterior: Fundamentos
+                </button>
+                <button class="nav-btn next-section" data-next="backgrounds">
+                    Próxima Seção: Backgrounds →
+                </button>
+            </div>
+        </section>
+
+        <section id="backgrounds" class="content-section">
+            <h2 class="section-title">🎨 4. Backgrounds</h2>
+
+            <article class="subsection">
+                <h3 class="subsection-title">📎 Background Attachment</h3>
+                <div class="text-content">
+                    <p>Controla se o background rola com a página ou fica fixo.</p>
+                    <pre><code>&lt;div class="bg-fixed"&gt;Background fixo (parallax)&lt;/div&gt;
+&lt;div class="bg-local"&gt;Rola com o elemento&lt;/div&gt;
+&lt;div class="bg-scroll"&gt;Rola com a página&lt;/div&gt;</code></pre>
+                </div>
+                <button class="mark-complete" data-topic="bg-attachment"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">🎨 Background Color e Opacity</h3>
+                <div class="text-content">
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">Cores Disponíveis:</h4>
+                    <div class="benefits-grid">
+                        <div style="background: #3b82f6; color: white; padding: 1rem; border-radius: 8px; text-align: center; font-weight: 600;">bg-blue-500</div>
+                        <div style="background: #8b5cf6; color: white; padding: 1rem; border-radius: 8px; text-align: center; font-weight: 600;">bg-purple-500</div>
+                        <div style="background: #ec4899; color: white; padding: 1rem; border-radius: 8px; text-align: center; font-weight: 600;">bg-pink-500</div>
+                        <div style="background: #10b981; color: white; padding: 1rem; border-radius: 8px; text-align: center; font-weight: 600;">bg-green-500</div>
+                    </div>
+                    <pre style="margin-top: 1rem;"><code>&lt;!-- Cores com intensidades (50-900) --&gt;
+&lt;div class="bg-blue-50"&gt;Muito claro&lt;/div&gt;
+&lt;div class="bg-blue-500"&gt;Médio&lt;/div&gt;
+&lt;div class="bg-blue-900"&gt;Muito escuro&lt;/div&gt;
+
+&lt;!-- Opacity --&gt;
+&lt;div class="bg-blue-500/50"&gt;50% opacidade&lt;/div&gt;
+&lt;div class="bg-blue-500/75"&gt;75% opacidade&lt;/div&gt;</code></pre>
+                </div>
+                <button class="mark-complete" data-topic="bg-color"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">🌈 Gradient Color Stops</h3>
+                <div class="text-content">
+                    <pre><code>&lt;!-- Gradientes lineares --&gt;
+&lt;div class="bg-gradient-to-r from-blue-500 to-purple-500"&gt;→&lt;/div&gt;
+&lt;div class="bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500"&gt;↘&lt;/div&gt;
+
+&lt;!-- Direções disponíveis --&gt;
+bg-gradient-to-t    &lt;!-- Para cima ↑ --&gt;
+bg-gradient-to-tr   &lt;!-- Diagonal superior direita ↗ --&gt;
+bg-gradient-to-r    &lt;!-- Para direita → --&gt;
+bg-gradient-to-br   &lt;!-- Diagonal inferior direita ↘ --&gt;
+bg-gradient-to-b    &lt;!-- Para baixo ↓ --&gt;
+bg-gradient-to-bl   &lt;!-- Diagonal inferior esquerda ↙ --&gt;
+bg-gradient-to-l    &lt;!-- Para esquerda ← --&gt;
+bg-gradient-to-tl   &lt;!-- Diagonal superior esquerda ↖ --&gt;</code></pre>
+                    <div class="example">
+                        <h4>👁️ Exemplos de Gradientes:</h4>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1rem;">
+                            <div style="height: 100px; background: linear-gradient(to right, #3b82f6, #8b5cf6); border-radius: 8px;"></div>
+                            <div style="height: 100px; background: linear-gradient(to bottom right, #ec4899, #8b5cf6, #3b82f6); border-radius: 8px;"></div>
+                            <div style="height: 100px; background: linear-gradient(to top, #10b981, #06b6d4); border-radius: 8px;"></div>
+                            <div style="height: 100px; background: linear-gradient(135deg, #f59e0b, #ef4444); border-radius: 8px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="gradients"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <div class="section-navigation">
+                <button class="nav-btn" data-prev="layout">← Anterior: Layout</button>
+                <button class="nav-btn next-section" data-next="espacamentos">Próxima Seção: Espaçamentos →</button>
+            </div>
+        </section>
+
+        <section id="espacamentos" class="content-section">
+            <h2 class="section-title">📏 5. Espaçamentos e Tamanhos</h2>
+
+            <article class="subsection">
+                <h3 class="subsection-title">📐 Padding e Margin</h3>
+                <div class="text-content">
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">Escala de Valores:</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                        <thead>
+                            <tr style="background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%); color: white;">
+                                <th style="padding: 0.8rem; text-align: left;">Classe</th>
+                                <th style="padding: 0.8rem; text-align: left;">Valor</th>
+                                <th style="padding: 0.8rem; text-align: left;">Pixels</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #f8fafc;"><td style="padding: 0.5rem; font-family: monospace;">p-0</td><td style="padding: 0.5rem;">0</td><td style="padding: 0.5rem;">0px</td></tr>
+                            <tr><td style="padding: 0.5rem; font-family: monospace;">p-1</td><td style="padding: 0.5rem;">0.25rem</td><td style="padding: 0.5rem;">4px</td></tr>
+                            <tr style="background: #f8fafc;"><td style="padding: 0.5rem; font-family: monospace;">p-2</td><td style="padding: 0.5rem;">0.5rem</td><td style="padding: 0.5rem;">8px</td></tr>
+                            <tr><td style="padding: 0.5rem; font-family: monospace;">p-4</td><td style="padding: 0.5rem;">1rem</td><td style="padding: 0.5rem;">16px</td></tr>
+                            <tr style="background: #f8fafc;"><td style="padding: 0.5rem; font-family: monospace;">p-8</td><td style="padding: 0.5rem;">2rem</td><td style="padding: 0.5rem;">32px</td></tr>
+                        </tbody>
+                    </table>
+                    <pre><code>&lt;!-- Padding --&gt;
+&lt;div class="p-4"&gt;Padding em todos os lados&lt;/div&gt;
+&lt;div class="px-6 py-3"&gt;Padding horizontal 6, vertical 3&lt;/div&gt;
+&lt;div class="pt-2 pr-4 pb-2 pl-4"&gt;Cada lado individual&lt;/div&gt;
+
+&lt;!-- Margin --&gt;
+&lt;div class="m-4"&gt;Margin em todos os lados&lt;/div&gt;
+&lt;div class="mx-auto"&gt;Centralizar horizontalmente&lt;/div&gt;
+&lt;div class="mt-8 mb-4"&gt;Margin top 8, bottom 4&lt;/div&gt;</code></pre>
+                </div>
+                <button class="mark-complete" data-topic="padding-margin"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">⬜ Space Between</h3>
+                <div class="text-content">
+                    <p>Adiciona espaçamento entre elementos filhos automaticamente.</p>
+                    <pre><code>&lt;div class="flex space-x-4"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="flex flex-col space-y-4"&gt;
+  &lt;div&gt;Linha 1&lt;/div&gt;
+  &lt;div&gt;Linha 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    <div class="example">
+                        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                            <div style="background: #06b6d4; color: white; padding: 1rem; border-radius: 8px; flex: 1; text-align: center;">1</div>
+                            <div style="background: #8b5cf6; color: white; padding: 1rem; border-radius: 8px; flex: 1; text-align: center;">2</div>
+                            <div style="background: #ec4899; color: white; padding: 1rem; border-radius: 8px; flex: 1; text-align: center;">3</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="space-between"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">📏 Width e Height</h3>
+                <div class="text-content">
+                    <pre><code>&lt;!-- Larguras fixas --&gt;
+&lt;div class="w-64"&gt;256px de largura&lt;/div&gt;
+&lt;div class="w-full"&gt;100% de largura&lt;/div&gt;
+&lt;div class="w-screen"&gt;100vw (largura da tela)&lt;/div&gt;
+
+&lt;!-- Larguras fracionárias --&gt;
+&lt;div class="w-1/2"&gt;50% do container&lt;/div&gt;
+&lt;div class="w-1/3"&gt;33.33% do container&lt;/div&gt;
+&lt;div class="w-2/3"&gt;66.66% do container&lt;/div&gt;
+
+&lt;!-- Alturas --&gt;
+&lt;div class="h-64"&gt;256px de altura&lt;/div&gt;
+&lt;div class="h-screen"&gt;100vh (altura da tela)&lt;/div&gt;
+
+&lt;!-- Min e Max --&gt;
+&lt;div class="min-w-full max-w-4xl"&gt;Largura controlada&lt;/div&gt;
+&lt;div class="min-h-screen"&gt;No mínimo altura da tela&lt;/div&gt;</code></pre>
+                </div>
+                <button class="mark-complete" data-topic="width-height"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <div class="section-navigation">
+                <button class="nav-btn" data-prev="backgrounds">← Anterior: Backgrounds</button>
+                <button class="nav-btn next-section" data-next="tipografia">Próxima Seção: Tipografia →</button>
+            </div>
+        </section>
+
+        <section id="tipografia" class="content-section">
+            <h2 class="section-title">✍️ 6. Tipografia</h2>
+
+            <article class="subsection">
+                <h3 class="subsection-title">🔤 Font Family e Font Style</h3>
+                <div class="text-content">
+                    <pre><code>&lt;!-- Font Family --&gt;
+&lt;p class="font-sans"&gt;Fonte Sans-serif (padrão)&lt;/p&gt;
+&lt;p class="font-serif"&gt;Fonte Serif&lt;/p&gt;
+&lt;p class="font-mono"&gt;Fonte Monospace&lt;/p&gt;
+
+&lt;!-- Font Style --&gt;
+&lt;p class="italic"&gt;Texto itálico&lt;/p&gt;
+&lt;p class="not-italic"&gt;Não itálico&lt;/p&gt;</code></pre>
+                    <div class="example">
+                        <p style="font-family: sans-serif; margin: 0.5rem 0;">Sans-serif: Texto moderno e limpo</p>
+                        <p style="font-family: serif; margin: 0.5rem 0;">Serif: Texto clássico e formal</p>
+                        <p style="font-family: monospace; margin: 0.5rem 0;">Monospace: Código e dados</p>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="font-family"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">📏 Font Size e Font Weight</h3>
+                <div class="text-content">
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">Tamanhos:</h4>
+                    <div style="background: white; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                        <p style="font-size: 0.75rem; margin: 0.5rem 0;">text-xs: Extra pequeno (0.75rem)</p>
+                        <p style="font-size: 0.875rem; margin: 0.5rem 0;">text-sm: Pequeno (0.875rem)</p>
+                        <p style="font-size: 1rem; margin: 0.5rem 0;">text-base: Base (1rem)</p>
+                        <p style="font-size: 1.125rem; margin: 0.5rem 0;">text-lg: Grande (1.125rem)</p>
+                        <p style="font-size: 1.25rem; margin: 0.5rem 0;">text-xl: Extra grande (1.25rem)</p>
+                        <p style="font-size: 1.5rem; margin: 0.5rem 0;">text-2xl: 2x grande (1.5rem)</p>
+                        <p style="font-size: 3rem; margin: 0.5rem 0;">text-5xl: 5x grande (3rem)</p>
+                    </div>
+                    
+                    <h4 style="color: var(--primary); margin: 2rem 0 1rem 0;">Pesos:</h4>
+                    <div style="background: white; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                        <p style="font-weight: 100; margin: 0.5rem 0;">font-thin: 100</p>
+                        <p style="font-weight: 300; margin: 0.5rem 0;">font-light: 300</p>
+                        <p style="font-weight: 400; margin: 0.5rem 0;">font-normal: 400</p>
+                        <p style="font-weight: 600; margin: 0.5rem 0;">font-semibold: 600</p>
+                        <p style="font-weight: 700; margin: 0.5rem 0;">font-bold: 700</p>
+                        <p style="font-weight: 900; margin: 0.5rem 0;">font-black: 900</p>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="font-size-weight"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">📝 Text Alignment</h3>
+                <div class="text-content">
+                    <pre><code>&lt;p class="text-left"&gt;Alinhado à esquerda&lt;/p&gt;
+&lt;p class="text-center"&gt;Centralizado&lt;/p&gt;
+&lt;p class="text-right"&gt;Alinhado à direita&lt;/p&gt;
+&lt;p class="text-justify"&gt;Justificado&lt;/p&gt;</code></pre>
+                    <div class="example">
+                        <p style="text-align: left; background: #f8fafc; padding: 0.5rem; margin: 0.5rem 0; border-radius: 4px;">← Esquerda</p>
+                        <p style="text-align: center; background: #f8fafc; padding: 0.5rem; margin: 0.5rem 0; border-radius: 4px;">Centro</p>
+                        <p style="text-align: right; background: #f8fafc; padding: 0.5rem; margin: 0.5rem 0; border-radius: 4px;">Direita →</p>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="text-alignment"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">🎨 Text Color</h3>
+                <div class="text-content">
+                    <pre><code>&lt;!-- Cores de texto com intensidades --&gt;
+&lt;p class="text-gray-900"&gt;Texto muito escuro&lt;/p&gt;
+&lt;p class="text-blue-600"&gt;Texto azul&lt;/p&gt;
+&lt;p class="text-red-500"&gt;Texto vermelho&lt;/p&gt;
+&lt;p class="text-green-700"&gt;Texto verde&lt;/p&gt;
+
+&lt;!-- Com opacidade --&gt;
+&lt;p class="text-blue-600/50"&gt;50% opacidade&lt;/p&gt;</code></pre>
+                    <div class="benefits-grid">
+                        <div style="color: #1e293b; padding: 1rem; background: #f8fafc; border-radius: 8px; font-weight: 600;">text-gray-900</div>
+                        <div style="color: #3b82f6; padding: 1rem; background: #f8fafc; border-radius: 8px; font-weight: 600;">text-blue-500</div>
+                        <div style="color: #ef4444; padding: 1rem; background: #f8fafc; border-radius: 8px; font-weight: 600;">text-red-500</div>
+                        <div style="color: #10b981; padding: 1rem; background: #f8fafc; border-radius: 8px; font-weight: 600;">text-green-500</div>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="text-color"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <div class="section-navigation">
+                <button class="nav-btn" data-prev="espacamentos">← Anterior: Espaçamentos</button>
+                <button class="nav-btn next-section" data-next="projeto">Próxima Seção: Projeto Final →</button>
+            </div>
+        </section>
+
+        <section id="projeto" class="content-section">
+            <h2 class="section-title">🚀 7. Projeto Final - Dashboard Responsivo</h2>
+
+            <article class="subsection">
+                <h3 class="subsection-title">📦 Parte 1 - Instalação e Setup</h3>
+                <div class="text-content">
+                    <div class="steps-container">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Crie o projeto</h4>
+                                <pre><code>mkdir dashboard-tailwind
+cd dashboard-tailwind
+npm init -y
+npm install -D tailwindcss
+npx tailwindcss init</code></pre>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Configure o tailwind.config.js</h4>
+                                <pre><code>module.exports = {
+  content: ["./*.html"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}</code></pre>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Crie input.css com as diretivas</h4>
+                                <pre><code>@tailwind base;
+@tailwind components;
+@tailwind utilities;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="projeto-1"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">🎨 Parte 2 - Overview do Projeto</h3>
+                <div class="text-content">
+                    <p>Vamos criar um <strong>Dashboard administrativo</strong> com:</p>
+                    <ul class="feature-list">
+                        <li>✅ Menu lateral retrátil</li>
+                        <li>✅ Header com busca e perfil</li>
+                        <li>✅ Cards de estatísticas</li>
+                        <li>✅ Gráficos e tabelas</li>
+                        <li>✅ Responsivo (mobile-first)</li>
+                        <li>✅ Dark mode toggle</li>
+                    </ul>
+                </div>
+                <button class="mark-complete" data-topic="projeto-2"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">📐 Parte 3 - Estrutura HTML Básica</h3>
+                <div class="text-content">
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Dashboard - Tailwind&lt;/title&gt;
+  &lt;link href="output.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body class="bg-gray-100"&gt;
+  &lt;div class="flex h-screen"&gt;
+    &lt;!-- Sidebar --&gt;
+    &lt;aside id="sidebar"&gt;&lt;/aside&gt;
+    
+    &lt;!-- Main Content --&gt;
+    &lt;main class="flex-1 overflow-auto"&gt;
+      &lt;!-- Header --&gt;
+      &lt;header&gt;&lt;/header&gt;
+      
+      &lt;!-- Content --&gt;
+      &lt;div class="p-6"&gt;&lt;/div&gt;
+    &lt;/main&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+                <button class="mark-complete" data-topic="projeto-3"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">🎯 Parte 4 - Menu Lateral (Sidebar)</h3>
+                <div class="text-content">
+                    <pre><code>&lt;aside class="w-64 bg-gray-900 text-white flex flex-col"&gt;
+  &lt;!-- Logo --&gt;
+  &lt;div class="p-6 border-b border-gray-800"&gt;
+    &lt;h1 class="text-2xl font-bold bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent"&gt;
+      Dashboard
+    &lt;/h1&gt;
+  &lt;/div&gt;
+  
+  &lt;!-- Navigation --&gt;
+  &lt;nav class="flex-1 p-4 space-y-2"&gt;
+    &lt;a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-lg bg-cyan-600 hover:bg-cyan-700"&gt;
+      &lt;span&gt;📊&lt;/span&gt;
+      &lt;span&gt;Dashboard&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800"&gt;
+      &lt;span&gt;👥&lt;/span&gt;
+      &lt;span&gt;Usuários&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800"&gt;
+      &lt;span&gt;📈&lt;/span&gt;
+      &lt;span&gt;Relatórios&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/aside&gt;</code></pre>
+                </div>
+                <button class="mark-complete" data-topic="projeto-4"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">🎯 Parte 5 - Header e Cards de Estatísticas</h3>
+                <div class="text-content">
+                    <pre><code>&lt;!-- Header --&gt;
+&lt;header class="bg-white shadow-sm p-6 flex justify-between items-center"&gt;
+  &lt;h2 class="text-2xl font-bold text-gray-800"&gt;Visão Geral&lt;/h2&gt;
+  &lt;div class="flex items-center space-x-4"&gt;
+    &lt;button class="px-4 py-2 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600"&gt;
+      + Novo
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;!-- Stats Cards --&gt;
+&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6"&gt;
+  &lt;div class="bg-white rounded-xl shadow-md p-6"&gt;
+    &lt;div class="flex items-center justify-between"&gt;
+      &lt;div&gt;
+        &lt;p class="text-sm text-gray-600"&gt;Total Vendas&lt;/p&gt;
+        &lt;h3 class="text-3xl font-bold text-gray-900"&gt;R$ 45,280&lt;/h3&gt;
+      &lt;/div&gt;
+      &lt;div class="bg-cyan-100 p-3 rounded-lg"&gt;
+        &lt;span class="text-3xl"&gt;💰&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class="text-sm text-green-600 mt-2"&gt;↑ 12% vs mês passado&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;!-- Repita para outros cards --&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                <button class="mark-complete" data-topic="projeto-5"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">🎨 Parte 6 - Responsividade e Mobile</h3>
+                <div class="text-content">
+                    <pre><code>&lt;!-- Sidebar responsivo --&gt;
+&lt;aside class="w-64 bg-gray-900 text-white flex-col hidden lg:flex"&gt;
+  &lt;!-- Conteúdo do menu --&gt;
+&lt;/aside&gt;
+
+&lt;!-- Mobile menu button --&gt;
+&lt;button class="lg:hidden fixed bottom-6 right-6 bg-cyan-500 text-white p-4 rounded-full shadow-lg"&gt;
+  ☰
+&lt;/button&gt;
+
+&lt;!-- Grid responsivo de cards --&gt;
+&lt;div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"&gt;
+  &lt;!-- Cards --&gt;
+&lt;/div&gt;</code></pre>
+                    <div class="tip">
+                        <strong>💡 Dica:</strong> Use as classes <code>hidden lg:flex</code> para esconder a sidebar no mobile e mostrá-la em telas grandes!
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="projeto-6"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">🎯 Parte 7 - Finalização e Deploy</h3>
+                <div class="text-content">
+                    <div class="steps-container">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Build para produção</h4>
+                                <pre><code>npx tailwindcss -i ./input.css -o ./output.css --minify</code></pre>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Otimizações aplicadas</h4>
+                                <ul style="list-style: disc; margin-left: 1.5rem;">
+                                    <li>PurgeCSS remove CSS não utilizado</li>
+                                    <li>Minificação reduz tamanho do arquivo</li>
+                                    <li>Apenas classes usadas no HTML são incluídas</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Deploy</h4>
+                                <p>Faça upload dos arquivos HTML e CSS para Netlify, Vercel ou GitHub Pages!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="projeto-7"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <div class="section-navigation">
+                <button class="nav-btn" data-prev="tipografia">← Anterior: Tipografia</button>
+                <button class="nav-btn next-section" data-next="encerramento">Próxima Seção: Encerramento →</button>
+            </div>
+        </section>
+
+        <section id="encerramento" class="content-section">
+            <h2 class="section-title">🎓 8. Encerramento</h2>
+
+            <article class="subsection">
+                <h3 class="subsection-title">🎉 Parabéns por Concluir o Curso!</h3>
+                <div class="text-content">
+                    <div class="concept-box">
+                        <h4>🏆 Você Aprendeu:</h4>
+                        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                            <li style="margin: 0.8rem 0; font-size: 1.1rem;">✅ Conceitos fundamentais do Tailwind CSS</li>
+                            <li style="margin: 0.8rem 0; font-size: 1.1rem;">✅ Utility-first e mobile-first</li>
+                            <li style="margin: 0.8rem 0; font-size: 1.1rem;">✅ Layouts com Grid e Flexbox</li>
+                            <li style="margin: 0.8rem 0; font-size: 1.1rem;">✅ Backgrounds, cores e gradientes</li>
+                            <li style="margin: 0.8rem 0; font-size: 1.1rem;">✅ Espaçamentos e tipografia</li>
+                            <li style="margin: 0.8rem 0; font-size: 1.1rem;">✅ Projeto completo responsivo</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%); padding: 2rem; border-radius: 12px; color: white; text-align: center; margin: 2rem 0;">
+                        <h3 style="font-size: 2rem; margin-bottom: 1rem;">🚀 Próximos Passos</h3>
+                        <p style="font-size: 1.2rem; opacity: 0.95;">Continue praticando e construindo projetos reais!</p>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="encerramento-1"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">📚 Materiais de Apoio</h3>
+                <div class="text-content">
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <span class="benefit-icon">📖</span>
+                            <h4>Documentação Oficial</h4>
+                            <p><a href="https://tailwindcss.com/docs" target="_blank" rel="noopener noreferrer" style="color: #06b6d4; text-decoration: underline;">tailwindcss.com/docs</a></p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">🎮</span>
+                            <h4>Playground</h4>
+                            <p><a href="https://play.tailwindcss.com" target="_blank" rel="noopener noreferrer" style="color: #06b6d4; text-decoration: underline;">play.tailwindcss.com</a></p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">🧩</span>
+                            <h4>Componentes</h4>
+                            <p><a href="https://tailwindui.com" target="_blank" rel="noopener noreferrer" style="color: #06b6d4; text-decoration: underline;">tailwindui.com</a></p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">💡</span>
+                            <h4>Cheat Sheet</h4>
+                            <p><a href="https://nerdcave.com/tailwind-cheat-sheet" target="_blank" rel="noopener noreferrer" style="color: #06b6d4; text-decoration: underline;">Tailwind Cheat Sheet</a></p>
+                        </div>
+                    </div>
+
+                    <h4 style="color: var(--primary); margin: 2rem 0 1rem 0;">📹 Recursos Adicionais:</h4>
+                    <ul class="feature-list">
+                        <li>📺 Canal oficial do Tailwind no YouTube</li>
+                        <li>🐦 Twitter: @tailwindcss</li>
+                        <li>💬 Discord da comunidade Tailwind</li>
+                        <li>📝 Blog oficial com dicas e tutoriais</li>
+                        <li>🎨 Tailwind Color Palette Generator</li>
+                    </ul>
+                </div>
+                <button class="mark-complete" data-topic="materiais"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <article class="subsection">
+                <h3 class="subsection-title">📝 Quiz - Teste Seus Conhecimentos</h3>
+                <div class="text-content">
+                    <div class="example">
+                        <h4>❓ Perguntas:</h4>
+                        
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid #06b6d4;">
+                            <p style="font-weight: 600; margin-bottom: 0.5rem;">1. O que significa "utility-first"?</p>
+                            <p style="color: #64748b; font-size: 0.95rem;">a) Usar apenas funções JavaScript<br>b) Usar classes de utilidade pequenas e de propósito único<br>c) Criar CSS customizado primeiro<br>d) Usar apenas frameworks</p>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid #8b5cf6;">
+                            <p style="font-weight: 600; margin-bottom: 0.5rem;">2. Qual prefixo representa tablets no Tailwind?</p>
+                            <p style="color: #64748b; font-size: 0.95rem;">a) sm:<br>b) md:<br>c) lg:<br>d) xl:</p>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid #ec4899;">
+                            <p style="font-weight: 600; margin-bottom: 0.5rem;">3. Como centralizar um elemento horizontalmente?</p>
+                            <p style="color: #64748b; font-size: 0.95rem;">a) center<br>b) mx-auto<br>c) m-center<br>d) h-center</p>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid #10b981;">
+                            <p style="font-weight: 600; margin-bottom: 0.5rem;">4. Para criar um gradiente da esquerda para direita:</p>
+                            <p style="color: #64748b; font-size: 0.95rem;">a) bg-gradient-left<br>b) bg-gradient-to-r<br>c) gradient-right<br>d) bg-lr-gradient</p>
+                        </div>
+
+                        <details style="background: #f0fdf4; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem; cursor: pointer;">
+                            <summary style="font-weight: 700; color: #10b981; font-size: 1.1rem; cursor: pointer;">🔍 Ver Respostas</summary>
+                            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 2px solid #10b981;">
+                                <p style="margin: 0.5rem 0;"><strong>1.</strong> b) Usar classes de utilidade pequenas e de propósito único</p>
+                                <p style="margin: 0.5rem 0;"><strong>2.</strong> b) md: (768px+)</p>
+                                <p style="margin: 0.5rem 0;"><strong>3.</strong> b) mx-auto</p>
+                                <p style="margin: 0.5rem 0;"><strong>4.</strong> b) bg-gradient-to-r</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+                <button class="mark-complete" data-topic="quiz"><span class="btn-icon">✓</span> Marcar como Concluído</button>
+            </article>
+
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 3rem; border-radius: 15px; text-align: center; color: white; margin-top: 3rem;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">🎉 Parabéns!</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 1.5rem;">Você completou o Guia Interativo de Tailwind CSS!</p>
+                <p style="font-size: 1.1rem; opacity: 0.95;">Agora é hora de construir projetos incríveis! 🚀</p>
+            </div>
+
+            <div class="section-navigation" style="margin-top: 2rem;">
+                <button class="nav-btn" data-prev="projeto">← Anterior: Projeto Final</button>
+                <button class="nav-btn" data-next="introducao">🔄 Voltar ao Início</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="tailwind.js"></script>
+</body>
+</html>
+```
