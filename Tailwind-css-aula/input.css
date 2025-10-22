@@ -1,0 +1,21 @@
+/* Diretivas do Tailwind CSS */
+
+/* Base - estilos globais padrão */
+@tailwind base;
+
+/* Components - componentes reutilizáveis */
+@tailwind components;
+
+/* Utilities - classes utilitárias */
+@tailwind utilities;
+
+/* Customizações extras (opcional) */
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow;
+  }
+}
