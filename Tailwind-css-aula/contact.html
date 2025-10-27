@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - I'M JOHNNIE</title>
+    
+    <!-- Link do CSS compilado do Tailwind -->
+    <link rel="stylesheet" href="./dist/output.css">
+    
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Container principal -->
+    <div class="flex flex-col md:flex-row min-h-screen">
+        
+        <!-- ========== SIDEBAR (Menu Lateral) ========== -->
+        <aside class="w-full md:w-64 bg-gray-50 shadow-lg flex flex-col">
+            
+            <!-- Logo/Título -->
+            <div class="p-6 border-b border-gray-200">
+                <h1 class="text-2xl font-bold text-center md:text-left">
+                    <span class="text-purple-400">I'M,</span> 
+                    <span class="text-purple-600">JOHNNIE</span>
+                </h1>
+            </div>
+            
+            <!-- Menu de Navegação -->
+            <nav class="flex-1 py-6">
+                <ul class="space-y-2 px-4">
+                    <li>
+                        <a href="tailwind_aula.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg transition-all duration-200 font-medium">
+                            <i class="fas fa-home text-lg"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg transition-all duration-200 font-medium">
+                            <i class="fas fa-user text-lg"></i>
+                            <span>About</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="projects.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg transition-all duration-200 font-medium">
+                            <i class="fas fa-briefcase text-lg"></i>
+                            <span>Projects</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contact.html" class="flex items-center gap-3 px-4 py-3 bg-purple-100 text-purple-600 rounded-lg transition-all duration-200 font-medium">
+                            <i class="fas fa-envelope text-lg"></i>
+                            <span>Contact</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Footer da Sidebar -->
+            <div class="p-4 border-t border-gray-200">
+                <p class="text-xs text-gray-400 text-center">Copyright © 2025 JOHNNIE</p>
+            </div>
+        </aside>
+        
+        <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+        <main class="flex-1 bg-gradient-to-br from-gray-100 via-purple-50 to-gray-100">
+            
+            <!-- ========== CONTACT SECTION ========== -->
+            <section class="min-h-screen flex items-center justify-center px-4 md:px-8 py-12">
+                <div class="max-w-4xl w-full">
+                    
+                    <!-- Título da Seção -->
+                    <div class="text-center mb-8 md:mb-12">
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
+                            Entre em <span class="text-purple-600">Contato</span>
+                        </h2>
+                        <div class="w-24 h-1 bg-purple-600 mx-auto mb-4"></div>
+                        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+                            Preencha o formulário abaixo para enviar uma mensagem
+                        </p>
+                    </div>
+                    
+                    <!-- Card do Formulário -->
+                    <div class="relative">
+                        <!-- Card com efeito de camadas (estilo da imagem) -->
+                        <div class="absolute -inset-4 bg-gradient-to-br from-purple-400 to-purple-600 rounded-3xl transform rotate-3 opacity-30"></div>
+                        <div class="absolute -inset-2 bg-gradient-to-br from-purple-500 to-blue-500 rounded-3xl transform rotate-2 opacity-40"></div>
+                        
+                        <!-- Card principal -->
+                        <div class="relative bg-gradient-to-br from-purple-400 via-purple-500 to-blue-500 rounded-3xl shadow-2xl p-8 md:p-10">
+                            
+                            <!-- Título do Card -->
+                            <h3 class="text-2xl md:text-3xl font-bold text-white text-center mb-2">
+                                Fale Conosco!
+                            </h3>
+                            <p class="text-purple-100 text-center text-sm mb-8">
+                                Preencha o formulário abaixo para enviar sua mensagem
+                            </p>
+                            
+                            <!-- Formulário -->
+                            <form action="https://formspree.io/f/xqagajpk" method="POST" class="space-y-5">
+                                
+                                <!-- Campo Nome -->
+                                <div>
+                                    <input 
+                                        type="text" 
+                                        name="nome"
+                                        placeholder="Nome"
+                                        required
+                                        class="w-full px-4 py-3 bg-white text-gray-800 placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300 transition-all duration-200 shadow-md"
+                                    >
+                                </div>
+                                
+                                <!-- Campo Email -->
+                                <div>
+                                    <input 
+                                        type="email" 
+                                        name="email"
+                                        placeholder="Email"
+                                        required
+                                        class="w-full px-4 py-3 bg-white text-gray-800 placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300 transition-all duration-200 shadow-md"
+                                    >
+                                </div>
+                                
+                                <!-- Campo Assunto -->
+                                <div>
+                                    <input 
+                                        type="text" 
+                                        name="assunto"
+                                        placeholder="Assunto"
+                                        required
+                                        class="w-full px-4 py-3 bg-white text-gray-800 placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300 transition-all duration-200 shadow-md"
+                                    >
+                                </div>
+                                
+                                <!-- Campo Mensagem -->
+                                <div>
+                                    <textarea 
+                                        name="mensagem"
+                                        rows="5"
+                                        placeholder="Digite sua mensagem aqui..."
+                                        required
+                                        class="w-full px-4 py-3 bg-white text-gray-800 placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300 transition-all duration-200 resize-none shadow-md"
+                                    ></textarea>
+                                </div>
+                                
+                                <!-- Botões -->
+                                <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                                    <button 
+                                        type="submit"
+                                        class="flex-1 bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+                                    >
+                                        <span>Enviar</span>
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                    
+                                    <button 
+                                        type="reset"
+                                        class="flex-1 sm:flex-none bg-white text-purple-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95"
+                                    >
+                                        Limpar
+                                    </button>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                    
+                    <!-- Informações de Contato -->
+                    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <!-- Email -->
+                        <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 border-l-4 border-purple-500">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-envelope text-2xl text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Email</h4>
+                                    <a href="mailto:jhonnatanluiz@yahoo.com.br" class="text-purple-600 hover:text-purple-700 hover:underline text-sm">
+                                        jhonnatanluiz@yahoo.com.br
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- GitHub -->
+                        <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 border-l-4 border-gray-700">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center">
+                                    <i class="fab fa-github text-2xl text-gray-700"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">GitHub</h4>
+                                    <a href="https://github.com/JhonnatanLuiz" target="_blank" class="text-gray-700 hover:text-gray-900 hover:underline text-sm">
+                                        @JhonnatanLuiz
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </section>
+            
+        </main>
+        
+    </div>
+    
+    <!-- ========== RODAPÉ FIXO COM WHATSAPP ========== -->
+    <footer class="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 shadow-2xl z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+                
+                <!-- WhatsApp 1 -->
+                <a href="https://wa.me/5511964693726" 
+                   target="_blank"
+                   class="flex items-center gap-3 bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-2 rounded-full transition-all duration-200 hover:scale-105 active:scale-95">
+                    <i class="fab fa-whatsapp text-2xl"></i>
+                    <span class="font-semibold">+55 11 96469-3726</span>
+                </a>
+                
+                <!-- WhatsApp 2 -->
+                <a href="https://wa.me/5511911851380" 
+                   target="_blank"
+                   class="flex items-center gap-3 bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-2 rounded-full transition-all duration-200 hover:scale-105 active:scale-95">
+                    <i class="fab fa-whatsapp text-2xl"></i>
+                    <span class="font-semibold">+55 11 91185-1380</span>
+                </a>
+                
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>
