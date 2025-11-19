@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 4: Lógica e Depuração - SASS Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#c69',
+                        secondary: '#2ecc71',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../js/main.js" defer></script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans antialiased min-h-screen flex flex-col md:flex-row overflow-x-hidden">
+
+    <div id="sidebar-container" class="md:w-64 flex-shrink-0"></div>
+
+    <div class="flex-1 flex flex-col min-h-screen md:ml-0 transition-all duration-300">
+        <div id="header-container"></div>
+
+        <main class="flex-1 p-6 md:p-8 max-w-4xl mx-auto w-full animate-fade-in">
+            <nav class="flex mb-4" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="../index.html" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                            🏠 Início
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <span class="mx-2 text-gray-400">/</span>
+                            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Aula 4</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="flex items-center mb-6">
+                <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Módulo 4</span>
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Lógica e Depuração</h1>
+            </div>
+
+            <!-- Operations -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">🧮 Operações Matemáticas</h2>
+                <p class="mb-4 text-gray-600 dark:text-gray-300">
+                    SASS permite realizar operações matemáticas diretamente no CSS!
+                </p>
+                <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto font-mono text-sm mb-4"><code>$largura-base: 1000px;
+$colunas: 4;
+$espacamento: 20px;
+
+.coluna {
+  width: ($largura-base / $colunas) - $espacamento; // (1000px / 4) - 20px = 230px
+}</code></pre>
+            </div>
+
+            <!-- Conditionals -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">🔀 Condicionais (@if, @else)</h2>
+                <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto font-mono text-sm mb-4"><code>$tema: 'escuro';
+
+.site {
+  @if $tema == 'escuro' {
+    background: #1a1a1a;
+    color: #fff;
+  } @else {
+    background: #fff;
+    color: #333;
+  }
+}</code></pre>
+                
+                <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-gray-50 dark:bg-gray-900/50">
+                    <h4 class="font-bold mb-4">🎮 Teste Interativo</h4>
+                    <div class="flex items-center mb-4">
+                        <label class="mr-3 text-sm font-medium">Escolha um tema:</label>
+                        <select id="themeSelector" aria-label="Seletor de tema" onchange="demonstrateConditional()" class="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded px-3 py-1">
+                            <option value="claro">Tema Claro</option>
+                            <option value="escuro">Tema Escuro</option>
+                        </select>
+                    </div>
+                    <div id="conditionalOutput" class="font-mono text-sm bg-black text-green-400 p-4 rounded">
+                        /* Selecione um tema acima */
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loops -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">🔁 Loops (@for, @each)</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2">@for (Contador)</h4>
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto font-mono text-sm"><code>@for $i from 1 through 3 {
+  .col-#{$i} { width: 100% * $i; }
+}</code></pre>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">@each (Lista)</h4>
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto font-mono text-sm"><code>$cores: red, blue, green;
+
+@each $cor in $cores {
+  .bg-#{$cor} { background: $cor; }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Debugging -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">🐛 Depuração</h2>
+                <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300">
+                    <li><code>@debug</code>: Exibe valores no console durante a compilação.</li>
+                    <li><code>@warn</code>: Emite avisos sem parar a compilação.</li>
+                    <li><code>@error</code>: Para a compilação e exibe uma mensagem de erro.</li>
+                </ul>
+            </div>
+
+            <div class="flex justify-between mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <a href="aula3.html" class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition">← Anterior</a>
+                <a href="aula5.html" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Próxima: Convertendo Projeto →</a>
+            </div>
+        </main>
+
+        <div id="footer-container"></div>
+    </div>
+
+    <script>
+        function demonstrateConditional() {
+            const selector = document.getElementById('themeSelector');
+            const output = document.getElementById('conditionalOutput');
+            const tema = selector.value;
+            
+            let cssGerado = '';
+            
+            if (tema === 'claro') {
+                cssGerado = `.site {\n  background: #ffffff;\n  color: #333333;\n}`;
+            } else {
+                cssGerado = `.site {\n  background: #1a1a1a;\n  color: #ffffff;\n}`;
+            }
+            
+            output.innerHTML = `<span class="text-gray-500">// CSS Gerado:</span><br>${cssGerado.replace(/\n/g, '<br>').replace(/  /g, '&nbsp;&nbsp;')}`;
+        }
+        // Run once on load
+        demonstrateConditional();
+    </script>
+</body>
+</html>

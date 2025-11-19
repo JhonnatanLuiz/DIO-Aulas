@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 6: Materiais Extras - SASS Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#c69',
+                        secondary: '#2ecc71',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../js/main.js" defer></script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans antialiased min-h-screen flex flex-col md:flex-row overflow-x-hidden">
+
+    <div id="sidebar-container" class="md:w-64 flex-shrink-0"></div>
+
+    <div class="flex-1 flex flex-col min-h-screen md:ml-0 transition-all duration-300">
+        <div id="header-container"></div>
+
+        <main class="flex-1 p-6 md:p-8 max-w-4xl mx-auto w-full animate-fade-in">
+            <nav class="flex mb-4" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="../index.html" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                            🏠 Início
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <span class="mx-2 text-gray-400">/</span>
+                            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Aula 6</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="flex items-center mb-6">
+                <span class="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Módulo 6</span>
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Materiais Complementares e Quiz</h1>
+            </div>
+
+            <!-- Tips -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">💡 Dicas e Boas Práticas</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-700 dark:text-green-300 mb-2">✅ FAÇA</h4>
+                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <li>Use variáveis para valores repetidos</li>
+                            <li>Organize arquivos em pastas lógicas</li>
+                            <li>Crie mixins para padrões comuns</li>
+                            <li>Documente mixins e funções complexas</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-700 dark:text-red-300 mb-2">❌ NÃO FAÇA</h4>
+                        <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <li>Aninhar mais de 4 níveis</li>
+                            <li>Criar variáveis para valores únicos</li>
+                            <li>Duplicar código em vez de usar mixins</li>
+                            <li>Usar !important (evite ao máximo)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">🎓 Questionário Final</h2>
+                <p class="mb-6 text-gray-600 dark:text-gray-300">Teste seus conhecimentos sobre SASS!</p>
+
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Questions will be injected here -->
+                </div>
+
+                <div id="quiz-result" class="hidden mt-6 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-center">
+                    <h3 class="text-2xl font-bold mb-2 text-blue-800 dark:text-blue-300">Resultado</h3>
+                    <p class="text-lg mb-4">Você acertou <span id="score" class="font-bold">0</span> de <span id="total" class="font-bold">5</span>!</p>
+                    <button onclick="resetQuiz()" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Tentar Novamente</button>
+                </div>
+
+                <div class="flex justify-between mt-6">
+                    <button id="prevBtn" onclick="navigateQuiz(-1)" class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition disabled:opacity-50" disabled>← Anterior</button>
+                    <span id="progress" class="self-center font-medium text-gray-500">1/5</span>
+                    <button id="nextBtn" onclick="navigateQuiz(1)" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Próxima →</button>
+                    <button id="submitBtn" onclick="submitQuiz()" class="hidden px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition">Ver Resultado</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <a href="aula5.html" class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition">← Anterior</a>
+                <a href="../index.html" class="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition">Concluir Curso 🏆</a>
+            </div>
+        </main>
+
+        <div id="footer-container"></div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                q: "1. Qual é a diferença entre SASS e SCSS?",
+                options: [
+                    { val: "a", text: "SASS é mais rápido que SCSS" },
+                    { val: "b", text: "SCSS usa chaves e ponto-e-vírgula, SASS usa indentação" },
+                    { val: "c", text: "São exatamente iguais" }
+                ],
+                correct: "b"
+            },
+            {
+                q: "2. Como você declara uma variável em SASS?",
+                options: [
+                    { val: "a", text: "var cor = #3498db;" },
+                    { val: "b", text: "$cor: #3498db;" },
+                    { val: "c", text: "--cor: #3498db;" }
+                ],
+                correct: "b"
+            },
+            {
+                q: "3. O que o símbolo & representa em SASS?",
+                options: [
+                    { val: "a", text: "Operador de concatenação" },
+                    { val: "b", text: "Referência ao seletor pai" },
+                    { val: "c", text: "Operador lógico AND" }
+                ],
+                correct: "b"
+            },
+            {
+                q: "4. Qual diretiva para a compilação quando encontra um erro?",
+                options: [
+                    { val: "a", text: "@warn" },
+                    { val: "b", text: "@debug" },
+                    { val: "c", text: "@error" }
+                ],
+                correct: "c"
+            },
+            {
+                q: "5. Como você importa um partial em SASS?",
+                options: [
+                    { val: "a", text: "@import 'variables';" },
+                    { val: "b", text: "include('_variables.scss');" },
+                    { val: "c", text: "require('variables');" }
+                ],
+                correct: "a"
+            }
+        ];
+
+        let currentQuestion = 0;
+        const userAnswers = {};
+
+        function initQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = questions.map((q, idx) => `
+                <div class="question-block ${idx === 0 ? '' : 'hidden'}" data-idx="${idx}">
+                    <h4 class="font-bold text-lg mb-3">${q.q}</h4>
+                    <div class="space-y-2">
+                        ${q.options.map(opt => `
+                            <label class="flex items-center p-3 border border-gray-200 dark:border-gray-700 rounded cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q${idx}" value="${opt.val}" class="form-radio h-4 w-4 text-blue-600" onchange="saveAnswer(${idx}, '${opt.val}')">
+                                <span class="ml-3 text-gray-700 dark:text-gray-300">${opt.text}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function saveAnswer(qIdx, val) {
+            userAnswers[qIdx] = val;
+        }
+
+        function navigateQuiz(dir) {
+            const blocks = document.querySelectorAll('.question-block');
+            blocks[currentQuestion].classList.add('hidden');
+            currentQuestion += dir;
+            blocks[currentQuestion].classList.remove('hidden');
+
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            
+            const isLast = currentQuestion === questions.length - 1;
+            document.getElementById('nextBtn').classList.toggle('hidden', isLast);
+            document.getElementById('submitBtn').classList.toggle('hidden', !isLast);
+            
+            document.getElementById('progress').textContent = `${currentQuestion + 1}/${questions.length}`;
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            questions.forEach((q, idx) => {
+                if (userAnswers[idx] === q.correct) score++;
+            });
+
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.querySelector('.flex.justify-between.mt-6').classList.add('hidden'); // Hide nav buttons
+            
+            const resultDiv = document.getElementById('quiz-result');
+            resultDiv.classList.remove('hidden');
+            document.getElementById('score').textContent = score;
+            document.getElementById('total').textContent = questions.length;
+        }
+
+        function resetQuiz() {
+            currentQuestion = 0;
+            // Clear answers
+            for (let key in userAnswers) delete userAnswers[key];
+            // Uncheck radios
+            document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+            
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.querySelector('.flex.justify-between.mt-6').classList.remove('hidden');
+            
+            // Reset nav
+            document.querySelectorAll('.question-block').forEach(b => b.classList.add('hidden'));
+            document.querySelector('.question-block[data-idx="0"]').classList.remove('hidden');
+            document.getElementById('prevBtn').disabled = true;
+            document.getElementById('nextBtn').classList.remove('hidden');
+            document.getElementById('submitBtn').classList.add('hidden');
+            document.getElementById('progress').textContent = `1/${questions.length}`;
+        }
+
+        initQuiz();
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 5: Convertendo Projeto - SASS Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#c69',
+                        secondary: '#2ecc71',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../js/main.js" defer></script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans antialiased min-h-screen flex flex-col md:flex-row overflow-x-hidden">
+
+    <div id="sidebar-container" class="md:w-64 flex-shrink-0"></div>
+
+    <div class="flex-1 flex flex-col min-h-screen md:ml-0 transition-all duration-300">
+        <div id="header-container"></div>
+
+        <main class="flex-1 p-6 md:p-8 max-w-4xl mx-auto w-full animate-fade-in">
+            <nav class="flex mb-4" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="../index.html" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                            🏠 Início
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <span class="mx-2 text-gray-400">/</span>
+                            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Aula 5</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="flex items-center mb-6">
+                <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">Módulo 5</span>
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Convertendo Projeto CSS para SASS</h1>
+            </div>
+
+            <!-- File Structure -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">📁 Organização de Módulos</h2>
+                <p class="mb-4 text-gray-600 dark:text-gray-300">
+                    A arquitetura 7-1 pattern é uma das mais populares para organizar projetos SASS.
+                </p>
+                <div class="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg font-mono text-sm text-gray-700 dark:text-gray-300 whitespace-pre">
+sass/
+├── abstracts/    (variáveis, mixins, funções)
+├── base/         (reset, tipografia)
+├── components/   (botões, cards, navbar)
+├── layout/       (header, footer, grid)
+├── pages/        (estilos específicos de páginas)
+├── themes/       (temas claro/escuro)
+├── vendors/      (bootstrap, jquery ui)
+└── main.scss     (arquivo principal que importa tudo)</div>
+            </div>
+
+            <!-- Responsiveness -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">📱 Responsividade com Mixins</h2>
+                <p class="mb-4 text-gray-600 dark:text-gray-300">
+                    Facilite a criação de media queries com mixins reutilizáveis.
+                </p>
+                <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto font-mono text-sm mb-4"><code>$breakpoints: (
+  'mobile': 576px,
+  'tablet': 768px,
+  'desktop': 1024px
+);
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+.container {
+  width: 100%;
+  @include respond-to('desktop') {
+    width: 960px;
+  }
+}</code></pre>
+            </div>
+
+            <!-- Minification -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">⚡ Minificação do CSS</h2>
+                <p class="mb-4 text-gray-600 dark:text-gray-300">
+                    Para produção, sempre compile seu CSS no modo comprimido para reduzir o tamanho do arquivo.
+                </p>
+                <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto font-mono text-sm mb-4"><code>sass sass/main.scss css/style.min.css --style=compressed</code></pre>
+                
+                <div class="bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500 p-4">
+                    <strong class="text-green-700 dark:text-green-300">✅ Resultado:</strong> Remove espaços e comentários, reduzindo drasticamente o tamanho do arquivo.
+                </div>
+            </div>
+
+            <div class="flex justify-between mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <a href="aula4.html" class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition">← Anterior</a>
+                <a href="aula6.html" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Próxima: Materiais Extras →</a>
+            </div>
+        </main>
+
+        <div id="footer-container"></div>
+    </div>
+</body>
+</html>

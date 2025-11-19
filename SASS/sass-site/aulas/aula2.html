@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 2: Primeiros Passos - SASS Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#c69',
+                        secondary: '#2ecc71',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../js/main.js" defer></script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans antialiased min-h-screen flex flex-col md:flex-row overflow-x-hidden">
+
+    <div id="sidebar-container" class="md:w-64 flex-shrink-0"></div>
+
+    <div class="flex-1 flex flex-col min-h-screen md:ml-0 transition-all duration-300">
+        <div id="header-container"></div>
+
+        <main class="flex-1 p-6 md:p-8 max-w-4xl mx-auto w-full animate-fade-in">
+            <nav class="flex mb-4" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="../index.html" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                            🏠 Início
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <span class="mx-2 text-gray-400">/</span>
+                            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Aula 2</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="flex items-center mb-6">
+                <span class="bg-purple-100 text-purple-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">Módulo 2</span>
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Primeiros Passos com SASS</h1>
+            </div>
+
+            <!-- Syntax Comparison -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">📝 Sintaxes: SASS vs SCSS</h2>
+                <p class="mb-6 text-gray-600 dark:text-gray-300">
+                    O SASS possui duas sintaxes diferentes. Você pode escolher a que preferir!
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2">SASS (indentação)</h4>
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto font-mono text-sm mb-2"><code>$cor-primaria: #3498db
+
+.botao
+  background: $cor-primaria
+  padding: 10px
+  &:hover
+    background: darken($cor-primaria, 10%)</code></pre>
+                        <p class="text-xs text-gray-500">Sem chaves { } nem ponto-e-vírgula ;</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">SCSS (similar ao CSS)</h4>
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto font-mono text-sm mb-2"><code>$cor-primaria: #3498db;
+
+.botao {
+  background: $cor-primaria;
+  padding: 10px;
+  &:hover {
+    background: darken($cor-primaria, 10%);
+  }
+}</code></pre>
+                        <p class="text-xs text-green-600 font-bold">✅ Mais popular - similar ao CSS</p>
+                    </div>
+                </div>
+
+                <div class="mt-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4">
+                    <strong class="text-yellow-700 dark:text-yellow-300">💡 Dica:</strong> Use SCSS se você já conhece CSS! É mais fácil migrar projetos existentes.
+                </div>
+            </div>
+
+            <!-- Installation Tabs -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">📦 Como Instalar o SASS</h2>
+                
+                <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="installTabs">
+                        <li class="mr-2">
+                            <button class="inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500" onclick="openTab('npm')">NPM</button>
+                        </li>
+                        <li class="mr-2">
+                            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" onclick="openTab('standalone')">Standalone</button>
+                        </li>
+                        <li class="mr-2">
+                            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" onclick="openTab('vscode')">VS Code</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="npm" class="tab-content">
+                    <h4 class="font-bold mb-2">Via NPM (Node.js)</h4>
+                    <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto font-mono text-sm mb-4"><code># Instalar globalmente
+npm install -g sass
+
+# Ou como dependência do projeto
+npm install --save-dev sass</code></pre>
+                    <p class="mb-2">Depois de instalado, compile com:</p>
+                    <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto font-mono text-sm"><code>sass input.scss output.css</code></pre>
+                </div>
+
+                <div id="standalone" class="tab-content hidden">
+                    <h4 class="font-bold mb-2">Download Direto</h4>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-300">
+                        <li>Baixe em: <a href="https://sass-lang.com/install" target="_blank" class="text-blue-500 hover:underline">sass-lang.com/install</a></li>
+                        <li>Extraia o arquivo</li>
+                        <li>Adicione ao PATH do sistema</li>
+                    </ol>
+                    <div class="mt-4 bg-blue-50 dark:bg-blue-900/20 p-3 rounded text-sm">
+                        Ideal para quem não usa Node.js
+                    </div>
+                </div>
+
+                <div id="vscode" class="tab-content hidden">
+                    <h4 class="font-bold mb-2">Extensão Live Sass Compiler</h4>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-300">
+                        <li>Abra o VS Code</li>
+                        <li>Vá em Extensions (Ctrl+Shift+X)</li>
+                        <li>Procure por "Live Sass Compiler"</li>
+                        <li>Instale e clique em "Watch Sass" na barra inferior</li>
+                    </ol>
+                    <div class="mt-4 bg-green-50 dark:bg-green-900/20 p-3 rounded text-sm text-green-700 dark:text-green-300">
+                        ✨ Mais fácil! Compila automaticamente ao salvar
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compilation Demo -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">⚙️ Compilando SASS para CSS</h2>
+                
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold mr-3">1</div>
+                        <div>
+                            <h4 class="font-bold">Crie um arquivo .scss</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Exemplo: <code>styles.scss</code></p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold mr-3">2</div>
+                        <div>
+                            <h4 class="font-bold">Execute o comando</h4>
+                            <code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-sm">sass styles.scss styles.css</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-gray-50 dark:bg-gray-900/50">
+                    <h4 class="font-bold mb-4">🎮 Teste Interativo</h4>
+                    <p class="mb-4 text-sm">Clique no botão para simular a compilação:</p>
+                    <button onclick="simulateCompile()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition flex items-center">
+                        <span class="mr-2">▶</span> Compilar SCSS
+                    </button>
+                    <div id="compileOutput" class="mt-4 font-mono text-sm bg-black text-green-400 p-4 rounded min-h-[100px] hidden"></div>
+                </div>
+            </div>
+
+            <div class="flex justify-between mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <a href="aula1.html" class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition">← Anterior</a>
+                <a href="aula3.html" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Próxima: Recursos Principais →</a>
+            </div>
+        </main>
+
+        <div id="footer-container"></div>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            // Show selected tab
+            document.getElementById(tabName).classList.remove('hidden');
+            
+            // Update buttons
+            const buttons = document.querySelectorAll('#installTabs button');
+            buttons.forEach(btn => {
+                btn.classList.remove('text-blue-600', 'border-blue-600', 'dark:text-blue-500', 'dark:border-blue-500');
+                btn.classList.add('border-transparent', 'hover:text-gray-600', 'hover:border-gray-300');
+            });
+            
+            // Highlight active button (this logic is a bit simplified, ideally use event.target)
+            const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(tabName));
+            if(activeBtn) {
+                activeBtn.classList.remove('border-transparent', 'hover:text-gray-600', 'hover:border-gray-300');
+                activeBtn.classList.add('text-blue-600', 'border-blue-600', 'dark:text-blue-500', 'dark:border-blue-500');
+            }
+        }
+
+        function simulateCompile() {
+            const output = document.getElementById('compileOutput');
+            output.classList.remove('hidden');
+            output.innerHTML = '';
+            
+            const steps = [
+                '📁 Lendo arquivo styles.scss...',
+                '🔍 Analisando sintaxe...',
+                '⚙️ Processando variáveis...',
+                '🔄 Compilando nesting...',
+                '💾 Gerando CSS...',
+                '✅ Compilação concluída com sucesso!',
+                '<br>',
+                '📄 Arquivo gerado: styles.css',
+                '⏱️ Tempo: 0.234s'
+            ];
+            
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < steps.length) {
+                    output.innerHTML += steps[i] + '<br>';
+                    output.scrollTop = output.scrollHeight;
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 300);
+        }
+    </script>
+</body>
+</html>
