@@ -33,41 +33,55 @@ if (media < 5) {
 }
 console.log(media);*/
 
-// Elabore um algoritmo que calcule o IMC e mostre sua classificação
+/*classclass caCarrocarroCarro {}
+    
+contrstructor)()marca,cor, gast    constructor(marca,cor, gastoPorKm) {
+         thisthis.marca = marca/;        this.marca = marca;
+        this.cor = cor;
+        this.gastoPorKm = gastoPorKm; // gasto de combustível por km
+    }
+}
+const carro1 = new Carro('Uno', 'branco', 0.1); // 0.1 litros por km
+const distanciaEmKm = 100;
+const precoCombustivel = 5.49; // preço do combustível por litro
 
-/*const peso = 90; // peso em kg
-const altura = 1.75; // altura em metros
+const calcularCustoViagem = (carro, distancia, precoCombustivel) => {
+    const litrosConsumidos = carro.gastoPorKm * distancia;
+    return litrosConsumidos * precoCombustivel;
+}
 
-const imc = peso / (Math.pow(altura, 2)); // cálculo do IMC
+const custoViagem = calcularCustoViagem(carro1, distanciaEmKm, precoCombustivel);
+console.log(`O custo da viagem com o meu carro ${carro1.marca} ${carro1.cor} é R$ ${custoViagem.toFixed(2)}`);*/
 
-if (imc < 18.5) {
+//
+
+class Pessoa {
+    constructor(nome, peso, altura) {
+        this.nome = nome;
+        this.peso = peso;
+        this.altura = altura;
+    }
+}
+
+const pessoa1 = new Pessoa('Jhonnatan', 90, 1.75);
+
+const calcularIMC = (pessoa) => {
+    const imc = pessoa.peso / (pessoa.altura ** 2);
+    return imc;
+}
+
+const imcPessoa1 = calcularIMC(pessoa1);
+
+console.log(`${pessoa1.nome} tem IMC de ${imcPessoa1.toFixed(2)} e está classificado como:`);
+
+if (imcPessoa1 < 18.5) {
     console.log('Abaixo do peso');
-} else if (imc >= 18.5 && imc < 25) {
+} else if (imcPessoa1 >= 18.5 && imcPessoa1 < 25) {
     console.log('Peso normal');
-} else if (imc >= 25 && imc < 30) {
+} else if (imcPessoa1 >= 25 && imcPessoa1 < 30) {
     console.log('Acima do peso');
-} else if (imc >= 30 && imc < 40) {
+} else if (imcPessoa1 >= 30 && imcPessoa1 < 40) {
     console.log('Obeso');
 } else {
     console.log('Obesidade grave');
-}
-console.log(imc.toFixed(2));*/
-
-// Cálculo do valor final de um produto baseado na forma de pagamento
-
-const precoEtiqueta = 100; // preço original do produto
-const formaDePagamento = 4; // forma de pagamento escolhida
-
-if (formaDePagamento === 1) {
-    const valorFinal = precoEtiqueta * 0.9; // 10% de desconto à vista no débito
-    console.log(valorFinal.toFixed(2));
-} else if (formaDePagamento === 2) {
-    const valorFinal = precoEtiqueta * 0.85; // 15% de desconto à vista no dinheiro ou pix
-    console.log(valorFinal.toFixed(2));
-} else if (formaDePagamento === 3) {
-    const valorFinal = precoEtiqueta; // preço normal em até 2x no cartão
-    console.log(valorFinal.toFixed(2));
-} else if (formaDePagamento === 4) {
-    const valorFinal = precoEtiqueta * 1.1; // 10% de juros em 3x ou mais no cartão
-    console.log(valorFinal.toFixed(2));
 }
