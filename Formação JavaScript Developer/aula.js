@@ -55,7 +55,7 @@ console.log(`O custo da viagem com o meu carro ${carro1.marca} ${carro1.cor} é 
 
 //
 
-class Pessoa {
+/*class Pessoa {
     constructor(nome, peso, altura) {
         this.nome = nome;
         this.peso = peso;
@@ -84,4 +84,52 @@ if (imcPessoa1 < 18.5) {
     console.log('Obeso');
 } else {
     console.log('Obesidade grave');
+}
+*/
+
+// ========================================
+
+// percorrendo arrays com for
+
+/*const notas = [];
+
+notas.push(7);
+notas.push(8);
+notas.push(6);
+notas.push(9);
+notas.push(5);
+
+let soma = 0;
+
+for (let i = 0; i < notas.length; i++) {
+    const nota = notas[i];
+    soma = soma + nota;
+}
+
+const media = soma / notas.length;
+
+console.log(`A média das notas é ${media.toFixed(2)}`);*/
+
+// ========================================
+
+// Crie um programa que dado um número imprima a sua tabuada de multiplicação de 1 a 10
+
+/*for (let i = 1; i <= 10; i++) { // loop de 1 a 10
+    const numero = 5; // número para o qual queremos a tabuada
+    const resultado = numero * i; // cálculo do resultado da multiplicação
+    console.log(`${ numero } x ${ i } = ${ resultado }`); // exibição do resultado
+}*/
+
+// ========================================
+
+// Crie um programa que seja capaz de percorrer uma lista de números e imprima cada número par encontrado na lista
+
+const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // lista de números
+
+for (let i = 0; i < numeros.length; i++) { // loop para percorrer a lista
+    const numero = numeros[i]; // obtém o número atual da lista
+
+    if (numero % 2 === 0) { // verifica se o número é par
+        console.log(numero); // imprime o número par
+    }
 }
