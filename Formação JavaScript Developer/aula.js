@@ -124,7 +124,7 @@ console.log(`A média das notas é ${media.toFixed(2)}`);*/
 
 // Crie um programa que seja capaz de percorrer uma lista de números e imprima cada número par encontrado na lista
 
-const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // lista de números
+/*const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // lista de números
 
 for (let i = 0; i < numeros.length; i++) { // loop para percorrer a lista
     const numero = numeros[i]; // obtém o número atual da lista
@@ -132,4 +132,69 @@ for (let i = 0; i < numeros.length; i++) { // loop para percorrer a lista
     if (numero % 2 === 0) { // verifica se o número é par
         console.log(numero); // imprime o número par
     }
+}   */
+
+// ========================================
+
+// Funções auxiliares gets e print
+
+/*function gets() {
+    return 10; // Retorna um valor fixo para simular a entrada do usuário
+}*/
+
+/*function print(texto) {
+    console.log(texto); // Imprime o texto no console
+}*/
+
+// Exemplo de como importar e exportar funções em JavaScript
+/*export { gets, print }; // Exporta as funções para serem usadas em outros arquivos
+import { gets, print } from './aula.js'; // Importa as funções de outro arquivo*/
+
+// ========================================
+
+// Uma sala contém 5 alunos e para cada aluno foi sorteado um número de 1 a 100.
+// Faça um programa que receba os 5 números sorteados para os alunos e mostre o maior número sorteado.
+
+// Dados de entrada: 5, 50, 10, 98, 23
+// Saída esperada: 98
+
+/*const entradas = [5, 50, 10, 98, 23]; // Números sorteados para os alunos
+let i = 0; // Índice para percorrer as entradas
+
+function gets() {
+    const valor = entradas[i];
+    i++;
+    return valor;
 }
+
+let maiorNumero = 0; // Variável para armazenar o maior número
+
+for (let j = 0; j < 5; j++) { // Loop para ler os 5 números
+
+    const numeroSorteado = gets(); // Lê o número sorteado
+
+    if (numeroSorteado > maiorNumero) { // Verifica se o número atual é maior que o maior número armazenado
+        maiorNumero = numeroSorteado; // Atualiza o maior número
+    }
+}
+
+console.log(maiorNumero); // Imprime o maior número sorteado */
+
+// ========================================
+
+
+const { gets, print } = require('./funcoes_auxiliares-ex1');
+
+const media = gets();
+
+if (media < 5) {
+    print('Reprovado');
+} else if (media >= 5 && media < 7) {
+    print('Recuperação');
+} else {
+    print('Aprovado');
+}
+
+
+
+
