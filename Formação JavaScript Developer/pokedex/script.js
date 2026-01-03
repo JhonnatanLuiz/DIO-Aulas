@@ -62,6 +62,9 @@ const typeTranslations = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Dark Mode initialization
+    initDarkMode();
+
     fetchPokemons();
     renderTypeFilters();
 
@@ -88,12 +91,37 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleComparisonMode();
         }
     });
+
+    // Dark Mode Toggle
+    document.getElementById('dark-mode-btn').addEventListener('click', toggleDarkMode);
+
+    // Battle Mode
+    document.getElementById('battle-btn').addEventListener('click', openBattleModal);
+    document.getElementById('battle-search').addEventListener('input', filterBattlePokemon);
 });
+
+// ==========================================
+//           DARK MODE
+// ==========================================
+
+function initDarkMode() {
+    const isDark = localStorage.getItem('pokedex_darkmode') === 'true';
+    if (isDark) {
+        document.documentElement.classList.add('dark');
+    }
+}
+
+function toggleDarkMode() {
+    const html = document.documentElement;
+    html.classList.toggle('dark');
+    const isDark = html.classList.contains('dark');
+    localStorage.setItem('pokedex_darkmode', isDark);
+}
 
 function renderTypeFilters() {
     Object.keys(colors).forEach(type => {
         const btn = document.createElement('button');
-        btn.className = `px-5 py-2 rounded-full text-sm font-semibold shrink-0 shadow-sm hover:shadow-md transition-all bg-white text-gray-600 capitalize`;
+        btn.className = `px-5 py-2 rounded-full text-sm font-semibold shrink-0 shadow-sm hover:shadow-md transition-all bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 capitalize`;
         btn.textContent = typeTranslations[type] || type;
         btn.dataset.type = type;
 
@@ -196,6 +224,10 @@ async function fetchPokemons() {
 
         const results = await Promise.all(promises);
 
+        if (offset === 0) {
+            pokemonGrid.innerHTML = '';
+        }
+
         results.forEach(pokemon => {
             const formattedPokemon = {
                 id: pokemon.id,
@@ -224,10 +256,15 @@ async function fetchPokemons() {
 
 function createPokemonCard(pokemon) {
     const mainType = pokemon.types[0];
+    const isDark = document.documentElement.classList.contains('dark');
 
     const card = document.createElement('div');
-    card.className = `pokemon-card relative p-6 rounded-[2rem] shadow-lg cursor-pointer overflow-hidden bg-white hover:shadow-2xl transition-all duration-300`;
-    card.style.background = `linear-gradient(135deg, white 60%, var(--tw-color-${mainType}) 100%)`;
+    card.className = `pokemon-card relative p-4 md:p-6 rounded-[2rem] shadow-lg cursor-pointer overflow-hidden bg-white dark:bg-gray-800 hover:shadow-2xl transition-all duration-300`;
+    if (isDark) {
+        card.style.background = `linear-gradient(135deg, #1f2937 60%, var(--tw-color-${mainType}) 100%)`;
+    } else {
+        card.style.background = `linear-gradient(135deg, white 60%, var(--tw-color-${mainType}) 100%)`;
+    }
     card.classList.add(`border-2`, `border-transparent`, `hover:border-${mainType}-400`);
     card.dataset.id = pokemon.id;
 
@@ -245,8 +282,8 @@ function createPokemonCard(pokemon) {
     card.innerHTML = `
         <div class="flex justify-between items-start z-10 relative">
             <div>
-                <span class="text-sm font-bold text-gray-400">#${idFormatted}</span>
-                <h2 class="text-2xl font-bold capitalize text-gray-800 mb-2">${pokemon.name}</h2>
+                <span class="text-sm font-bold text-gray-400 dark:text-gray-500">#${idFormatted}</span>
+                <h2 class="text-xl md:text-2xl font-bold capitalize text-gray-800 dark:text-white mb-2">${pokemon.name}</h2>
                 <div class="flex gap-2">
                     ${pokemon.types.map(type => `
                         <span class="type-badge text-xs font-semibold px-3 py-1 rounded-full text-white ${colors[type]} shadow-sm">
@@ -743,3 +780,194 @@ function openComparisonModal() {
 function closeComparisonModal() {
     document.getElementById('comparison-modal').classList.add('hidden');
 }
+
+// ==========================================
+//           BATTLE MODE
+// ==========================================
+
+let battlePlayer1 = null;
+let battlePlayer2 = null;
+let currentBattlePlayer = 1;
+
+function openBattleModal() {
+    // Reset state
+    battlePlayer1 = null;
+    battlePlayer2 = null;
+    document.getElementById('battle-p1-slot').innerHTML = '<p class="text-blue-400 text-center">Clique para escolher</p>';
+    document.getElementById('battle-p2-slot').innerHTML = '<p class="text-red-400 text-center">Clique para escolher</p>';
+    document.getElementById('fight-btn').classList.add('hidden');
+    document.getElementById('battle-results').classList.add('hidden');
+    document.getElementById('battle-results').innerHTML = '';
+
+    document.getElementById('battle-modal').classList.remove('hidden');
+}
+
+function closeBattleModal() {
+    document.getElementById('battle-modal').classList.add('hidden');
+}
+
+function openBattleSelector(player) {
+    currentBattlePlayer = player;
+    document.getElementById('battle-search').value = '';
+    renderBattlePokemonList(allPokemons);
+    document.getElementById('battle-selector').classList.remove('hidden');
+}
+
+function closeBattleSelector() {
+    document.getElementById('battle-selector').classList.add('hidden');
+}
+
+function filterBattlePokemon() {
+    const term = document.getElementById('battle-search').value.toLowerCase();
+    const filtered = allPokemons.filter(p => p.name.includes(term) || String(p.id).includes(term));
+    renderBattlePokemonList(filtered);
+}
+
+function renderBattlePokemonList(pokemons) {
+    const container = document.getElementById('battle-pokemon-list');
+    container.innerHTML = pokemons.map(p => `
+        <div class="bg-gray-800 rounded-xl p-3 cursor-pointer hover:bg-gray-700 hover:scale-105 transition-all text-center" onclick="selectBattlePokemon(${p.id})">
+            <img src="${p.img}" alt="${p.name}" class="w-16 h-16 mx-auto object-contain">
+            <p class="text-white text-xs mt-2 capitalize truncate">${p.name}</p>
+            <p class="text-gray-500 text-xs">#${String(p.id).padStart(3, '0')}</p>
+        </div>
+    `).join('');
+}
+
+function selectBattlePokemon(id) {
+    const pokemon = allPokemons.find(p => p.id === id);
+    if (!pokemon) return;
+
+    const slotId = currentBattlePlayer === 1 ? 'battle-p1-slot' : 'battle-p2-slot';
+    const color = currentBattlePlayer === 1 ? 'blue' : 'red';
+
+    if (currentBattlePlayer === 1) {
+        battlePlayer1 = pokemon;
+    } else {
+        battlePlayer2 = pokemon;
+    }
+
+    document.getElementById(slotId).innerHTML = `
+        <img src="${pokemon.img}" alt="${pokemon.name}" class="w-32 h-32 object-contain drop-shadow-lg">
+        <h4 class="text-xl font-bold text-white capitalize mt-2">${pokemon.name}</h4>
+        <p class="text-${color}-400 text-sm">#${String(pokemon.id).padStart(3, '0')}</p>
+        <div class="flex gap-1 mt-2">
+            ${pokemon.types.map(t => `<span class="text-xs px-2 py-0.5 rounded-full ${colors[t]} text-white">${typeTranslations[t]}</span>`).join('')}
+        </div>
+    `;
+
+    closeBattleSelector();
+
+    // Check if both players selected
+    if (battlePlayer1 && battlePlayer2) {
+        document.getElementById('fight-btn').classList.remove('hidden');
+    }
+}
+
+function startBattle() {
+    if (!battlePlayer1 || !battlePlayer2) return;
+
+    const p1 = battlePlayer1;
+    const p2 = battlePlayer2;
+
+    // Compare stats
+    let p1Wins = 0;
+    let p2Wins = 0;
+    const results = [];
+    const statNames = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'];
+    const statLabels = { 'hp': 'HP', 'attack': 'Ataque', 'defense': 'Defesa', 'special-attack': 'Atq. Especial', 'special-defense': 'Def. Especial', 'speed': 'Velocidade' };
+
+    for (let i = 0; i < 6; i++) {
+        const v1 = p1.stats[i].base_stat;
+        const v2 = p2.stats[i].base_stat;
+        const statName = p1.stats[i].stat.name;
+
+        let winner = 'tie';
+        if (v1 > v2) {
+            p1Wins++;
+            winner = 'p1';
+        } else if (v2 > v1) {
+            p2Wins++;
+            winner = 'p2';
+        }
+
+        results.push({ stat: statLabels[statName] || statName, v1, v2, winner });
+    }
+
+    // Determine overall winner
+    let overallWinner = 'tie';
+    let winnerName = '';
+    let winnerImg = '';
+
+    if (p1Wins > p2Wins) {
+        overallWinner = 'p1';
+        winnerName = p1.name;
+        winnerImg = p1.img;
+    } else if (p2Wins > p1Wins) {
+        overallWinner = 'p2';
+        winnerName = p2.name;
+        winnerImg = p2.img;
+    }
+
+    // Render results
+    const resultsDiv = document.getElementById('battle-results');
+    resultsDiv.innerHTML = `
+        <div class="bg-black/50 rounded-2xl p-6 text-center">
+            <h3 class="text-3xl font-bold mb-6 ${overallWinner === 'tie' ? 'text-yellow-400' : overallWinner === 'p1' ? 'text-blue-400' : 'text-red-400'}">
+                ${overallWinner === 'tie' ? '🤝 EMPATE! 🤝' : '🏆 VENCEDOR 🏆'}
+            </h3>
+            ${overallWinner !== 'tie' ? `
+                <img src="${winnerImg}" alt="${winnerName}" class="w-32 h-32 mx-auto drop-shadow-xl animate-bounce">
+                <p class="text-2xl font-bold text-white capitalize mt-4">${winnerName}</p>
+                <p class="text-gray-400">${overallWinner === 'p1' ? p1Wins : p2Wins} vitórias de 6 batalhas</p>
+            ` : `
+                <p class="text-gray-400">Ambos venceram ${p1Wins} batalhas!</p>
+            `}
+        </div>
+        
+        <div class="mt-6 space-y-3">
+            ${results.map(r => `
+                <div class="flex items-center gap-4 bg-gray-800/50 rounded-xl p-3">
+                    <span class="w-20 text-right font-bold ${r.winner === 'p1' ? 'text-blue-400' : 'text-gray-500'}">${r.v1}</span>
+                    <div class="flex-1 text-center">
+                        <span class="text-gray-400 text-sm uppercase">${r.stat}</span>
+                        <div class="flex justify-center gap-2 mt-1">
+                            ${r.winner === 'p1' ? '<span class="text-blue-400">✓</span>' : r.winner === 'p2' ? '<span class="text-red-400">✓</span>' : '<span class="text-yellow-400">=</span>'}
+                        </div>
+                    </div>
+                    <span class="w-20 text-left font-bold ${r.winner === 'p2' ? 'text-red-400' : 'text-gray-500'}">${r.v2}</span>
+                </div>
+            `).join('')}
+        </div>
+        
+        <div class="mt-6 text-center">
+            <button onclick="resetBattle()" class="bg-white/10 text-white px-8 py-3 rounded-full font-bold hover:bg-white/20 transition-all">
+                🔄 Nova Batalha
+            </button>
+        </div>
+    `;
+
+    resultsDiv.classList.remove('hidden');
+    document.getElementById('fight-btn').classList.add('hidden');
+
+    // Play winner cry
+    if (overallWinner !== 'tie') {
+        const winner = overallWinner === 'p1' ? p1 : p2;
+        if (winner.cries && winner.cries.latest) {
+            const audio = new Audio(winner.cries.latest);
+            audio.volume = 0.3;
+            audio.play().catch(() => { });
+        }
+    }
+}
+
+function resetBattle() {
+    battlePlayer1 = null;
+    battlePlayer2 = null;
+    document.getElementById('battle-p1-slot').innerHTML = '<p class="text-blue-400 text-center">Clique para escolher</p>';
+    document.getElementById('battle-p2-slot').innerHTML = '<p class="text-red-400 text-center">Clique para escolher</p>';
+    document.getElementById('fight-btn').classList.add('hidden');
+    document.getElementById('battle-results').classList.add('hidden');
+    document.getElementById('battle-results').innerHTML = '';
+}
+
